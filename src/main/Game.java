@@ -90,36 +90,6 @@ public class Game extends Canvas implements Runnable {
             handler.addObj(new Barrera(-32, 32 * i, 32, 32, 1));
         }
 
-        // <editor-fold defaultstate="colapsed" desc="Nivel Temporal Test"> 
-//        for (int i = 0; i < 20; i++) {
-//            handler.addObj(new BloqueMoneda(i * 32, 32 * 10, 32, 32, 1));
-//        }
-//        for (int i = 0; i < 55; i++) {
-//            handler.addObj(new BloquePiso(i * 32, 32 * 15, 32, 32, 1));
-//        }
-//        handler.addObj(new BloquePiso(32 * 25, 32 * 14, 32, 32, 1));
-//        handler.addObj(new BloquePiso(32 * 25, 32 * 13, 32, 32, 1));
-//        handler.addObj(new BloquePiso(32 * 25, 32 * 12, 32, 32, 1));
-//        handler.addObj(new BloquePiso(32 * 25, 32 * 11, 32, 32, 1));
-//        handler.addObj(new BloquePiso(32 * 25, 32 * 10, 32, 32, 1));
-//        handler.addObj(new BloquePiso(32 * 25, 32 * 9, 32, 32, 1));
-//
-//        // bloques test
-//        handler.addObj(new TuberiaCabeza(32 * 29, 32 * 13, 64, 32, 1, true));
-//        handler.addObj(new Tuberia(32 * 29, 32 * 14, 64, 32, 1));
-//        handler.addObj(new BloqueBandera(32 * 34, 32 * 14, 32, 32, 1));
-//        handler.addObj(new BanderaMastil(32 * 34, 32 * 13 - 16 * 14, 32, 256, 1));
-//        handler.addObj(new BloqueMoneda(32 * 29, 32 * 5, 32, 32, 1));
-//        handler.addObj(new ArbustoChico(32 * 17, 32 * 14, 64, 32, 1));
-//        handler.addObj(new ArbustoMediano(32 * 20, 32 * 14, 96, 32, 1));
-//        handler.addObj(new ArbustoGrande(32 * 0, 32 * 14, 128, 32, 1));
-//        handler.addObj(new NubeChica(32 * 10, 32 * 5, 64, 32, 1));
-//        handler.addObj(new NubeMediana(32 * 15, 32 * 2, 96, 32, 1));
-//        handler.addObj(new NubeGrande(32 * 5, 32 * 3, 128, 32, 1));
-//        handler.addObj(new MontanaGrande(32 * 10, 32 * 13, 160, 64, 1));
-//        handler.addObj(new MontanaChica(32 * 6, 32 * 14, 96, 32, 1));
-//        handler.addObj(new Castillo(32 * 38, 32 * 10, 160, 160, 1));
-        //</editor-fold>
         handler.setPlayer(new Player(32 * 1, 32, 1, handler));
         new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NAME, this);
 

@@ -13,22 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import object.Barrera;
 import object.util.GameObject;
-import object.ArbustoChico;
-import object.ArbustoGrande;
-import object.ArbustoMediano;
-import object.BanderaMastil;
-import object.BloqueMoneda;
-import object.BloqueBandera;
-import object.BloquePiso;
-import object.Castillo;
-import object.Ladrillo;
-import object.MontanaChica;
-import object.MontanaGrande;
-import object.NubeChica;
-import object.NubeGrande;
-import object.NubeMediana;
-import object.TuberiaCabeza;
-import object.Tuberia;
 import object.Player;
 import object.util.Handler;
 import object.util.KeyInput;
@@ -82,7 +66,7 @@ public class Game extends Canvas implements Runnable {
             }
         }
 
-        // Barrera para no caer al vacio
+        // Barreras para no salir del mapa
         for (int i = 0; i < 500; i++) {
             handler.addObj(new Barrera(i * 32, 32 * 16, 32, 32, 1));
         }

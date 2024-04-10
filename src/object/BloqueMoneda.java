@@ -1,5 +1,6 @@
 package object;
 
+import object.util.GameObject;
 import graficos.Animacion;
 import graficos.LibreriaGrafica;
 import graficos.Texturas;

@@ -1,6 +1,6 @@
 package graficos;
 
-import object.GameObject;
+import object.util.GameObject;
 import main.Game;
 
 public class Camara {

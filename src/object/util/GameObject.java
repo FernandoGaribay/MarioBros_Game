@@ -1,4 +1,4 @@
-package object;
+package object.util;
 
 import graficos.LibreriaGrafica;
 import java.awt.Rectangle;

@@ -12,7 +12,7 @@ import java.awt.image.BufferStrategy;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import object.Barrera;
-import object.GameObject;
+import object.util.GameObject;
 import object.ArbustoChico;
 import object.ArbustoGrande;
 import object.ArbustoMediano;

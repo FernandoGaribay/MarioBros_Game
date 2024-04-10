@@ -12,7 +12,6 @@ import object.BloqueMoneda;
 import object.BloqueMonedaHit;
 import object.BloquePiso;
 import object.Castillo;
-import object.GameObject;
 import object.Ladrillo;
 import object.MontanaChica;
 import object.MontanaGrande;

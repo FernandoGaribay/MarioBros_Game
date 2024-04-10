@@ -4,7 +4,7 @@ import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
-import object.GameObject;
+import object.util.GameObject;
 import object.Player;
 import object.Tuberia;
 import object.util.ObjectID;

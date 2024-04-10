@@ -1,5 +1,6 @@
 package object;
 
+import object.util.GameObject;
 import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.Rectangle;

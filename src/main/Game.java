@@ -86,6 +86,9 @@ public class Game extends Canvas implements Runnable {
         for (int i = 0; i < 500; i++) {
             handler.addObj(new Barrera(i * 32, 32 * 16, 32, 32, 1));
         }
+        for (int i = 0; i < 15; i++) {
+            handler.addObj(new Barrera(-32, 32 * i, 32, 32, 1));
+        }
 
         // <editor-fold defaultstate="colapsed" desc="Nivel Temporal Test"> 
 //        for (int i = 0; i < 20; i++) {

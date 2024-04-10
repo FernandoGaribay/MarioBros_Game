@@ -1,7 +1,6 @@
 package graficos;
 
 import graficos.LibreriaGrafica;
-import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
 import object.util.GameObject;
@@ -14,7 +13,7 @@ public class Background extends GameObject {
     private Player player;
 
     public Background(int x, int y, int width, int height, Player player) {
-        super(x, y, ObjectID.Background, width, height, 1);
+        super(x, y, ObjectID.Background, width + 10, height, 1);
         this.player = player;
     }
 

@@ -1,4 +1,4 @@
-Color y coordenadas -> marioDerecha.txt
+Color y coordenadas -> marioDerechaCaminando1.txt
 
 Dimensiones:
 16,16
@@ -539,7 +539,7 @@ Coordenada:
 6,10
 
 Color (RGB):
-0,0,0,0
+237,195,153,255
 Coordenada:
 6,11
 
@@ -574,12 +574,12 @@ Coordenada:
 7,1
 
 Color (RGB):
-0,0,0,0
+208,26,25,255
 Coordenada:
 7,2
 
 Color (RGB):
-0,0,0,0
+208,26,25,255
 Coordenada:
 7,3
 
@@ -599,7 +599,7 @@ Coordenada:
 7,6
 
 Color (RGB):
-208,26,25,255
+90,110,223,255
 Coordenada:
 7,7
 
@@ -609,17 +609,17 @@ Coordenada:
 7,8
 
 Color (RGB):
-90,110,223,255
+208,26,25,255
 Coordenada:
 7,9
 
 Color (RGB):
-208,26,25,255
+0,0,0,0
 Coordenada:
 7,10
 
 Color (RGB):
-208,26,25,255
+0,0,0,0
 Coordenada:
 7,11
 
@@ -644,17 +644,17 @@ Coordenada:
 7,15
 
 Color (RGB):
-0,0,0,0
+226,215,213,255
 Coordenada:
 8,0
 
 Color (RGB):
-0,0,0,0
+226,215,213,255
 Coordenada:
 8,1
 
 Color (RGB):
-0,0,0,0
+208,26,25,255
 Coordenada:
 8,2
 
@@ -679,17 +679,17 @@ Coordenada:
 8,6
 
 Color (RGB):
-208,26,25,255
+90,110,223,255
 Coordenada:
 8,7
 
 Color (RGB):
-208,26,25,255
+90,110,223,255
 Coordenada:
 8,8
 
 Color (RGB):
-90,110,223,255
+208,26,25,255
 Coordenada:
 8,9
 
@@ -704,17 +704,17 @@ Coordenada:
 8,11
 
 Color (RGB):
-208,26,25,255
+226,215,213,255
 Coordenada:
 8,12
 
 Color (RGB):
-0,0,0,0
+226,215,213,255
 Coordenada:
 8,13
 
 Color (RGB):
-0,0,0,0
+226,215,213,255
 Coordenada:
 8,14
 
@@ -724,22 +724,22 @@ Coordenada:
 8,15
 
 Color (RGB):
-0,0,0,0
+226,215,213,255
 Coordenada:
 9,0
 
 Color (RGB):
-0,0,0,0
+226,215,213,255
 Coordenada:
 9,1
 
 Color (RGB):
-208,26,25,255
+226,215,213,255
 Coordenada:
 9,2
 
 Color (RGB):
-208,26,25,255
+0,0,0,0
 Coordenada:
 9,3
 
@@ -759,7 +759,7 @@ Coordenada:
 9,6
 
 Color (RGB):
-90,110,223,255
+253,241,51,255
 Coordenada:
 9,7
 
@@ -774,7 +774,7 @@ Coordenada:
 9,9
 
 Color (RGB):
-208,26,25,255
+90,110,223,255
 Coordenada:
 9,10
 
@@ -789,12 +789,12 @@ Coordenada:
 9,12
 
 Color (RGB):
-208,26,25,255
+226,215,213,255
 Coordenada:
 9,13
 
 Color (RGB):
-0,0,0,0
+226,215,213,255
 Coordenada:
 9,14
 
@@ -804,27 +804,27 @@ Coordenada:
 9,15
 
 Color (RGB):
-0,0,0,0
+226,215,213,255
 Coordenada:
 10,0
 
 Color (RGB):
-0,0,0,0
+226,215,213,255
 Coordenada:
 10,1
 
 Color (RGB):
-226,215,213,255
+0,0,0,0
 Coordenada:
 10,2
 
 Color (RGB):
-226,215,213,255
+0,0,0,0
 Coordenada:
 10,3
 
 Color (RGB):
-208,26,25,255
+90,110,223,255
 Coordenada:
 10,4
 
@@ -834,7 +834,7 @@ Coordenada:
 10,5
 
 Color (RGB):
-253,241,51,255
+90,110,223,255
 Coordenada:
 10,6
 
@@ -849,7 +849,7 @@ Coordenada:
 10,8
 
 Color (RGB):
-253,241,51,255
+90,110,223,255
 Coordenada:
 10,9
 
@@ -859,17 +859,17 @@ Coordenada:
 10,10
 
 Color (RGB):
-208,26,25,255
+0,0,0,0
 Coordenada:
 10,11
 
 Color (RGB):
-226,215,213,255
+0,0,0,0
 Coordenada:
 10,12
 
 Color (RGB):
-226,215,213,255
+142,87,57,255
 Coordenada:
 10,13
 
@@ -894,17 +894,17 @@ Coordenada:
 11,1
 
 Color (RGB):
-226,215,213,255
+0,0,0,0
 Coordenada:
 11,2
 
 Color (RGB):
-226,215,213,255
+90,110,223,255
 Coordenada:
 11,3
 
 Color (RGB):
-226,215,213,255
+90,110,223,255
 Coordenada:
 11,4
 
@@ -939,17 +939,17 @@ Coordenada:
 11,10
 
 Color (RGB):
-226,215,213,255
+90,110,223,255
 Coordenada:
 11,11
 
 Color (RGB):
-226,215,213,255
+142,87,57,255
 Coordenada:
 11,12
 
 Color (RGB):
-226,215,213,255
+142,87,57,255
 Coordenada:
 11,13
 
@@ -974,12 +974,12 @@ Coordenada:
 12,1
 
 Color (RGB):
-226,215,213,255
+90,110,223,255
 Coordenada:
 12,2
 
 Color (RGB):
-226,215,213,255
+90,110,223,255
 Coordenada:
 12,3
 
@@ -1024,12 +1024,12 @@ Coordenada:
 12,11
 
 Color (RGB):
-226,215,213,255
+142,87,57,255
 Coordenada:
 12,12
 
 Color (RGB):
-226,215,213,255
+142,87,57,255
 Coordenada:
 12,13
 
@@ -1049,17 +1049,17 @@ Coordenada:
 13,0
 
 Color (RGB):
-0,0,0,0
+142,87,57,255
 Coordenada:
 13,1
 
 Color (RGB):
-0,0,0,0
+142,87,57,255
 Coordenada:
 13,2
 
 Color (RGB):
-0,0,0,0
+90,110,223,255
 Coordenada:
 13,3
 
@@ -1074,7 +1074,7 @@ Coordenada:
 13,5
 
 Color (RGB):
-90,110,223,255
+0,0,0,0
 Coordenada:
 13,6
 
@@ -1104,12 +1104,12 @@ Coordenada:
 13,11
 
 Color (RGB):
-0,0,0,0
+142,87,57,255
 Coordenada:
 13,12
 
 Color (RGB):
-0,0,0,0
+142,87,57,255
 Coordenada:
 13,13
 
@@ -1129,12 +1129,12 @@ Coordenada:
 14,0
 
 Color (RGB):
-0,0,0,0
+142,87,57,255
 Coordenada:
 14,1
 
 Color (RGB):
-0,0,0,0
+142,87,57,255
 Coordenada:
 14,2
 
@@ -1144,12 +1144,12 @@ Coordenada:
 14,3
 
 Color (RGB):
-142,87,57,255
+0,0,0,0
 Coordenada:
 14,4
 
 Color (RGB):
-142,87,57,255
+0,0,0,0
 Coordenada:
 14,5
 
@@ -1174,17 +1174,17 @@ Coordenada:
 14,9
 
 Color (RGB):
-142,87,57,255
+0,0,0,0
 Coordenada:
 14,10
 
 Color (RGB):
-142,87,57,255
+0,0,0,0
 Coordenada:
 14,11
 
 Color (RGB):
-142,87,57,255
+0,0,0,0
 Coordenada:
 14,12
 
@@ -1229,7 +1229,7 @@ Coordenada:
 15,4
 
 Color (RGB):
-142,87,57,255
+0,0,0,0
 Coordenada:
 15,5
 
@@ -1254,22 +1254,22 @@ Coordenada:
 15,9
 
 Color (RGB):
-142,87,57,255
+0,0,0,0
 Coordenada:
 15,10
 
 Color (RGB):
-142,87,57,255
+0,0,0,0
 Coordenada:
 15,11
 
 Color (RGB):
-142,87,57,255
+0,0,0,0
 Coordenada:
 15,12
 
 Color (RGB):
-142,87,57,255
+0,0,0,0
 Coordenada:
 15,13
 

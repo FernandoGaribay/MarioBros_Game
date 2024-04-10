@@ -1,30 +1,41 @@
 package object;
 
+import graficos.Animacion;
 import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import object.util.Handler;
 import object.util.ObjectID;
 
 public class Player extends GameObject {
 
     // CONSTANTES
-    private static final float WIDTH = 24;
+    private static final float WIDTH = 32;
     private static final float HEIGHT = 32;
 
     // OBJETOS
     private Handler handler;
     private Texturas texturas;
+    private BufferedImage[] marioCaminandoDerechaS;
+    private BufferedImage[] marioCaminandoIzquierdaS;
+    private Animacion animacionDerecha;
+    private Animacion animacionIzquierda;
 
     // VARIABLES
     private boolean jumped = false;
+    private boolean adelante = true;
 
     public Player(float x, float y, int scale, Handler handler) {
         super(x, y, ObjectID.Player, WIDTH, HEIGHT, scale);
         this.handler = handler;
         this.texturas = new Texturas();
 
+        marioCaminandoDerechaS = texturas.getMarioDerechaCaminando_S();
+        marioCaminandoIzquierdaS = texturas.getMarioIzquierdaCaminando_S();
+        this.animacionDerecha = new Animacion(5, marioCaminandoDerechaS);
+        this.animacionIzquierda = new Animacion(5, marioCaminandoIzquierdaS);
     }
 
     @Override
@@ -34,12 +45,44 @@ public class Player extends GameObject {
         applyGravity();
 
         collision();
+        animacionDerecha.runAnimacion();
+        animacionIzquierda.runAnimacion();
     }
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("marioDerecha"), (int) (getX()), (int) (getY()));
-//        g.fillRectangle((int) (getX()), (int) (getY()), (int) (getX() + WIDTH), (int) (getY() + HEIGHT), Color.yellow);
+        if (jumped) {
+            if (getVelX() > 0) {
+                g.drawImage(texturas.getMarioDerechaSaltando_S(), (int) getX(), (int) getY());
+                adelante = true;
+            } else if (getVelX() < 0) {
+                g.drawImage(texturas.getMarioIzquierdaSaltando_S(), (int) getX(), (int) getY());
+                adelante = false;
+            } else {
+                if (adelante) {
+                    g.drawImage(texturas.getMarioDerechaSaltando_S(), (int) getX(), (int) getY());
+                } else {
+                    g.drawImage(texturas.getMarioIzquierdaSaltando_S(), (int) getX(), (int) getY());
+                }
+            }
+        } else {
+            if (getVelX() > 0) {
+                animacionDerecha.drawSprite(g, (int) (getX()), (int) (getY()));
+                adelante = true;
+            } else if (getVelX() < 0) {
+                animacionIzquierda.drawSprite(g, (int) (getX()), (int) (getY()));
+                adelante = false;
+            } else {
+                if (adelante) {
+                    g.drawImage(texturas.getMarioDerecha_S(), (int) getX(), (int) getY());
+                } else {
+                    g.drawImage(texturas.getMarioIzquierda_S(), (int) getX(), (int) getY());
+                }
+            }
+        }
+
+        // Cajas de colisiones -------------------------------------------------
+//        g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + WIDTH), (int) (getY() + HEIGHT), Color.yellow);
 //        showBounds(g);
     }
 
@@ -102,17 +145,18 @@ public class Player extends GameObject {
     }
 
     public Rectangle getBoundsRight() {
-        return new Rectangle((int) (getX() + getWidth() - 5),
-                (int) (getY() + 5),
-                5,
-                (int) (getHeight() - 10));
+        return new Rectangle(
+                (int) (getX() + getWidth() - 8),
+                (int) (getY() + 4),
+                8,
+                (int) (getHeight() - 8));
     }
 
     public Rectangle getBoundsLeft() {
         return new Rectangle((int) (getX()),
-                (int) (getY() + 5),
-                5,
-                (int) (getHeight() - 10));
+                (int) (getY() + 4),
+                8,
+                (int) (getHeight() - 8));
     }
 
     private void showBounds(LibreriaGrafica g) {

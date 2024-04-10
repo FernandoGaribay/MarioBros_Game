@@ -9,6 +9,7 @@ import object.BanderaMastil;
 import object.Barrera;
 import object.BloqueBandera;
 import object.BloqueMoneda;
+import object.BloqueMonedaHit;
 import object.BloquePiso;
 import object.Castillo;
 import object.GameObject;
@@ -30,8 +31,8 @@ public class ObjectFactory {
         prototypes.put("tuberia", new Tuberia(0, 0, 64, 32, 1));
         prototypes.put("bloquePiso", new BloquePiso(0, 0, 32, 32, 1));
         prototypes.put("bloqueBandera", new BloqueBandera(0, 0, 32, 32, 1));
-        prototypes.put("bloqueMoneda", new BloqueMoneda(0, 0, 32, 32, 1));
-        prototypes.put("bloqueMonedaHit", new BloqueMoneda(0, 0, 32, 32, 1));
+        prototypes.put("bloqueMoneda1", new BloqueMoneda(0, 0, 32, 32, 1));
+        prototypes.put("bloqueMonedaHit", new BloqueMonedaHit(0, 0, 32, 32, 1));
         prototypes.put("ladrillo", new Ladrillo(0, 0, 32, 32, 1));
         prototypes.put("banderaMastil", new BanderaMastil(0, 0, 32, 288, 1));
         prototypes.put("castillo", new Castillo(0, 0, 160, 160, 1));

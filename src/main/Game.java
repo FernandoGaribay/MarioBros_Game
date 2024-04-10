@@ -29,7 +29,7 @@ public class Game extends Canvas implements Runnable {
     private static final int SCREEN_OFFSET = 32 * 1; // 1 bloque de offset
     private static final int VENTANA_WIDTH = 960;
     private static final int VENTANA_HEIGHT = 480 + SCREEN_OFFSET; // 32 x 15 = 480 (15 bloques de 16x16 de alto)
-    private static final int SCREEN_WIDTH = VENTANA_WIDTH - 67;
+    private static final int SCREEN_WIDTH = VENTANA_WIDTH;
     private static final int SCREEN_HEIGHT = VENTANA_HEIGHT;
     private static LibreriaGrafica g2 = new LibreriaGrafica(VENTANA_WIDTH, VENTANA_HEIGHT);
 

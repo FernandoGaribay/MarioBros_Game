@@ -16,7 +16,7 @@ public class Background extends GameObject {
     private Camara camara;
 
     public Background(int x, int y, int width, int height, int SCREEN_OFFSET, Camara camara) {
-        super(x, y, ObjectID.Background, width + 10, height, 1);
+        super(x, y, ObjectID.Background, width + 20, height, 1);
         this.SCREEN_OFFSET = SCREEN_OFFSET;
         this.camara = camara;
     }
@@ -24,7 +24,7 @@ public class Background extends GameObject {
     @Override
     public void tick() {
         if (camara != null) {
-            this.setX((int) -camara.getX());
+            this.setX((int) (-camara.getX() - 10));
         }
     }
 

@@ -14,10 +14,13 @@ public class Camara {
 
     public void tick(GameObject player) {
         this.x = (int) (-player.getX() + Game.getSCREEN_WIDTH() / 2);
+        if (getX() > 0) {
+            setX(0);
+        }
     }
 
     public int getX() {
-            return x;
+        return x;
     }
 
     public void setX(int x) {

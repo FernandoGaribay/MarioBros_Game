@@ -55,7 +55,7 @@ public class Game extends Canvas implements Runnable {
     // GAME COMPONENTS
     private Thread hilo;
     private Handler handler;
-    private Camara cam;
+    private Camara camara;
 
     public Game() {
         inicializarElementos();
@@ -65,8 +65,8 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         this.addKeyListener(new KeyInput(handler));
 
-        Player player = new Player(32 * 1, 32, 1, handler);
-        handler.addObj(new Background(0, 0, VENTANA_WIDTH, VENTANA_HEIGHT, player));
+        camara = new Camara(0, SCREEN_OFFSET);
+        handler.addObj(new Background(0, 0, VENTANA_WIDTH, VENTANA_HEIGHT, SCREEN_OFFSET, camara));
 
         CasillaNivel[][] matrizNivel;
         matrizNivel = EscritorLector_Niveles.cargarMatrizDesdeArchivo("mundo_1-1");
@@ -120,8 +120,7 @@ public class Game extends Canvas implements Runnable {
 //        handler.addObj(new MontanaChica(32 * 6, 32 * 14, 96, 32, 1));
 //        handler.addObj(new Castillo(32 * 38, 32 * 10, 160, 160, 1));
         //</editor-fold>
-        handler.setPlayer(player);
-        cam = new Camara(0, SCREEN_OFFSET);
+        handler.setPlayer(new Player(32 * 1, 32, 1, handler));
         new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NAME, this);
 
         gameLoopInicio();
@@ -181,7 +180,7 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
-        cam.tick(handler.getPlayer());
+        camara.tick(handler.getPlayer());
     }
 
     private void render() {
@@ -193,7 +192,7 @@ public class Game extends Canvas implements Runnable {
         Graphics g = buf.getDrawGraphics();
         g2.limpiarBuffer();
 
-        g2.translate(cam.getX(), cam.getY());
+        g2.translate(camara.getX(), camara.getY());
         handler.render(g2);
 
         g.drawImage(g2.getBuffer(), 0, 0, null);

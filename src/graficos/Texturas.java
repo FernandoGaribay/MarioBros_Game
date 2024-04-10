@@ -21,13 +21,16 @@ public class Texturas {
 
     private static PixelArtReader lectorMatriz;
 
-    public Texturas() {
+    // Inicializar variables estatica de la clase
+    static {
         texturasMap = new LinkedHashMap<>();
         marioDerechaCaminando_S_Map = new HashMap<>();
         marioIzquierdaCaminando_S_Map = new HashMap<>();
         bloqueModena_Map = new HashMap<>();
         lectorMatriz = new PixelArtReader(2);
+    }
 
+    public Texturas() {
         try {
             getBloquesTecturas();
             getTuberiaTexturas();

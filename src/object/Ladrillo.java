@@ -24,7 +24,7 @@ public class Ladrillo extends GameObject {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("ladrillo"), (int) (getX()), (int) (getY()));
+        g.drawImage(texturas.getTextura("bloqueLadrillo"), (int) (getX()), (int) (getY()));
 //        g.drawRectangle(getBounds(), Color.white);
     }
 

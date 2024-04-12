@@ -48,65 +48,65 @@ public class Texturas {
     }
 
     private static void getMarioDerechaCaminandoTexturas_S() {
-        marioDerechaCaminando_S_Map.put("marioDerechaCaminando1", lectorMatriz.drawPixelArt("marioDerechaCaminando1"));
-        marioDerechaCaminando_S_Map.put("marioDerechaCaminando2", lectorMatriz.drawPixelArt("marioDerechaCaminando2"));
-        marioDerechaCaminando_S_Map.put("marioDerechaCaminando3", lectorMatriz.drawPixelArt("marioDerechaCaminando3"));
+        marioDerechaCaminando_S_Map.put("marioDerechaCaminando1", lectorMatriz.drawPixelArt("SpritesFiles/MarioArchivos/marioDerechaCaminando1"));
+        marioDerechaCaminando_S_Map.put("marioDerechaCaminando2", lectorMatriz.drawPixelArt("SpritesFiles/MarioArchivos/marioDerechaCaminando2"));
+        marioDerechaCaminando_S_Map.put("marioDerechaCaminando3", lectorMatriz.drawPixelArt("SpritesFiles/MarioArchivos/marioDerechaCaminando3"));
     }
 
     private static void getMarioIzquierdaCaminandoTexturas_S() {
-        marioIzquierdaCaminando_S_Map.put("marioIzquierdaCaminando1", lectorMatriz.drawPixelArt("marioIzquierdaCaminando1"));
-        marioIzquierdaCaminando_S_Map.put("marioIzquierdaCaminando2", lectorMatriz.drawPixelArt("marioIzquierdaCaminando2"));
-        marioIzquierdaCaminando_S_Map.put("marioIzquierdaCaminando3", lectorMatriz.drawPixelArt("marioIzquierdaCaminando3"));
+        marioIzquierdaCaminando_S_Map.put("marioIzquierdaCaminando1", lectorMatriz.drawPixelArt("SpritesFiles/MarioArchivos/marioIzquierdaCaminando1"));
+        marioIzquierdaCaminando_S_Map.put("marioIzquierdaCaminando2", lectorMatriz.drawPixelArt("SpritesFiles/MarioArchivos/marioIzquierdaCaminando2"));
+        marioIzquierdaCaminando_S_Map.put("marioIzquierdaCaminando3", lectorMatriz.drawPixelArt("SpritesFiles/MarioArchivos/marioIzquierdaCaminando3"));
     }
 
     private static void getMarioTexturas_S() {
-        marioDerechaSaltando_S = lectorMatriz.drawPixelArt("marioDerechaSaltando");
-        marioIzquierdaSaltando_S = lectorMatriz.drawPixelArt("marioIzquierdaSaltando");
-        marioDerecha_S = lectorMatriz.drawPixelArt("marioDerecha");
-        marioIzquierda_S = lectorMatriz.drawPixelArt("marioIzquierda");
+        marioDerechaSaltando_S = lectorMatriz.drawPixelArt("SpritesFiles/MarioArchivos/marioDerechaSaltando");
+        marioIzquierdaSaltando_S = lectorMatriz.drawPixelArt("SpritesFiles/MarioArchivos/marioIzquierdaSaltando");
+        marioDerecha_S = lectorMatriz.drawPixelArt("SpritesFiles/MarioArchivos/marioDerecha");
+        marioIzquierda_S = lectorMatriz.drawPixelArt("SpritesFiles/MarioArchivos/marioIzquierda");
     }
 
     private static void getTuberiaTexturas() {
-        texturasMap.put("tuberiaCabeza", lectorMatriz.drawPixelArt("tuberiaCabeza"));
-        texturasMap.put("tuberia", lectorMatriz.drawPixelArt("tuberia"));
+        texturasMap.put("tuberiaCabeza", lectorMatriz.drawPixelArt("SpritesFiles/Tuberias/tuberiaCabeza"));
+        texturasMap.put("tuberia", lectorMatriz.drawPixelArt("SpritesFiles/Tuberias/tuberia"));
     }
 
     private static void getBloqueMonedaTexturas() {
-        bloqueModena_Map.put("bloqueMoneda1", lectorMatriz.drawPixelArt("bloqueMoneda1"));
-        bloqueModena_Map.put("bloqueMoneda2", lectorMatriz.drawPixelArt("bloqueMoneda2"));
-        bloqueModena_Map.put("bloqueMoneda3", lectorMatriz.drawPixelArt("bloqueMoneda3"));
+        bloqueModena_Map.put("bloqueMoneda1", lectorMatriz.drawPixelArt("SpritesFiles/Bloques/bloqueMoneda1"));
+        bloqueModena_Map.put("bloqueMoneda2", lectorMatriz.drawPixelArt("SpritesFiles/Bloques/bloqueMoneda2"));
+        bloqueModena_Map.put("bloqueMoneda3", lectorMatriz.drawPixelArt("SpritesFiles/Bloques/bloqueMoneda3"));
     }
 
     private static void getBloquesTecturas() {
-        texturasMap.put("bloquePiso", lectorMatriz.drawPixelArt("bloquePiso"));
-        texturasMap.put("bloqueBandera", lectorMatriz.drawPixelArt("bloqueBandera"));
-        texturasMap.put("bloqueMoneda1", lectorMatriz.drawPixelArt("bloqueMoneda1"));
-        texturasMap.put("bloqueMonedaHit", lectorMatriz.drawPixelArt("bloqueMonedaHit"));
-        texturasMap.put("ladrillo", lectorMatriz.drawPixelArt("ladrillo"));
-        texturasMap.put("barrera", lectorMatriz.drawPixelArt("barrera"));
+        texturasMap.put("bloquePiso", lectorMatriz.drawPixelArt("SpritesFiles/Bloques/bloquePiso"));
+        texturasMap.put("bloqueBandera", lectorMatriz.drawPixelArt("SpritesFiles/Bloques/bloqueBandera"));
+        texturasMap.put("bloqueMoneda1", lectorMatriz.drawPixelArt("SpritesFiles/Bloques/bloqueMoneda1"));
+        texturasMap.put("bloqueMonedaHit", lectorMatriz.drawPixelArt("SpritesFiles/Bloques/bloqueMonedaHit"));
+        texturasMap.put("bloqueLadrillo", lectorMatriz.drawPixelArt("SpritesFiles/Bloques/bloqueLadrillo"));
+        texturasMap.put("bloqueBarrera", lectorMatriz.drawPixelArt("SpritesFiles/Bloques/bloqueBarrera"));
     }
 
     private static void getElementosFondo() {
-        texturasMap.put("banderaMastil", lectorMatriz.drawPixelArt("banderaMastil"));
-        texturasMap.put("bandera", lectorMatriz.drawPixelArt("bandera"));
-        texturasMap.put("castillo", lectorMatriz.drawPixelArt("castillo"));
+        texturasMap.put("banderaMastil", lectorMatriz.drawPixelArt("SpritesFiles/Backgrounds/banderaMastil"));
+        texturasMap.put("bandera", lectorMatriz.drawPixelArt("SpritesFiles/Backgrounds/bandera"));
+        texturasMap.put("castillo", lectorMatriz.drawPixelArt("SpritesFiles/Backgrounds/castillo"));
     }
 
     private static void getMontanasTexturas() {
-        texturasMap.put("montanaChica", lectorMatriz.drawPixelArt("montanaChica"));
-        texturasMap.put("montanaGrande", lectorMatriz.drawPixelArt("montanaGrande"));
+        texturasMap.put("montanaChica", lectorMatriz.drawPixelArt("SpritesFiles/Montanas/montanaChica"));
+        texturasMap.put("montanaGrande", lectorMatriz.drawPixelArt("SpritesFiles/Montanas/montanaGrande"));
     }
 
     private static void getArbustosTexturas() {
-        texturasMap.put("arbustoChico", lectorMatriz.drawPixelArt("arbustoChico"));
-        texturasMap.put("arbustoMediano", lectorMatriz.drawPixelArt("arbustoMediano"));
-        texturasMap.put("arbustoGrande", lectorMatriz.drawPixelArt("arbustoGrande"));
+        texturasMap.put("arbustoChico", lectorMatriz.drawPixelArt("SpritesFiles/Arbustos/arbustoChico"));
+        texturasMap.put("arbustoMediano", lectorMatriz.drawPixelArt("SpritesFiles/Arbustos/arbustoMediano"));
+        texturasMap.put("arbustoGrande", lectorMatriz.drawPixelArt("SpritesFiles/Arbustos/arbustoGrande"));
     }
 
     private static void getNubesTexturas() {
-        texturasMap.put("nubeChica", lectorMatriz.drawPixelArt("nubeChica"));
-        texturasMap.put("nubeMediana", lectorMatriz.drawPixelArt("nubeMediana"));
-        texturasMap.put("nubeGrande", lectorMatriz.drawPixelArt("nubeGrande"));
+        texturasMap.put("nubeChica", lectorMatriz.drawPixelArt("SpritesFiles/Nubes/nubeChica"));
+        texturasMap.put("nubeMediana", lectorMatriz.drawPixelArt("SpritesFiles/Nubes/nubeMediana"));
+        texturasMap.put("nubeGrande", lectorMatriz.drawPixelArt("SpritesFiles/Nubes/nubeGrande"));
     }
 
     public static BufferedImage getTextura(String textura) {

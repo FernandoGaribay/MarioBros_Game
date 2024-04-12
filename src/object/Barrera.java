@@ -24,7 +24,7 @@ public class Barrera extends GameObject {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("barrera"), (int) (getX()), (int) (getY()));
+        g.drawImage(texturas.getTextura("bloqueBarrera"), (int) (getX()), (int) (getY()));
 //        g.drawRect((int) getX(), (int) getY(), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.red);
     }
 

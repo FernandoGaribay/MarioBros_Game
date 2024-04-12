@@ -236,7 +236,7 @@ nubeChica
 Coordenada:
 20,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 20,13
@@ -271,7 +271,7 @@ bloqueMoneda1
 Coordenada:
 22,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 22,13
@@ -301,7 +301,7 @@ bloquePiso
 Coordenada:
 24,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 24,12
@@ -936,7 +936,7 @@ bloquePiso
 Coordenada:
 77,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 77,13
@@ -966,7 +966,7 @@ bloquePiso
 Coordenada:
 79,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 79,13
@@ -981,7 +981,7 @@ bloquePiso
 Coordenada:
 80,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 80,13
@@ -996,7 +996,7 @@ bloquePiso
 Coordenada:
 81,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 81,13
@@ -1011,7 +1011,7 @@ bloquePiso
 Coordenada:
 82,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 82,13
@@ -1026,7 +1026,7 @@ bloquePiso
 Coordenada:
 83,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 83,13
@@ -1046,7 +1046,7 @@ nubeMediana
 Coordenada:
 84,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 84,13
@@ -1061,7 +1061,7 @@ bloquePiso
 Coordenada:
 85,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 85,13
@@ -1076,12 +1076,12 @@ bloquePiso
 Coordenada:
 86,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 87,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 89,13
@@ -1111,7 +1111,7 @@ bloquePiso
 Coordenada:
 91,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 91,13
@@ -1126,7 +1126,7 @@ bloquePiso
 Coordenada:
 92,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 92,13
@@ -1141,7 +1141,7 @@ bloquePiso
 Coordenada:
 93,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 93,13
@@ -1161,7 +1161,7 @@ bloqueMoneda1
 Coordenada:
 94,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 94,13
@@ -1231,7 +1231,7 @@ bloquePiso
 Coordenada:
 100,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 100,13
@@ -1246,7 +1246,7 @@ bloquePiso
 Coordenada:
 101,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 101,13
@@ -1461,7 +1461,7 @@ bloquePiso
 Coordenada:
 118,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 118,13
@@ -1501,7 +1501,7 @@ bloquePiso
 Coordenada:
 121,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 121,13
@@ -1516,7 +1516,7 @@ bloquePiso
 Coordenada:
 122,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 122,13
@@ -1531,7 +1531,7 @@ bloquePiso
 Coordenada:
 123,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 123,13
@@ -1591,7 +1591,7 @@ bloquePiso
 Coordenada:
 128,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 128,13
@@ -1611,7 +1611,7 @@ bloqueMoneda1
 Coordenada:
 129,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 129,13
@@ -1631,7 +1631,7 @@ bloqueMoneda1
 Coordenada:
 130,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 130,13
@@ -1646,7 +1646,7 @@ bloquePiso
 Coordenada:
 131,5
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 131,13
@@ -2261,7 +2261,7 @@ bloquePiso
 Coordenada:
 168,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 168,12
@@ -2281,7 +2281,7 @@ bloquePiso
 Coordenada:
 169,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 169,13
@@ -2316,7 +2316,7 @@ nubeGrande
 Coordenada:
 171,9
 Elemento:
-ladrillo
+bloqueLadrillo
 
 Coordenada:
 171,13

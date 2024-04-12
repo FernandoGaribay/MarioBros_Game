@@ -23,7 +23,7 @@ public class PixelArtReader extends Canvas {
     }
 
     public void cargarMatrizDesdeArchivo(String nombreArchivo) {
-        try (BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo))) {
+        try (BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo))){
             String lineaEscaneada;
             Color colorPixel = null;
 

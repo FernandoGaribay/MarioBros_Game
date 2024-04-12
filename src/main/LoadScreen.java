@@ -41,7 +41,7 @@ public class LoadScreen extends Canvas implements Runnable {
         long start = System.currentTimeMillis();
         long end = System.currentTimeMillis();
 
-        while (end - start < 5000) {
+        while (end - start < 0) {
             try {
                 hilo.sleep(500);
 

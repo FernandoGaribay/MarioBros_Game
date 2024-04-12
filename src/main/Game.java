@@ -58,7 +58,7 @@ public class Game extends Canvas implements Runnable {
         handler.addObj(new Background(0, 0, VENTANA_WIDTH, VENTANA_HEIGHT, SCREEN_OFFSET, camara));
 
         CasillaNivel[][] matrizNivel;
-        matrizNivel = EscritorLector_Niveles.cargarMatrizDesdeArchivo("mundo_1-1");
+        matrizNivel = EscritorLector_Niveles.cargarMatrizDesdeArchivo("NivelesFiles/mundo_1-1");
 
         for (CasillaNivel[] casillaNivels : matrizNivel) {
             for (CasillaNivel casillaNivel : casillaNivels) {

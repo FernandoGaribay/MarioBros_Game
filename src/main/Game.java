@@ -5,8 +5,8 @@ import graficos.Camara;
 import graficos.LibreriaGrafica;
 import java.awt.Canvas;
 import graficos.Ventana;
-import herramientaLevelCreator.CasillaNivel;
-import herramientaLevelCreator.EscritorLector_Niveles;
+import utils.CasillaNivel;
+import utils.EscritorLector_Niveles;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.logging.Level;
@@ -39,6 +39,7 @@ public class Game extends Canvas implements Runnable {
     // GAME COMPONENTS
     private Thread hilo;
     private Handler handler;
+    private Ventana ventana;
     private Camara camara;
 
     public Game() {
@@ -47,9 +48,13 @@ public class Game extends Canvas implements Runnable {
 
     private void inicializarElementos() {
         handler = new Handler();
+        ventana = new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NAME);
         this.addKeyListener(new KeyInput(handler));
 
+        LoadScreen loadScreen = new LoadScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
+        ventana.setCanvas(loadScreen);
         camara = new Camara(0, SCREEN_OFFSET);
+
         handler.addObj(new Background(0, 0, VENTANA_WIDTH, VENTANA_HEIGHT, SCREEN_OFFSET, camara));
 
         CasillaNivel[][] matrizNivel;
@@ -75,9 +80,18 @@ public class Game extends Canvas implements Runnable {
         }
 
         handler.setPlayer(new Player(32 * 1, 32, 1, handler));
-        new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NAME, this);
+        // new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NAME, this);
 
-        gameLoopInicio();
+        try {
+            // Esperar a que el hilo finalize
+            loadScreen.getHilo().join();
+            loadScreen = null;
+
+            ventana.setCanvas(this);
+            gameLoopInicio();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private synchronized void gameLoopInicio() {

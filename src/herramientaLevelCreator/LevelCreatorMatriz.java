@@ -1,5 +1,6 @@
 package herramientaLevelCreator;
 
+import utils.CasillaNivel;
 import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.Color;

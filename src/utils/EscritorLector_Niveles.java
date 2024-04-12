@@ -1,4 +1,4 @@
-package herramientaLevelCreator;
+package utils;
 
 import graficos.Texturas;
 import java.io.BufferedReader;

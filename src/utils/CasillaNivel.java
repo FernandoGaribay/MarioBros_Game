@@ -1,4 +1,4 @@
-package herramientaLevelCreator;
+package utils;
 
 import java.awt.image.BufferedImage;
 

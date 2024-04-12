@@ -1,5 +1,6 @@
 package herramientaLevelCreator;
 
+import utils.EscritorLector_Niveles;
 import graficos.Texturas;
 import java.awt.Component;
 import java.awt.event.KeyAdapter;

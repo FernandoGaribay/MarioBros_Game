@@ -14,57 +14,59 @@ import javax.swing.JOptionPane;
 
 public class LevelCreatorFrame extends JFrame {
 
-    // Menu constantes
+    // constantes
+    private final LevelCreatorMatriz CREADOR_NIVELES_MATRIZ = new LevelCreatorMatriz();
+
+    // Menu elementos
     private static Component espaciado = Box.createHorizontalGlue();
     private static JMenu mover_pintar = new JMenu("Movimiento");
 
-    // Variables
-    Texturas objTexturas = new Texturas();
-    
     public LevelCreatorFrame() {
         initComponents();
         inicializarBarraObjetos();
-        
+
         mover_pintar.setText("Pintando");
         menuBar.add(espaciado);
         menuBar.add(mover_pintar);
-        
+
+        CREADOR_NIVELES_MATRIZ.setSize(1000, 600);
+        add(CREADOR_NIVELES_MATRIZ);
+
         this.requestFocus();
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == 32) {
-                    levelCreatorMatriz.setMoviendo(true);
+                    CREADOR_NIVELES_MATRIZ.setMoviendo(true);
                     mover_pintar.setText("Movimiento");
                 }
             }
-            
+
             @Override
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == 32) {
-                    levelCreatorMatriz.setMoviendo(false);
+                    CREADOR_NIVELES_MATRIZ.setMoviendo(false);
                     mover_pintar.setText("Pintando");
                 }
             }
         });
     }
-    
+
     private void inicializarBarraObjetos() {
-        for (Map.Entry<String, BufferedImage> elemento : objTexturas.getImagenesMap().entrySet()) {
+        for (Map.Entry<String, BufferedImage> elemento : Texturas.getImagenesMap().entrySet()) {
             String key = elemento.getKey();
             BufferedImage imgElemento = elemento.getValue();
 
             // Se crea el elemento para la barra y se me asigna su interfaz
-            PanelElemento panelElementoTemp = new PanelElemento(imgElemento, key, levelCreatorMatriz);
+            PanelElemento panelElementoTemp = new PanelElemento(imgElemento, key, CREADOR_NIVELES_MATRIZ);
             panelBarraObjetos.add(panelElementoTemp);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        levelCreatorMatriz = new herramientaLevelCreator.LevelCreatorMatriz();
         jPanel1 = new javax.swing.JPanel();
         scrollPanel = new javax.swing.JScrollPane();
         panelBarraObjetos = new javax.swing.JPanel();
@@ -85,26 +87,10 @@ public class LevelCreatorFrame extends JFrame {
         menuX5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1200, 620));
         setMinimumSize(new java.awt.Dimension(1200, 620));
         setName("Level Creator"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1200, 620));
         setResizable(false);
         getContentPane().setLayout(null);
-
-        javax.swing.GroupLayout levelCreatorMatrizLayout = new javax.swing.GroupLayout(levelCreatorMatriz);
-        levelCreatorMatriz.setLayout(levelCreatorMatrizLayout);
-        levelCreatorMatrizLayout.setHorizontalGroup(
-            levelCreatorMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1005, Short.MAX_VALUE)
-        );
-        levelCreatorMatrizLayout.setVerticalGroup(
-            levelCreatorMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(levelCreatorMatriz);
-        levelCreatorMatriz.setBounds(0, 0, 1005, 600);
 
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
@@ -248,44 +234,44 @@ public class LevelCreatorFrame extends JFrame {
     private void menuNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoActionPerformed
         int columnas = Integer.parseInt(JOptionPane.showInputDialog("Dijite el numero de columnas"));
         int filas = Integer.parseInt(JOptionPane.showInputDialog("Dijite el numero de filas"));
-        
-        levelCreatorMatriz.limpiarMatriz(columnas, filas);
+
+        CREADOR_NIVELES_MATRIZ.limpiarMatriz(columnas, filas);
     }//GEN-LAST:event_menuNuevoActionPerformed
 
     private void menuGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGuardarActionPerformed
         String nombreArchivo = JOptionPane.showInputDialog("Dijite el nombre del nivel: ");
-        EscritorLector_Niveles.guardarMatrizComoArchivo(levelCreatorMatriz.getMatrizElementos(), nombreArchivo);
+        EscritorLector_Niveles.guardarMatrizComoArchivo(CREADOR_NIVELES_MATRIZ.getMatrizElementos(), nombreArchivo);
     }//GEN-LAST:event_menuGuardarActionPerformed
 
     private void menuAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAbrirActionPerformed
         String nombreArchivo = JOptionPane.showInputDialog("Dijite el nombre del nivel: ");
-        levelCreatorMatriz.setMatrizElementos(EscritorLector_Niveles.cargarMatrizDesdeArchivo(nombreArchivo));
+        CREADOR_NIVELES_MATRIZ.setMatrizElementos(EscritorLector_Niveles.cargarMatrizDesdeArchivo(nombreArchivo));
     }//GEN-LAST:event_menuAbrirActionPerformed
 
     private void menuX1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuX1ActionPerformed
-        levelCreatorMatriz.setVelocidad(1);
+        CREADOR_NIVELES_MATRIZ.setVelocidad(1);
     }//GEN-LAST:event_menuX1ActionPerformed
 
     private void menuX2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuX2ActionPerformed
-        levelCreatorMatriz.setVelocidad(2);
+        CREADOR_NIVELES_MATRIZ.setVelocidad(2);
     }//GEN-LAST:event_menuX2ActionPerformed
 
     private void menuX3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuX3ActionPerformed
-        levelCreatorMatriz.setVelocidad(3);
+        CREADOR_NIVELES_MATRIZ.setVelocidad(3);
     }//GEN-LAST:event_menuX3ActionPerformed
 
     private void menuX4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuX4ActionPerformed
-        levelCreatorMatriz.setVelocidad(4);
+        CREADOR_NIVELES_MATRIZ.setVelocidad(4);
     }//GEN-LAST:event_menuX4ActionPerformed
 
     private void menuX5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuX5ActionPerformed
-        levelCreatorMatriz.setVelocidad(5);
+        CREADOR_NIVELES_MATRIZ.setVelocidad(5);
     }//GEN-LAST:event_menuX5ActionPerformed
 
     private void menuCentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCentrarActionPerformed
-        levelCreatorMatriz.centrar();
+        CREADOR_NIVELES_MATRIZ.centrar();
     }//GEN-LAST:event_menuCentrarActionPerformed
-    
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
@@ -317,7 +303,6 @@ public class LevelCreatorFrame extends JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JPanel jPanel1;
-    private herramientaLevelCreator.LevelCreatorMatriz levelCreatorMatriz;
     private javax.swing.JMenuItem menuAbrir;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuCentrar;

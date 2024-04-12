@@ -19,7 +19,6 @@ public class LevelCreatorMatriz extends JPanel implements InterfazLevelCreator {
 
     // CONSTANTES
     private static final int TAMANO_CELDA = 32;
-    private static final Texturas TEXTURAS = new Texturas();
 
     // OBJETOS
     private LibreriaGrafica g2Cuadriculado;
@@ -198,7 +197,7 @@ public class LevelCreatorMatriz extends JPanel implements InterfazLevelCreator {
 
     private void actualizarPixel(int xClick, int yClick) {
         if (!borrando) {
-            matrizElementos[xClick][yClick].setImagenElemento(TEXTURAS.getTextura(elementoSelecionado));
+            matrizElementos[xClick][yClick].setImagenElemento(Texturas.getTextura(elementoSelecionado));
             matrizElementos[xClick][yClick].setNombreElemento(elementoSelecionado);
             matrizElementos[xClick][yClick].setCoordenadas(xClick, yClick);
         } else {

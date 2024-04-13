@@ -24,6 +24,7 @@ public class Game extends Canvas implements Runnable {
     private static final int MILLIS_POR_SEGUNDO = 1000;
     private static final int NANOS_POR_SEGUNDO = 1000000000;
     private static final double NUM_TICKS = 60.0;
+    private static final double NUM_FRAMES = 75.0;
     private static final String NAME = "Super Mario Bros";
 
     private static final int SCREEN_OFFSET = 32 * 1; // 1 bloque de offset
@@ -112,9 +113,14 @@ public class Game extends Canvas implements Runnable {
 
     @Override
     public void run() {
-        double ticksDeseados = NUM_TICKS; // representa cuantas veces queremos actualizar el juego por segundo
-        double ns = NANOS_POR_SEGUNDO / ticksDeseados; // cuantos nanosegundos deben pasar entre cada actualizacion para alcanzar amountOfTicks por segundo
-        double delta = 0; // controla cuando se debe ejecutar el metodo tick()
+        double ticksDeseados = NUM_TICKS; // representa cuantas veces se actualiza el juego por segundo
+        double framesDeseados = NUM_FRAMES; // representa cuantas veces se actualiza el juego por segundo
+        
+        double nsTicks = NANOS_POR_SEGUNDO / ticksDeseados; // cuantos nanosegundos deben pasar entre cada actualizacion para alcanzar amountOfTicks por segundo
+        double nsFrames = NANOS_POR_SEGUNDO / framesDeseados; // cuantos nanosegundos deben pasar entre cada frames para alcanzar amountOfTicks por segundo
+        
+        double deltaTicks = 0; // controla cuando se debe ejecutar el metodo tick()
+        double deltaFrames = 0; // controla cuando se debe ejecutar el metodo tick()
 
         int frames = 0; // estadisticas de FPS (cuadros por segundo) y TPS (actualizaciones por segundo).
         int updates = 0; // estadisticas de FPS (cuadros por segundo) y TPS (actualizaciones por segundo).
@@ -124,17 +130,19 @@ public class Game extends Canvas implements Runnable {
 
         while (running) {
             long now = System.nanoTime();
-            delta += (now - lastTime) / ns;
+            deltaTicks += (now - lastTime) / nsTicks;
+            deltaFrames += (now - lastTime) / nsFrames;
             lastTime = now;
 
-            while (delta >= 1) {
+            while (deltaTicks >= 1) {
                 tick();
                 updates++;
-                delta--;
+                deltaTicks--;
             }
-            if (running) {
+            while (deltaFrames >= 1){
                 render();
                 frames++;
+                deltaFrames--;
             }
             if (System.currentTimeMillis() - timer > MILLIS_POR_SEGUNDO) {
                 timer += MILLIS_POR_SEGUNDO;

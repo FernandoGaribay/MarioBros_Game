@@ -25,7 +25,7 @@ public class Game extends Canvas implements Runnable {
     private static final int NANOS_POR_SEGUNDO = 1000000000;
     private static final double NUM_TICKS = 60.0;
     private static final double NUM_FRAMES = 75.0;
-    private static final String NAME = "Super Mario Bros";
+    private static final String NOMBRE = "Super Mario Bros";
 
     private static final int SCREEN_OFFSET = 32 * 1; // 1 bloque de offset
     private static final int VENTANA_WIDTH = 960;
@@ -42,46 +42,28 @@ public class Game extends Canvas implements Runnable {
     private Handler handler;
     private Ventana ventana;
     private Camara camara;
+    private LoadScreen loadScreen;
 
     public Game() {
         inicializarElementos();
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Inizializar Elementos">  
     private void inicializarElementos() {
-        handler = new Handler();
-        ventana = new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NAME);
         this.addKeyListener(new KeyInput(handler));
 
-        LoadScreen loadScreen = new LoadScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
-        ventana.setCanvas(loadScreen);
+        handler = new Handler();
+        ventana = new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NOMBRE);
         camara = new Camara(0, SCREEN_OFFSET);
+        loadScreen = new LoadScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+        ventana.setCanvas(loadScreen);
         handler.addObj(new Background(0, 0, VENTANA_WIDTH, VENTANA_HEIGHT, SCREEN_OFFSET, camara));
 
-        CasillaNivel[][] matrizNivel;
-        matrizNivel = EscritorLector_Niveles.cargarMatrizDesdeArchivo("NivelesFiles/mundo_1-1");
-
-        for (CasillaNivel[] casillaNivels : matrizNivel) {
-            for (CasillaNivel casillaNivel : casillaNivels) {
-                if (!casillaNivel.getNombreElemento().isEmpty()) {
-                    GameObject obj = ObjectFactory.createObject(casillaNivel.getNombreElemento());
-                    obj.setX(casillaNivel.getX() * 32);
-                    obj.setY(casillaNivel.getY() * 32);
-                    handler.addObj(obj);
-                }
-            }
-        }
-
-        // Barreras para no salir del mapa
-        for (int i = 0; i < 500; i++) {
-            handler.addObj(new Barrera(i * 32, 32 * 16, 32, 32, 1));
-        }
-        for (int i = 0; i < 15; i++) {
-            handler.addObj(new Barrera(-32, 32 * i, 32, 32, 1));
-        }
+        cargarNivel("NivelesFiles/mundo_1-1");
+        cargarBarreras();
 
         handler.setPlayer(new Player(32 * 1, 32, 1, handler));
-        // new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NAME, this);
 
         try {
             // Esperar a que el hilo finalize
@@ -94,6 +76,33 @@ public class Game extends Canvas implements Runnable {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void cargarBarreras() {
+        // Barreras para no salir del mapa
+        for (int i = 0; i < 500; i++) {
+            handler.addObj(new Barrera(i * 32, 32 * 16, 32, 32, 1));
+        }
+        for (int i = 0; i < 15; i++) {
+            handler.addObj(new Barrera(-32, 32 * i, 32, 32, 1));
+        }
+    }
+
+    public void cargarNivel(String nombreArchivo) {
+        CasillaNivel[][] matrizNivel;
+        matrizNivel = EscritorLector_Niveles.cargarMatrizDesdeArchivo(nombreArchivo);
+
+        for (CasillaNivel[] casillaNivels : matrizNivel) {
+            for (CasillaNivel casillaNivel : casillaNivels) {
+                if (!casillaNivel.getNombreElemento().isEmpty()) {
+                    GameObject obj = ObjectFactory.createObject(casillaNivel.getNombreElemento());
+                    obj.setX(casillaNivel.getX() * 32);
+                    obj.setY(casillaNivel.getY() * 32);
+                    handler.addObj(obj);
+                }
+            }
+        }
+    }
+    // </editor-fold>  
 
     private synchronized void gameLoopInicio() {
         this.hilo = new Thread(this);
@@ -115,10 +124,10 @@ public class Game extends Canvas implements Runnable {
     public void run() {
         double ticksDeseados = NUM_TICKS; // representa cuantas veces se actualiza el juego por segundo
         double framesDeseados = NUM_FRAMES; // representa cuantas veces se actualiza el juego por segundo
-        
+
         double nsTicks = NANOS_POR_SEGUNDO / ticksDeseados; // cuantos nanosegundos deben pasar entre cada actualizacion para alcanzar amountOfTicks por segundo
         double nsFrames = NANOS_POR_SEGUNDO / framesDeseados; // cuantos nanosegundos deben pasar entre cada frames para alcanzar amountOfTicks por segundo
-        
+
         double deltaTicks = 0; // controla cuando se debe ejecutar el metodo tick()
         double deltaFrames = 0; // controla cuando se debe ejecutar el metodo tick()
 
@@ -139,7 +148,7 @@ public class Game extends Canvas implements Runnable {
                 updates++;
                 deltaTicks--;
             }
-            while (deltaFrames >= 1){
+            while (deltaFrames >= 1) {
                 render();
                 frames++;
                 deltaFrames--;

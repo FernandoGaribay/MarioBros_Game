@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 public class LoadScreen extends Canvas implements Runnable {
 
     // Constantes
+    private final int TIMEPO_CARGA = 3000;
     private final int WIDTH;
     private final int HEIGHT;
 
@@ -41,7 +42,7 @@ public class LoadScreen extends Canvas implements Runnable {
         long start = System.currentTimeMillis();
         long end = System.currentTimeMillis();
 
-        while (end - start < 0) {
+        while (end - start < TIMEPO_CARGA) {
             try {
                 hilo.sleep(500);
 

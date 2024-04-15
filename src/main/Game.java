@@ -185,12 +185,12 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    private void tick() {
+    private synchronized void tick() {
         handler.tick();
         camara.tick(handler.getPlayer());
     }
 
-    private void render() {
+    private synchronized void render() {
         BufferStrategy buf = this.getBufferStrategy();
         if (buf == null) {
             this.createBufferStrategy(3);

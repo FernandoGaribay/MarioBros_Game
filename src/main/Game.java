@@ -21,10 +21,8 @@ import object.util.ObjectFactory;
 public class Game extends Canvas implements Runnable {
 
     // CONSTANTES
-    private static final int MILLIS_POR_SEGUNDO = 1000;
     private static final int NANOS_POR_SEGUNDO = 1000000000;
-    private static final double NUM_TICKS = 60.0;
-    private static final double NUM_FRAMES = 60.0;
+    private static final double NUM_FPS = 60.0;
     private static final String NOMBRE = "Super Mario Bros";
 
     private static final int SCREEN_OFFSET = 32 * 1; // 1 bloque de offset
@@ -146,7 +144,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void runUpdate() {
-        double nsTicks = NANOS_POR_SEGUNDO / NUM_TICKS; // cuantos nanosegundos deben pasar entre cada actualizacion para alcanzar amountOfTicks por segundo
+        double nsTicks = NANOS_POR_SEGUNDO / NUM_FPS; // cuantos nanosegundos deben pasar entre cada actualizacion para alcanzar amountOfTicks por segundo
 
         double deltaTicks = 0; // controla cuando se debe ejecutar el metodo tick()
 
@@ -166,7 +164,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void runRender() {
-        double nsFrames = NANOS_POR_SEGUNDO / NUM_FRAMES; // cuantos nanosegundos deben pasar entre cada frames para alcanzar amountOfTicks por segundo
+        double nsFrames = NANOS_POR_SEGUNDO / NUM_FPS; // cuantos nanosegundos deben pasar entre cada frames para alcanzar amountOfTicks por segundo
 
         double deltaFrames = 0; // controla cuando se debe ejecutar el metodo render()
 

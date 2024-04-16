@@ -1,4 +1,4 @@
-Color y coordenadas -> marioIzquierdaCaminando1.txt
+Color y coordenadas -> SpritesFiles/MarioArchivos/marioIzquierdaCaminando1.txt
 
 Dimensiones:
 16,16
@@ -259,7 +259,7 @@ Coordenada:
 3,2
 
 Color (RGB):
-0,0,0,0
+237,195,153,255
 Coordenada:
 3,3
 

@@ -2,6 +2,7 @@ package object.util;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import object.Player;
 
 
 
@@ -9,9 +10,11 @@ public class KeyInput extends KeyAdapter {
 
     private boolean[] keyDown = new boolean[4];
     private Handler handler;
+    private Player player;
 
-    public KeyInput(Handler handler) {
+    public KeyInput(Player player, Handler handler) {
         this.handler = handler;
+        this.player = player;
     }
 
     @Override
@@ -24,22 +27,22 @@ public class KeyInput extends KeyAdapter {
 
         // jump
         if (key == KeyEvent.VK_W) {
-            if (!handler.getPlayer().hasJumped()) {
-                handler.getPlayer().setVelY(-12);
+            if (!player.hasJumped()) {
+                player.setVelY(-12);
                 keyDown[0] = true;
-                handler.getPlayer().setJumped(true);
+                player.setJumped(true);
             }
         }
 
         // left
         if (key == KeyEvent.VK_A) {
-            handler.getPlayer().setVelX(-4);
+            player.setVelX(-4);
             keyDown[1] = true;
         }
 
         // right
         if (key == KeyEvent.VK_D) {
-            handler.getPlayer().setVelX(4);
+            player.setVelX(4);
             keyDown[2] = true;
         }
     }
@@ -61,7 +64,7 @@ public class KeyInput extends KeyAdapter {
         }
 
         if (!keyDown[1] && !keyDown[2]) {
-            handler.getPlayer().setVelX(0);
+            player.setVelX(0);
         }
     }
 

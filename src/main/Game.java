@@ -41,13 +41,16 @@ public class Game extends Canvas implements Runnable {
     private Thread hiloPrincipal;
     private Thread updateThread;
     private Thread renderThread;
+    private Thread playerThread;
     private Handler handler;
     private Ventana ventana;
     private Camara camara;
+    private Player player;
     private LoadScreen loadScreen;
 
     public Game() {
         inicializarElementos();
+        this.requestFocus();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Inizializar Elementos">  
@@ -55,17 +58,16 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         ventana = new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NOMBRE);
         camara = new Camara(0, SCREEN_OFFSET);
+        player = new Player(32 * 1, 32, 1, handler);
         loadScreen = new LoadScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-        this.addKeyListener(new KeyInput(handler));
+        this.addKeyListener(new KeyInput(player, handler));
 
         ventana.setCanvas(loadScreen);
         handler.addObj(new Background(0, 0, VENTANA_WIDTH, VENTANA_HEIGHT, SCREEN_OFFSET, camara));
 
         cargarNivel("NivelesFiles/mundo_1-1");
         cargarBarreras();
-
-        handler.setPlayer(new Player(32 * 1, 32, 1, handler));
 
         try {
             // Esperar a que el hilo finalize
@@ -110,6 +112,7 @@ public class Game extends Canvas implements Runnable {
         this.hiloPrincipal = new Thread(this);
         this.updateThread = new Thread(this::runUpdate);
         this.renderThread = new Thread(this::runRender);
+        this.playerThread = new Thread(this::playerUpdate);
 
         this.running = true;
         hiloPrincipal.start();
@@ -120,6 +123,7 @@ public class Game extends Canvas implements Runnable {
             this.running = false;
             this.updateThread.join();
             this.renderThread.join();
+            this.playerThread.join();
         } catch (InterruptedException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -129,6 +133,7 @@ public class Game extends Canvas implements Runnable {
     public void run() {
         updateThread.start();
         renderThread.start();
+        playerThread.start();
 
         while (running) {
             try {
@@ -156,7 +161,7 @@ public class Game extends Canvas implements Runnable {
             lastTime = now;
 
             while (deltaTicks >= 1) {
-                tick();
+                objetosTick();
                 updates++;
                 deltaTicks--;
             }
@@ -183,9 +188,32 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    private synchronized void tick() {
+    public void playerUpdate() {
+        double nsTicks = NANOS_POR_SEGUNDO / NUM_FPS; // cuantos nanosegundos deben pasar entre cada actualizacion para alcanzar amountOfTicks por segundo
+
+        double deltaTicks = 0; // controla cuando se debe ejecutar el metodo tick()
+
+        long lastTime = System.nanoTime(); // calcular cuanto tiempo ha pasado desde la ultima actualizacion del juego
+
+        while (running) {
+            long now = System.nanoTime();
+            deltaTicks += (now - lastTime) / nsTicks;
+            lastTime = now;
+
+            while (deltaTicks >= 1) {
+                playerTick();
+                deltaTicks--;
+            }
+        }
+    }
+
+    private synchronized void objetosTick() {
         handler.tick();
-        camara.tick(handler.getPlayer());
+    }
+
+    private synchronized void playerTick() {
+        player.tick();
+        camara.tick(player);
     }
 
     private synchronized void render() {
@@ -198,7 +226,9 @@ public class Game extends Canvas implements Runnable {
         g2.limpiarBuffer();
 
         g2.translate(camara.getX(), camara.getY());
+
         handler.render(g2);
+        player.render(g2);
 
         g.drawImage(g2.getBuffer(), 0, 0, null);
         g.dispose();

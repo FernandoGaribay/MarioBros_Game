@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class LoadScreen extends Canvas implements Runnable {
 
     // Constantes
-    private final int TIMEPO_CARGA = 3000;
+    private final int TIMEPO_CARGA = 0;
     private final int WIDTH;
     private final int HEIGHT;
 

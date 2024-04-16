@@ -9,7 +9,6 @@ import object.Player;
 public class Handler {
 
     private List<GameObject> gameObjs;
-    private Player player;
 
     public Handler() {
         this.gameObjs = new LinkedList<GameObject>();
@@ -37,29 +36,5 @@ public class Handler {
 
     public List<GameObject> getGameObj() {
         return gameObjs;
-    }
-
-    public int setPlayer(Player player) {
-        if (this.player != null) {
-            return -1;
-        }
-
-        addObj(player);
-        this.player = player;
-        return 0;
-    }
-
-    public int removePlayer() {
-        if (player == null) {
-            return -1;
-        }
-
-        removeObj(player);
-        this.player = null;
-        return 0;
-    }
-    
-    public Player getPlayer(){
-        return player;
     }
 }

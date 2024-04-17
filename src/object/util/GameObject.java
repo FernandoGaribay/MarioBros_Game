@@ -8,9 +8,9 @@ public abstract class GameObject {
 
     protected float x;
     protected float y;
+    protected float width, height;
     protected ObjectID id;
     private float velX, velY;
-    protected float width, height;
     private boolean golpeado;
     private int scale;
 
@@ -30,7 +30,7 @@ public abstract class GameObject {
 
     public abstract Rectangle getBounds();
 
-    public void applyGravity() {
+    public void aplicarGravedad() {
         velY += 0.5f;
     }
 

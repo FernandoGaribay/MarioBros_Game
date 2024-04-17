@@ -7,11 +7,11 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import object.util.ObjectID;
 
-public class ArbustoGrande extends GameObject{
-    
+public class ArbustoGrande extends GameObject {
+
     // OBJETOS
     private Texturas texturas;
-    
+
     public ArbustoGrande(int x, int y, int width, int height, int scale) {
         super(x, y, ObjectID.Background, width, height, scale);
         this.texturas = new Texturas();
@@ -19,7 +19,7 @@ public class ArbustoGrande extends GameObject{
 
     @Override
     public void tick() {
-        
+
     }
 
     @Override
@@ -32,10 +32,9 @@ public class ArbustoGrande extends GameObject{
     public Rectangle getBounds() {
         return new Rectangle((int) (getX()), (int) (getY()), (int) (getWidth()), (int) (getHeight()));
     }
-    
-    
-        @Override
+
+    @Override
     public GameObject clone() {
-        return new ArbustoGrande((int)x, (int)y, (int)width, (int)height, 1);
+        return new ArbustoGrande((int) x, (int) y, (int) width, (int) height, 1);
     }
 }

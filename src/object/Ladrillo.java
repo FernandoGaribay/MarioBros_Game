@@ -11,6 +11,9 @@ public class Ladrillo extends GameObject {
 
     // OBJETOS
     private Texturas texturas;
+    
+    // VARIABLES
+    private int contAnimacionGolpe = 0;
 
     public Ladrillo(int x, int y, int width, int height, int scale) {
         super(x, y, ObjectID.Ladrillo, width, height, scale);
@@ -19,7 +22,9 @@ public class Ladrillo extends GameObject {
 
     @Override
     public void tick() {
-
+        if (isGolpeado()) {
+            runAnimacionGolpe();
+        }
     }
 
     @Override
@@ -32,8 +37,25 @@ public class Ladrillo extends GameObject {
     public Rectangle getBounds() {
         return new Rectangle((int) (getX()), (int) (getY()), (int) (getWidth()), (int) (getHeight()));
     }
+
     @Override
     public GameObject clone() {
-        return new Ladrillo((int)x, (int)y, (int)width, (int)height, 1);
+        return new Ladrillo((int) x, (int) y, (int) width, (int) height, 1);
+    }
+
+    public void runAnimacionGolpe() {
+        if (contAnimacionGolpe == 16) {
+            contAnimacionGolpe = 0;
+            setGolpeado(false);
+
+            return;
+        }
+
+        if (contAnimacionGolpe < 8) {
+            setY(getY() - 3);
+        } else if (contAnimacionGolpe < 16 && contAnimacionGolpe >= 8) {
+            setY(getY() + 3);
+        }
+        contAnimacionGolpe++;
     }
 }

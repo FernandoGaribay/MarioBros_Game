@@ -15,20 +15,28 @@ public class BloqueMoneda extends GameObject {
     private Texturas texturas;
     private BufferedImage[] bloquesMoneda;
     private Animacion animacion;
-
+    
+    // Variables
+    private boolean animacionCompletada = false;
+    private int contAnimacionGolpe = 0;
+    
     public BloqueMoneda(int x, int y, int width, int height, int scale) {
         super(x, y, ObjectID.CoinBlock, width, height, scale);
         this.texturas = new Texturas();
-
+        
         bloquesMoneda = texturas.getBloquesMoneda();
         animacion = new Animacion(12, bloquesMoneda);
     }
-
+    
     @Override
     public void tick() {
         animacion.runAnimacion();
+        
+        if (isGolpeado() && !animacionCompletada) {
+            runAnimacionGolpe();
+        }
     }
-
+    
     @Override
     public void render(LibreriaGrafica g) {
         if (!isGolpeado()) {
@@ -38,14 +46,30 @@ public class BloqueMoneda extends GameObject {
         }
 //        g.drawRectangle(getBounds(), Color.white);
     }
-
+    
     @Override
     public Rectangle getBounds() {
         return new Rectangle((int) (getX()), (int) (getY()), (int) (getWidth()), (int) (getHeight()));
     }
-
+    
     @Override
     public GameObject clone() {
         return new BloqueMoneda((int) x, (int) y, (int) width, (int) height, 1);
+    }
+    
+    public void runAnimacionGolpe() {
+        if (contAnimacionGolpe == 16) {
+            contAnimacionGolpe = 0;
+            animacionCompletada = true;
+            
+            return;
+        }
+
+        if (contAnimacionGolpe < 8) {
+            setY(getY() - 3);
+        } else if (contAnimacionGolpe < 16 && contAnimacionGolpe >= 8) {
+            setY(getY() + 3);
+        }
+        contAnimacionGolpe++;
     }
 }

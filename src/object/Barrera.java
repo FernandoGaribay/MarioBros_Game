@@ -37,5 +37,4 @@ public class Barrera extends GameObject {
     public GameObject clone() {
         return new Barrera((int) x, (int) y, (int) width, (int) height, 1);
     }
-
 }

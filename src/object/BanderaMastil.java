@@ -65,6 +65,7 @@ public class BanderaMastil extends GameObject {
     public GameObject clone() {
         return new BanderaMastil((int) x, (int) y, (int) width, (int) height, 1);
     }
+    
 }
 
 class Bandera {

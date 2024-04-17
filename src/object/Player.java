@@ -43,9 +43,9 @@ public class Player extends GameObject {
     public void tick() {
         setX(getVelX() + getX());
         setY(getVelY() + getY());
-        applyGravity();
+        aplicarGravedad();
 
-        collision();
+        aplicarColisiones();
         animacionDerecha.runAnimacion();
         animacionIzquierda.runAnimacion();
     }
@@ -87,46 +87,56 @@ public class Player extends GameObject {
 //        showBounds(g);
     }
 
-    private void collision() {
+    private void aplicarColisiones() {
         for (int i = 0; i < handler.getGameObj().size(); i++) {
             GameObject temp = handler.getGameObj().get(i);
 
-            // CON COLISION SOLIDA
-            if (temp.getID() == ObjectID.Block || temp.getID() == ObjectID.PipeHead || temp.getID() == ObjectID.CoinBlock || temp.getID() == ObjectID.Ladrillo) {
-                if (getBounds().intersects(temp.getBounds())) {
-                    setY(temp.getY() - getHeight());
-                    setVelY(0);
-                    jumped = false;
-                }
-                if (getBoundsTop().intersects(temp.getBounds())) {
-                    setY(temp.getY() + temp.getHeight());
-                    setVelY(0);
+            switch (temp.getID()) {
+                case Block:
+                case PipeHead:
+                case CoinBlock:
+                case Ladrillo:
+                    handleColisionSolida(temp);
+                    break;
+                case Bandera:
+                    handleColisionBandera(temp, i);
+                    break;
+            }
+        }
+    }
 
-                    if (temp.getID() == ObjectID.CoinBlock) {
-                        temp.setGolpeado(true);
-                    }
-                    if (temp.getID() == ObjectID.Ladrillo) {
-                        handler.removeObj(temp);
-                    }
-                }
-                if (getBoundsRight().intersects(temp.getBounds())) {
-                    setX(temp.getX() - getWidth());
-                }
-                if (getBoundsLeft().intersects(temp.getBounds())) {
-                    setX(temp.getX() + temp.getWidth());
-                }
+    private void handleColisionSolida(GameObject temp) {
+        // Bounding Box de los pies
+        if (getBounds().intersects(temp.getBounds())) {
+            setY(temp.getY() - getHeight());
+            setVelY(0);
+            jumped = false;
+        }
+        // Bounding Box de la cabeza
+        if (getBoundsTop().intersects(temp.getBounds())) {
+            setY(temp.getY() + temp.getHeight());
+            setVelY(0);
+
+            // Si estos bloques se golpean sale de la funcion
+            if (temp.getID() != ObjectID.CoinBlock && temp.getID() != ObjectID.Ladrillo) {
+                return;
             }
 
-            // SIN COLISION SOLIDA
-            if (temp.getID() == ObjectID.Bandera) {
+            temp.setGolpeado(true);
+        }
+        // Bounding Box de la derecha
+        if (getBoundsRight().intersects(temp.getBounds())) {
+            setX(temp.getX() - getWidth());
+        }
+        // Bounding Box de la izquierda
+        if (getBoundsLeft().intersects(temp.getBounds())) {
+            setX(temp.getX() + temp.getWidth());
+        }
+    }
 
-                if (getBoundsRight().intersects(temp.getBounds())) {
-                    if (temp.getID() == ObjectID.Bandera) {
-                        handler.getGameObj().get(i).setVelY(2);
-                    }
-                }
-            }
-
+    private void handleColisionBandera(GameObject temp, int i) {
+        if (getBoundsRight().intersects(temp.getBounds())) {
+            handler.getGameObj().get(i).setVelY(2);
         }
     }
 

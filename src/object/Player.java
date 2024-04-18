@@ -46,10 +46,8 @@ public class Player extends GameObject {
         if (saltando) {
             if (getVelX() > 0) {
                 g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) getX(), (int) getY());
-                adelante = true;
             } else if (getVelX() < 0) {
                 g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
-                adelante = false;
             } else {
                 if (adelante) {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
@@ -58,13 +56,23 @@ public class Player extends GameObject {
                 }
             }
         } else {
-            if (getVelX() > 0) {
+            if (getVelX() == 4.0f) {
                 animacionCaminando.drawSprite(g, (int) (getX()), (int) (getY()));
-                adelante = true;
-            } else if (getVelX() < 0) {
+            } 
+            
+            else if (getVelX() == -4.0f) {
                 animacionCaminando.drawSpriteInverso(g, (int) (getX()), (int) (getY()));
-                adelante = false;
-            } else {
+            } 
+            
+            else if (getVelX() > 0 && adelante) {
+                g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.yellow);
+            } 
+            
+            else if (getVelX() < 0 && !adelante) {
+                g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.red);
+            } 
+            
+            else {
                 if (adelante) {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) getX(), (int) getY());
                 } else {
@@ -177,6 +185,10 @@ public class Player extends GameObject {
 
     public int getHp() {
         return hp;
+    }
+
+    public void setAdelante(boolean adelante) {
+        this.adelante = adelante;
     }
 
     @Override

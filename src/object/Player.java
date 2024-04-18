@@ -9,34 +9,25 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import object.util.Handler;
 import object.util.ObjectID;
+import object.util.EstadoPlayer;
 
 public class Player extends GameObject {
 
-    // CONSTANTES
-    private static final float WIDTH = 32;
-    private static final float HEIGHT = 32;
-
     // OBJETOS
     private Handler handler;
-    private Texturas texturas;
-    private BufferedImage[] marioCaminandoDerechaS;
-    private BufferedImage[] marioCaminandoIzquierdaS;
-    private Animacion animacionDerecha;
-    private Animacion animacionIzquierda;
+    private Animacion animacionCaminando;
 
     // VARIABLES
-    private boolean jumped = false;
+    private EstadoPlayer estadoPlayer;
+    private int hp;
+    private String prefijoTextura;
+    private boolean saltando = false;
     private boolean adelante = true;
 
     public Player(float x, float y, int scale, Handler handler) {
-        super(x, y, ObjectID.Player, WIDTH, HEIGHT, scale);
+        super(x, y, ObjectID.Player, 32, 32, scale);
         this.handler = handler;
-        this.texturas = new Texturas();
-
-        marioCaminandoDerechaS = texturas.getMarioDerechaCaminando_S();
-        marioCaminandoIzquierdaS = texturas.getMarioIzquierdaCaminando_S();
-        this.animacionDerecha = new Animacion(5, marioCaminandoDerechaS);
-        this.animacionIzquierda = new Animacion(5, marioCaminandoIzquierdaS);
+        this.cambiarEstado(1);
     }
 
     @Override
@@ -44,40 +35,40 @@ public class Player extends GameObject {
         setX(getVelX() + getX());
         setY(getVelY() + getY());
         aplicarGravedad();
-
         aplicarColisiones();
-        animacionDerecha.runAnimacion();
-        animacionIzquierda.runAnimacion();
+
+        animacionCaminando.runAnimacion();
     }
 
     @Override
     public void render(LibreriaGrafica g) {
-        if (jumped) {
+
+        if (saltando) {
             if (getVelX() > 0) {
-                g.drawImage(texturas.getMarioDerechaSaltando_S(), (int) getX(), (int) getY());
+                g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) getX(), (int) getY());
                 adelante = true;
             } else if (getVelX() < 0) {
-                g.drawImage(texturas.getMarioIzquierdaSaltando_S(), (int) getX(), (int) getY());
+                g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
                 adelante = false;
             } else {
                 if (adelante) {
-                    g.drawImage(texturas.getMarioDerechaSaltando_S(), (int) getX(), (int) getY());
+                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
                 } else {
-                    g.drawImage(texturas.getMarioIzquierdaSaltando_S(), (int) getX(), (int) getY());
+                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
                 }
             }
         } else {
             if (getVelX() > 0) {
-                animacionDerecha.drawSprite(g, (int) (getX()), (int) (getY()));
+                animacionCaminando.drawSprite(g, (int) (getX()), (int) (getY()));
                 adelante = true;
             } else if (getVelX() < 0) {
-                animacionIzquierda.drawSprite(g, (int) (getX()), (int) (getY()));
+                animacionCaminando.drawSpriteInverso(g, (int) (getX()), (int) (getY()));
                 adelante = false;
             } else {
                 if (adelante) {
-                    g.drawImage(texturas.getMarioDerecha_S(), (int) getX(), (int) getY());
+                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) getX(), (int) getY());
                 } else {
-                    g.drawImage(texturas.getMarioIzquierda_S(), (int) getX(), (int) getY());
+                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
                 }
             }
         }
@@ -110,19 +101,25 @@ public class Player extends GameObject {
         if (getBounds().intersects(temp.getBounds())) {
             setY(temp.getY() - getHeight());
             setVelY(0);
-            jumped = false;
+            saltando = false;
         }
         // Bounding Box de la cabeza
         if (getBoundsTop().intersects(temp.getBounds())) {
             setY(temp.getY() + temp.getHeight());
             setVelY(0);
 
-            // Si estos bloques se golpean sale de la funcion
-            if (temp.getID() != ObjectID.CoinBlock && temp.getID() != ObjectID.Ladrillo) {
-                return;
+            if (temp.getID() == ObjectID.CoinBlock) {
+                temp.setGolpeado(true);
             }
 
-            temp.setGolpeado(true);
+            if (temp.getID() == ObjectID.Ladrillo) {
+                if (estadoPlayer == EstadoPlayer.Chico) {
+                    temp.setGolpeado(true);
+                } else if (estadoPlayer == EstadoPlayer.Grande) {
+                    handler.removeObj(temp);
+                }
+            }
+
         }
         // Bounding Box de la derecha
         if (getBoundsRight().intersects(temp.getBounds())) {
@@ -170,6 +167,23 @@ public class Player extends GameObject {
                 (int) (getHeight() - 8));
     }
 
+    public boolean hasJumped() {
+        return saltando;
+    }
+
+    public void setJumped(boolean hasJumped) {
+        saltando = hasJumped;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    @Override
+    public GameObject clone() {
+        return new Tuberia((int) x, (int) y, (int) width, (int) height, 1);
+    }
+
     private void showBounds(LibreriaGrafica g) {
         g.drawRectangle(getBounds(), Color.red);
         g.drawRectangle(getBoundsTop(), Color.red);
@@ -177,16 +191,25 @@ public class Player extends GameObject {
         g.drawRectangle(getBoundsLeft(), Color.red);
     }
 
-    public boolean hasJumped() {
-        return jumped;
+    private void cambiarEstado(int hp) {
+        if (hp == 2) {
+            this.estadoPlayer = EstadoPlayer.Grande;
+            this.prefijoTextura = "L";
+            this.hp = 2;
+            super.setHeight(64);
+            super.setWidth(32);
+        } else if (hp == 1) {
+            this.estadoPlayer = EstadoPlayer.Chico;
+            this.prefijoTextura = "S";
+            this.hp = 1;
+            super.setHeight(32);
+            super.setWidth(32);
+        }
+
+        this.animacionCaminando = new Animacion(5,
+                Texturas.getMarioTextura(prefijoTextura + "_marioCaminando1"),
+                Texturas.getMarioTextura(prefijoTextura + "_marioCaminando2"),
+                Texturas.getMarioTextura(prefijoTextura + "_marioCaminando3"));
     }
 
-    public void setJumped(boolean hasJumped) {
-        jumped = hasJumped;
-    }
-
-    @Override
-    public GameObject clone() {
-        return new Tuberia((int) x, (int) y, (int) width, (int) height, 1);
-    }
 }

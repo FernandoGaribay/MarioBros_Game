@@ -99,6 +99,11 @@ public class LibreriaGrafica extends Canvas {
         g.drawImage(img, x + translateX, y + translateY, null);
     }
 
+    public void drawImage(BufferedImage img, int x, int y, int width, int height) {
+        Graphics g = buffer.getGraphics();
+        g.drawImage(img, x + translateX, y + translateY, width, height, null);
+    }
+
     private void putPixel(int x, int y, Color color) {
         if (x >= 0 && x < buffer.getWidth() && y >= 0 && y < buffer.getHeight()) {
             buffer.setRGB(x, y, color.getRGB());

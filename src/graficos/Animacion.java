@@ -39,8 +39,12 @@ public class Animacion {
             count = 0;
         }
     }
-    
-    public void drawSprite(LibreriaGrafica g, int x, int y){
+
+    public void drawSprite(LibreriaGrafica g, int x, int y) {
         g.drawImage(spriteActual, x, y);
+    }
+
+    public void drawSpriteInverso(LibreriaGrafica g, int x, int y) {
+        g.drawImage(spriteActual, x + spriteActual.getWidth(), y, -spriteActual.getWidth(), spriteActual.getHeight());
     }
 }

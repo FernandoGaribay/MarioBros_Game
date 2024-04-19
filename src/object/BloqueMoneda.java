@@ -21,7 +21,7 @@ public class BloqueMoneda extends GameObject {
     private int contAnimacionGolpe = 0;
     
     public BloqueMoneda(int x, int y, int width, int height, int scale) {
-        super(x, y, ObjectID.CoinBlock, width, height, scale);
+        super(x, y, ObjectID.BloqueMoneda, width, height, scale);
         this.texturas = new Texturas();
         
         bloquesMoneda = texturas.getBloquesMoneda();

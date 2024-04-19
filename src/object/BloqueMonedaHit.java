@@ -13,7 +13,7 @@ public class BloqueMonedaHit extends GameObject {
     private Texturas texturas;
 
     public BloqueMonedaHit(int x, int y, int width, int height, int scale) {
-        super(x, y, ObjectID.CoinBlock, width, height, scale);
+        super(x, y, ObjectID.BloqueMoneda, width, height, scale);
         this.texturas = new Texturas();
     }
 

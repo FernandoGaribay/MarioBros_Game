@@ -15,7 +15,7 @@ public class TuberiaCabeza extends GameObject{
     public boolean enterable;
     
     public TuberiaCabeza(int x, int y, int width, int height, int scale, boolean enterable) {
-        super(x, y, ObjectID.PipeHead, width, height, scale);
+        super(x, y, ObjectID.TuberiaCabeza, width, height, scale);
         this.enterable = enterable;
         this.texturas = new Texturas();
     }

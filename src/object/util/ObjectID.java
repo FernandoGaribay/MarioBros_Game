@@ -3,10 +3,10 @@ package object.util;
 public enum ObjectID {
     Player,
     Enemy,
-    Block,
+    Bloque,
     Background,
-    CoinBlock,
+    BloqueMoneda,
     Ladrillo,
     Bandera,
-    PipeHead;
+    TuberiaCabeza;
 }

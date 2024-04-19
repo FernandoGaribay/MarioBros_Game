@@ -6,11 +6,9 @@ import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 import object.util.Handler;
 import object.util.ObjectID;
 import object.util.EstadoPlayer;
-import object.util.KeyInput;
 
 public class Player extends GameObject {
 
@@ -73,7 +71,7 @@ public class Player extends GameObject {
         velocidadAnterior = getVelX();
 
         // Cajas de colisiones -------------------------------------------------
-//        g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + WIDTH), (int) (getY() + HEIGHT), Color.yellow);
+//        g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.yellow);
 //        showBounds(g);
     }
 
@@ -111,9 +109,9 @@ public class Player extends GameObject {
             GameObject temp = handler.getGameObj().get(i);
 
             switch (temp.getID()) {
-                case Block:
-                case PipeHead:
-                case CoinBlock:
+                case Bloque:
+                case TuberiaCabeza:
+                case BloqueMoneda:
                 case Ladrillo:
                     handleColisionSolida(temp);
                     break;
@@ -136,7 +134,7 @@ public class Player extends GameObject {
             setY(temp.getY() + temp.getHeight());
             setVelY(0);
 
-            if (temp.getID() == ObjectID.CoinBlock) {
+            if (temp.getID() == ObjectID.BloqueMoneda) {
                 temp.setGolpeado(true);
             }
 
@@ -163,6 +161,52 @@ public class Player extends GameObject {
         if (getBoundsRight().intersects(temp.getBounds())) {
             handler.getGameObj().get(i).setVelY(2);
         }
+    }
+
+    private void cambiarEstado(int hp) {
+        if (hp == 2) {
+            this.estadoPlayer = EstadoPlayer.Grande;
+            this.prefijoTextura = "L";
+            this.hp = 2;
+            super.setHeight(64);
+            super.setWidth(32);
+        } else if (hp == 1) {
+            this.estadoPlayer = EstadoPlayer.Chico;
+            this.prefijoTextura = "S";
+            this.hp = 1;
+            super.setHeight(32);
+            super.setWidth(32);
+        }
+
+        this.animacionCaminando = new Animacion(5,
+                Texturas.getMarioTextura(prefijoTextura + "_marioCaminando1"),
+                Texturas.getMarioTextura(prefijoTextura + "_marioCaminando2"),
+                Texturas.getMarioTextura(prefijoTextura + "_marioCaminando3"));
+    }
+
+    public boolean hasJumped() {
+        return saltando;
+    }
+
+    public void setJumped(boolean hasJumped) {
+        saltando = hasJumped;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setAdelante(boolean adelante) {
+        this.adelante = adelante;
+    }
+
+    public void setAtras(boolean atras) {
+        this.atras = atras;
+    }
+
+    @Override
+    public GameObject clone() {
+        return new Tuberia((int) x, (int) y, (int) width, (int) height, 1);
     }
 
     @Override
@@ -195,57 +239,10 @@ public class Player extends GameObject {
                 (int) (getHeight() - 8));
     }
 
-    public boolean hasJumped() {
-        return saltando;
-    }
-
-    public void setJumped(boolean hasJumped) {
-        saltando = hasJumped;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setAdelante(boolean adelante) {
-        this.adelante = adelante;
-    }
-
-    public void setAtras(boolean atras) {
-        this.atras = atras;
-    }
-
-    @Override
-    public GameObject clone() {
-        return new Tuberia((int) x, (int) y, (int) width, (int) height, 1);
-    }
-
     private void showBounds(LibreriaGrafica g) {
         g.drawRectangle(getBounds(), Color.red);
         g.drawRectangle(getBoundsTop(), Color.red);
         g.drawRectangle(getBoundsRight(), Color.red);
         g.drawRectangle(getBoundsLeft(), Color.red);
     }
-
-    private void cambiarEstado(int hp) {
-        if (hp == 2) {
-            this.estadoPlayer = EstadoPlayer.Grande;
-            this.prefijoTextura = "L";
-            this.hp = 2;
-            super.setHeight(64);
-            super.setWidth(32);
-        } else if (hp == 1) {
-            this.estadoPlayer = EstadoPlayer.Chico;
-            this.prefijoTextura = "S";
-            this.hp = 1;
-            super.setHeight(32);
-            super.setWidth(32);
-        }
-
-        this.animacionCaminando = new Animacion(5,
-                Texturas.getMarioTextura(prefijoTextura + "_marioCaminando1"),
-                Texturas.getMarioTextura(prefijoTextura + "_marioCaminando2"),
-                Texturas.getMarioTextura(prefijoTextura + "_marioCaminando3"));
-    }
-
 }

@@ -13,7 +13,7 @@ public class Barrera extends GameObject {
     private Texturas texturas;
 
     public Barrera(int x, int y, int width, int height, int scale) {
-        super(x, y, ObjectID.Block, width, height, scale);
+        super(x, y, ObjectID.Bloque, width, height, scale);
         this.texturas = new Texturas();
     }
 

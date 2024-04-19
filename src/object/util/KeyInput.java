@@ -34,6 +34,7 @@ public class KeyInput extends KeyAdapter {
         if (key == KeyEvent.VK_A) {
             if (!teclaPresionada[1]) {
                 teclaPresionada[1] = true;
+                player.setMirarAdelante(false);
                 player.setAtras(true);
             }
         }
@@ -42,6 +43,7 @@ public class KeyInput extends KeyAdapter {
         if (key == KeyEvent.VK_D) {
             if (!teclaPresionada[2]) {
                 teclaPresionada[2] = true;
+                player.setMirarAdelante(true);
                 player.setAdelante(true);
             }
         }

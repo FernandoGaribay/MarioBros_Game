@@ -18,11 +18,13 @@ public class Player extends GameObject {
 
     // VARIABLES
     private EstadoPlayer estadoPlayer;
-    private int hp;
     private String prefijoTextura;
+    private int hp;
+
+    private boolean mirarAdelante = true;
     private boolean saltando = false;
-    private boolean adelante = false;
-    private boolean atras = false;
+    private boolean caminarAdelante = false;
+    private boolean caminarAtras = false;
 
     private float velocidadAnterior = 0.0f;
 
@@ -49,7 +51,7 @@ public class Player extends GameObject {
             } else if (getVelX() < 0) {
                 g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
             } else {
-                if (getVelX() > 0) {
+                if (mirarAdelante) {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
                 } else {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
@@ -60,8 +62,10 @@ public class Player extends GameObject {
                 animacionCaminando.drawSprite(g, (int) (getX()), (int) (getY()));
             } else if (getVelX() == -4.0f || getVelX() <= -2.0f) {
                 animacionCaminando.drawSpriteInverso(g, (int) (getX()), (int) (getY()));
-            } else if (getVelX() == 0) {
+            } else if (getVelX() == 0 && mirarAdelante) {
                 g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) getX(), (int) getY());
+            } else if (getVelX() == 0 && !mirarAdelante) {
+                g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
             } else if (getVelX() > velocidadAnterior) {
                 g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioDerrapando"), (int) getX(), (int) getY());
             } else if (getVelX() < velocidadAnterior) {
@@ -76,13 +80,13 @@ public class Player extends GameObject {
     }
 
     private void aplicarMovimiendo() {
-        if (adelante || atras) {
-            if (adelante) {
+        if (caminarAdelante || caminarAtras) {
+            if (caminarAdelante) {
                 setVelX(getVelX() + 0.2f);
                 if (getVelX() > 4) {
                     setVelX(4);
                 }
-            } else if (atras) {
+            } else if (caminarAtras) {
                 setVelX(getVelX() - 0.2f);
                 if (getVelX() < -4) {
                     setVelX(-4);
@@ -197,11 +201,15 @@ public class Player extends GameObject {
     }
 
     public void setAdelante(boolean adelante) {
-        this.adelante = adelante;
+        this.caminarAdelante = adelante;
     }
 
     public void setAtras(boolean atras) {
-        this.atras = atras;
+        this.caminarAtras = atras;
+    }
+
+    public void setMirarAdelante(boolean mirarAdelante) {
+        this.mirarAdelante = mirarAdelante;
     }
 
     @Override

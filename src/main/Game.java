@@ -46,6 +46,8 @@ public class Game extends Canvas implements Runnable {
     private Ventana ventana;
     private Camara camara;
     private Player player;
+    private Background background;
+    private KeyInput keyInput;
     private LoadScreen loadScreen;
 
     public Game() {
@@ -58,13 +60,15 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         ventana = new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NOMBRE);
         camara = new Camara(0, SCREEN_OFFSET);
-        player = new Player(32 * 1, 32, 1, handler);
+        player = new Player(32 * 1, 32, handler);
+        keyInput = new KeyInput(player);
+        background = new Background(0, 0, VENTANA_WIDTH, VENTANA_HEIGHT, SCREEN_OFFSET, camara);
         loadScreen = new LoadScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-        this.addKeyListener(new KeyInput(player, handler));
+        this.addKeyListener(keyInput);
 
         ventana.setCanvas(loadScreen);
-        handler.addObj(new Background(0, 0, VENTANA_WIDTH, VENTANA_HEIGHT, SCREEN_OFFSET, camara));
+        handler.addObj(background);
 
         cargarNivel("NivelesFiles/mundo_1-1");
         cargarBarreras();

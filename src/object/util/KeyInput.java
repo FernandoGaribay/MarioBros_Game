@@ -8,7 +8,7 @@ import object.Player;
 
 public class KeyInput extends KeyAdapter {
 
-    private boolean[] keyDown = new boolean[4];
+    private boolean[] teclaPresionada = new boolean[4];
     private Player player;
 
     private static final float ACELERACION = 1f;
@@ -16,7 +16,7 @@ public class KeyInput extends KeyAdapter {
     private static final int ACELERACION_LIMITE = 4;
     private Thread hiloAceleracion;
 
-    public KeyInput(Player player, Handler handler) {
+    public KeyInput(Player player) {
         this.player = player;
     }
 
@@ -28,43 +28,87 @@ public class KeyInput extends KeyAdapter {
             System.exit(0);
         }
 
+        if (player == null) {
+            return;
+        }
+
         // SALTO
         if (key == KeyEvent.VK_W) {
-            if (!player.hasJumped()) {
+            if (!player.hasJumped() && !teclaPresionada[0]) {
+                teclaPresionada[0] = true;
                 player.setVelY(-12);
-                keyDown[0] = true;
                 player.setJumped(true);
             }
         }
 
         // IZQUIERDA
         if (key == KeyEvent.VK_A) {
-            if (!keyDown[1]) {
-                player.setAdelante(false);
-                keyDown[1] = true;
-                aceleracionIzquierda();
+            if (!teclaPresionada[1]) {
+                teclaPresionada[1] = true;
+                player.setAtras(true);
             }
         }
 
         // DERECHA
         if (key == KeyEvent.VK_D) {
-            if (!keyDown[2]) {
+            if (!teclaPresionada[2]) {
+                teclaPresionada[2] = true;
                 player.setAdelante(true);
-                keyDown[2] = true;
-                aceleracionDerecha();
             }
         }
     }
 
-    private void aceleracionDerecha() {
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+
+        if (key == KeyEvent.VK_W) {
+            teclaPresionada[0] = false;
+        }
+
+        if (key == KeyEvent.VK_A) {
+            teclaPresionada[1] = false;
+            player.setAtras(false);
+        }
+
+        if (key == KeyEvent.VK_D) {
+            teclaPresionada[2] = false;
+            player.setAdelante(false);
+        }
+
+        if (!teclaPresionada[1] && !teclaPresionada[2]) {
+            player.setVelX(0);
+        }
+    }
+
+    public boolean getTeclaPrecionada(int i) {
+        return teclaPresionada[i];
+    }
+
+    private void delay() {
+        try {
+            Thread.sleep(ACELERACION_DELAY);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(KeyInput.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+}
+
+
+/*
+
+private void aceleracionDerecha() {
         if (player.getVelX() < 4) {
             hiloAceleracion = new Thread(() -> {
                 while (player.getVelX() < 4 && keyDown[2]) {
                     delay();
 
+                    player.setDerrapando(true);
                     player.setVelX(player.getVelX() + ACELERACION);
                     if (player.getVelX() > 4) {
-                        player.setVelX(4);
+                        player.setVelX(4.0f);
+                        player.setDerrapando(false);
                     }
                 }
             });
@@ -79,9 +123,11 @@ public class KeyInput extends KeyAdapter {
                 while (player.getVelX() > -4 && keyDown[1]) {
                     delay();
 
+                    player.setDerrapando(true);
                     player.setVelX(player.getVelX() - ACELERACION);
                     if (player.getVelX() < -4) {
-                        player.setVelX(-4);
+                        player.setVelX(-4.0f);
+                        player.setDerrapando(false);
                     }
                 }
             });
@@ -107,104 +153,4 @@ public class KeyInput extends KeyAdapter {
         }
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_W) {
-            keyDown[0] = false;
-        }
-
-        if (key == KeyEvent.VK_A) {
-            keyDown[1] = false;
-        }
-
-        if (key == KeyEvent.VK_D) {
-            keyDown[2] = false;
-        }
-
-        if (!keyDown[1] && !keyDown[2]) {
-            aceleracionNula();
-        }
-    }
-
-    private void delay() {
-        try {
-            Thread.sleep(ACELERACION_DELAY);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(KeyInput.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-}
-
-//    private void aceleracionDireccion(int direccion) {
-//        int limiteVelocidad = (direccion == 1) ? ACELERACION_LIMITE : -ACELERACION_LIMITE;
-//        boolean teclaPrecionada = (direccion == 1) ? keyDown[2] : keyDown[1];
-//        int multiplicador = (direccion == 1) ? 1 : -1;
-//
-//        if ((player.getVelX() < limiteVelocidad)
-//                || (player.getVelX() > limiteVelocidad)) {
-//
-//            hiloAceleracion = new Thread(() -> {
-//                while ((direccion == 1 && player.getVelX() < limiteVelocidad && teclaPrecionada)
-//                        || (direccion == -1 && player.getVelX() > limiteVelocidad && teclaPrecionada)) {
-//
-//                    try {
-//                        Thread.sleep(ACELERACION_DELAY);
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(KeyInput.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//
-//                    player.setVelX(player.getVelX() + multiplicador * ACELERACION);
-//
-//                    if ((direccion == 1 && player.getVelX() > limiteVelocidad)
-//                            || (direccion == -1 && player.getVelX() < limiteVelocidad)) {
-//                        player.setVelX(limiteVelocidad);
-//                    }
-//                    System.out.println(player.getVelX() + "avanzando");
-//                }
-//            });
-//            hiloAceleracion.start();
-//        }
-//    }
-//    private void aceleracionDerecha() {
-//        if (player.getVelX() < 4) {
-//            hiloAceleracion = new Thread(() -> {
-//                while (player.getVelX() < 4 && keyDown[2]) {
-//                    try {
-//                        Thread.sleep(ACELERACION_DELAY);
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(KeyInput.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//
-//                    player.setVelX(player.getVelX() + ACELERACION);
-//                    if (player.getVelX() > 4) {
-//                        player.setVelX(4);
-//                    }
-////                    System.out.println("derecha");
-//                }
-//            });
-//            hiloAceleracion.start();
-//        }
-//    }
-//    private void aceleracionIzquierda() {
-//        if (player.getVelX() > -4) {
-//            hiloAceleracion = new Thread(() -> {
-//                while (player.getVelX() > -4 && keyDown[1]) {
-//                    try {
-//                        Thread.sleep(ACELERACION_DELAY);
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(KeyInput.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//
-//                    player.setVelX(player.getVelX() - ACELERACION);
-//                    if (player.getVelX() < -4) {
-//                        player.setVelX(-4);
-//                    }
-////                    System.out.println("izquierda");
-//                }
-//            });
-//            hiloAceleracion.start();
-//        }
-//    }
+ */

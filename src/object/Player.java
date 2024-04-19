@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import object.util.Handler;
 import object.util.ObjectID;
 import object.util.EstadoPlayer;
+import object.util.KeyInput;
 
 public class Player extends GameObject {
 
@@ -22,18 +23,20 @@ public class Player extends GameObject {
     private int hp;
     private String prefijoTextura;
     private boolean saltando = false;
-    private boolean adelante = true;
+    private boolean adelante = false;
+    private boolean atras = false;
 
-    public Player(float x, float y, int scale, Handler handler) {
-        super(x, y, ObjectID.Player, 32, 32, scale);
+    private float velocidadAnterior = 0.0f;
+
+    public Player(float x, float y, Handler handler) {
+        super(x, y, ObjectID.Player, 32, 32, 1);
         this.handler = handler;
         this.cambiarEstado(1);
     }
 
     @Override
     public void tick() {
-        setX(getVelX() + getX());
-        setY(getVelY() + getY());
+        aplicarMovimiendo();
         aplicarGravedad();
         aplicarColisiones();
 
@@ -49,41 +52,48 @@ public class Player extends GameObject {
             } else if (getVelX() < 0) {
                 g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
             } else {
-                if (adelante) {
+                if (getVelX() > 0) {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
                 } else {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
                 }
             }
         } else {
-            if (getVelX() == 4.0f) {
+            if (getVelX() == 4.0f || getVelX() >= 2.0f) {
                 animacionCaminando.drawSprite(g, (int) (getX()), (int) (getY()));
-            } 
-            
-            else if (getVelX() == -4.0f) {
+            } else if (getVelX() == -4.0f || getVelX() <= -2.0f) {
                 animacionCaminando.drawSpriteInverso(g, (int) (getX()), (int) (getY()));
-            } 
-            
-            else if (getVelX() > 0 && adelante) {
-                g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.yellow);
-            } 
-            
-            else if (getVelX() < 0 && !adelante) {
-                g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.red);
-            } 
-            
-            else {
-                if (adelante) {
-                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) getX(), (int) getY());
-                } else {
-                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
-                }
+            } else if (getVelX() == 0) {
+                g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) getX(), (int) getY());
+            } else if (getVelX() > velocidadAnterior) {
+                g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioDerrapando"), (int) getX(), (int) getY());
+            } else if (getVelX() < velocidadAnterior) {
+                g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioDerrapando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
             }
         }
+        velocidadAnterior = getVelX();
 
         // Cajas de colisiones -------------------------------------------------
 //        g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + WIDTH), (int) (getY() + HEIGHT), Color.yellow);
 //        showBounds(g);
+    }
+
+    private void aplicarMovimiendo() {
+        if (adelante || atras) {
+            if (adelante) {
+                setVelX(getVelX() + 0.2f);
+                if (getVelX() > 4) {
+                    setVelX(4);
+                }
+            } else if (atras) {
+                setVelX(getVelX() - 0.2f);
+                if (getVelX() < -4) {
+                    setVelX(-4);
+                }
+            }
+        }
+        setX(getVelX() + getX());
+        setY(getVelY() + getY());
     }
 
     private void aplicarColisiones() {
@@ -189,6 +199,10 @@ public class Player extends GameObject {
 
     public void setAdelante(boolean adelante) {
         this.adelante = adelante;
+    }
+
+    public void setAtras(boolean atras) {
+        this.atras = atras;
     }
 
     @Override

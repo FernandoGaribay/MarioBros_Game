@@ -31,7 +31,7 @@ public class Player extends GameObject {
     public Player(float x, float y, Handler handler) {
         super(x, y, ObjectID.Player, 32, 32, 1);
         this.handler = handler;
-        this.cambiarEstado(1);
+        this.cambiarEstado(2);
     }
 
     @Override

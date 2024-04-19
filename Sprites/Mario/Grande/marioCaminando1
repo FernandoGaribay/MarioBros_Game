@@ -1,4 +1,4 @@
-Color y coordenadas -> marioDerechaCaminando1.txt
+Color y coordenadas -> Sprites/Mario/Grande/marioCaminando1.txt
 
 Dimensiones:
 32,16
@@ -574,7 +574,7 @@ Coordenada:
 7,1
 
 Color (RGB):
-0,0,0,0
+0,0,0,255
 Coordenada:
 7,2
 
@@ -654,7 +654,7 @@ Coordenada:
 8,1
 
 Color (RGB):
-0,0,0,0
+0,0,0,255
 Coordenada:
 8,2
 
@@ -814,7 +814,7 @@ Coordenada:
 10,1
 
 Color (RGB):
-0,0,0,255
+0,0,0,0
 Coordenada:
 10,2
 

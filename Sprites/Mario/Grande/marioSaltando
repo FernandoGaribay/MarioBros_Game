@@ -649,7 +649,7 @@ Coordenada:
 8,0
 
 Color (RGB):
-0,0,0,0
+0,0,0,255
 Coordenada:
 8,1
 
@@ -729,7 +729,7 @@ Coordenada:
 9,0
 
 Color (RGB):
-0,0,0,0
+0,0,0,255
 Coordenada:
 9,1
 
@@ -889,7 +889,7 @@ Coordenada:
 11,0
 
 Color (RGB):
-0,0,0,255
+0,0,0,0
 Coordenada:
 11,1
 

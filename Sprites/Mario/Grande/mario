@@ -489,7 +489,7 @@ Coordenada:
 6,0
 
 Color (RGB):
-0,0,0,0
+0,0,0,255
 Coordenada:
 6,1
 
@@ -729,7 +729,7 @@ Coordenada:
 9,0
 
 Color (RGB):
-0,0,0,255
+0,0,0,0
 Coordenada:
 9,1
 

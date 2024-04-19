@@ -45,7 +45,6 @@ public class Player extends GameObject {
 
     @Override
     public void render(LibreriaGrafica g) {
-
         if (saltando) {
             if (getVelX() > 0) {
                 g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) getX(), (int) getY());
@@ -91,7 +90,18 @@ public class Player extends GameObject {
                     setVelX(-4);
                 }
             }
+        } else if (getVelX() != 0) {
+            if (Math.abs(getVelX()) < 0.01f) {
+                setVelX(0);
+            }
+
+            if (getVelX() > 0) {
+                setVelX(getVelX() - 0.2f);
+            } else if (getVelX() < 0) {
+                setVelX(getVelX() + 0.2f);
+            }
         }
+
         setX(getVelX() + getX());
         setY(getVelY() + getY());
     }

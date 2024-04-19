@@ -77,7 +77,7 @@ public class KeyInput extends KeyAdapter {
         }
 
         if (!teclaPresionada[1] && !teclaPresionada[2]) {
-            player.setVelX(0);
+//            player.setVelX(0);
         }
     }
 

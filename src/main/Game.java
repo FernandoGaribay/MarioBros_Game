@@ -25,8 +25,9 @@ public class Game extends Canvas implements Runnable {
     private static final double NUM_FPS = 60.0;
     private static final String NOMBRE = "Super Mario Bros";
 
-    private static final int SCREEN_OFFSET = 32 * 1; // 1 bloque de offset
     private static final int VENTANA_WIDTH = 960;
+    private static final int MAX_RENDERIZADO = 960;
+    private static final int SCREEN_OFFSET = 32 * 1; // 1 bloque de offset
     private static final int VENTANA_HEIGHT = 480 + SCREEN_OFFSET; // 32 x 15 = 480 (15 bloques de 16x16 de alto)
     private static final int SCREEN_WIDTH = VENTANA_WIDTH;
     private static final int SCREEN_HEIGHT = VENTANA_HEIGHT;
@@ -37,7 +38,7 @@ public class Game extends Canvas implements Runnable {
     private int frames = 0;
     private int updates = 0;
 
-    // GAME COMPONENTS
+    // GAME COMPONENTES
     private Thread hiloPrincipal;
     private Thread updateThread;
     private Thread renderThread;
@@ -68,7 +69,7 @@ public class Game extends Canvas implements Runnable {
         this.addKeyListener(keyInput);
 
         ventana.setCanvas(loadScreen);
-        handler.addObj(background);
+        handler.setPlayer(player);
 
         cargarNivel("NivelesFiles/mundo_1-1");
         cargarBarreras();
@@ -166,6 +167,7 @@ public class Game extends Canvas implements Runnable {
 
             while (deltaTicks >= 1) {
                 objetosTick();
+                background.tick();
                 updates++;
                 deltaTicks--;
             }
@@ -231,6 +233,7 @@ public class Game extends Canvas implements Runnable {
 
         g2.translate(camara.getX(), camara.getY());
 
+        background.render(g2);
         handler.render(g2);
         player.render(g2);
 
@@ -254,6 +257,10 @@ public class Game extends Canvas implements Runnable {
 
     public static int getSCREEN_HEIGHT() {
         return SCREEN_HEIGHT;
+    }
+
+    public static int getMAX_RENDERIZADO() {
+        return MAX_RENDERIZADO;
     }
 
 }

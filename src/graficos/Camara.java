@@ -15,7 +15,7 @@ public class Camara {
     }
 
     public void tick(GameObject player) {
-        this.x = (int) (-player.getX() + Game.getSCREEN_WIDTH() / 2);
+        this.x = (int) (-player.getX() + Game.getSCREEN_WIDTH() / 2 + 16);
         if (getX() > ultimaX) {
             setX(ultimaX);
         }

@@ -7,6 +7,7 @@ import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
 import object.util.Handler;
+import main.Game;
 import object.util.ObjectID;
 import object.util.EstadoPlayer;
 
@@ -77,6 +78,10 @@ public class Player extends GameObject {
         // Cajas de colisiones -------------------------------------------------
 //        g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.yellow);
 //        showBounds(g);
+
+        // Mostrar Limites del renderizado
+        g.drawLine((int) (getX() + Game.getMAX_RENDERIZADO()), 0, (int) (getX() + Game.getMAX_RENDERIZADO()), 600, Color.yellow);
+        g.drawLine((int) (getX() - Game.getMAX_RENDERIZADO()), 0, (int) (getX() - Game.getMAX_RENDERIZADO()), 600, Color.yellow);
     }
 
     private void aplicarMovimiendo() {
@@ -158,6 +163,10 @@ public class Player extends GameObject {
         // Bounding Box de la izquierda
         if (getBoundsLeft().intersects(temp.getBounds())) {
             setX(temp.getX() + temp.getWidth());
+        }
+
+        if (!(getVelY() >= 0 && getVelY() <= 2.0)) {
+            saltando = true;
         }
     }
 

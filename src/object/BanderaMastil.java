@@ -18,8 +18,8 @@ public class BanderaMastil extends GameObject {
     private int heightBandera;
     private boolean animacionInicio;
 
-    public BanderaMastil(int x, int y, int width, int height, int scale) {
-        super(x, y, ObjectID.Bandera, width, height, scale);
+    public BanderaMastil(int x, int y, int width, int height, int xDesplasamiento) {
+        super(x, y, ObjectID.Bandera, width, height, xDesplasamiento);
 
         this.texturas = new Texturas();
         this.bandera = new Bandera();
@@ -63,7 +63,7 @@ public class BanderaMastil extends GameObject {
 
     @Override
     public GameObject clone() {
-        return new BanderaMastil((int) x, (int) y, (int) width, (int) height, 1);
+        return new BanderaMastil((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
     
 }

@@ -12,8 +12,8 @@ public class Barrera extends GameObject {
     // OBJETOS
     private Texturas texturas;
 
-    public Barrera(int x, int y, int width, int height, int scale) {
-        super(x, y, ObjectID.Bloque, width, height, scale);
+    public Barrera(int x, int y, int width, int height, int xDesplasamiento) {
+        super(x, y, ObjectID.Bloque, width, height, xDesplasamiento);
         this.texturas = new Texturas();
     }
 
@@ -35,6 +35,6 @@ public class Barrera extends GameObject {
 
     @Override
     public GameObject clone() {
-        return new Barrera((int) x, (int) y, (int) width, (int) height, 1);
+        return new Barrera((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
 }

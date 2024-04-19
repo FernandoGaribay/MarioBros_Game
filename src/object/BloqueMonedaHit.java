@@ -12,8 +12,8 @@ public class BloqueMonedaHit extends GameObject {
     // OBJETOS
     private Texturas texturas;
 
-    public BloqueMonedaHit(int x, int y, int width, int height, int scale) {
-        super(x, y, ObjectID.BloqueMoneda, width, height, scale);
+    public BloqueMonedaHit(int x, int y, int width, int height, int xDesplasamiento) {
+        super(x, y, ObjectID.BloqueMoneda, width, height, xDesplasamiento);
         this.texturas = new Texturas();
     }
 
@@ -35,6 +35,6 @@ public class BloqueMonedaHit extends GameObject {
 
     @Override
     public GameObject clone() {
-        return new BloqueMonedaHit((int) x, (int) y, (int) width, (int) height, 1);
+        return new BloqueMonedaHit((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
 }

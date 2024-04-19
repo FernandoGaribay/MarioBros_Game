@@ -12,8 +12,8 @@ public class BloquePiso extends GameObject {
     // OBJETOS
     private Texturas texturas;
 
-    public BloquePiso(int x, int y, int width, int height, int scale) {
-        super(x, y, ObjectID.Bloque, width, height, scale);
+    public BloquePiso(int x, int y, int width, int height, int xDesplasamiento) {
+        super(x, y, ObjectID.Bloque, width, height, xDesplasamiento);
         this.texturas = new Texturas();
     }
 
@@ -34,6 +34,6 @@ public class BloquePiso extends GameObject {
     }
     @Override
     public GameObject clone() {
-        return new BloquePiso((int)x, (int)y, (int)width, (int)height, 1);
+        return new BloquePiso((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
 }

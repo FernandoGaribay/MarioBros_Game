@@ -20,8 +20,8 @@ public class BloqueMoneda extends GameObject {
     private boolean animacionCompletada = false;
     private int contAnimacionGolpe = 0;
     
-    public BloqueMoneda(int x, int y, int width, int height, int scale) {
-        super(x, y, ObjectID.BloqueMoneda, width, height, scale);
+    public BloqueMoneda(int x, int y, int width, int height, int xDesplasamiento) {
+        super(x, y, ObjectID.BloqueMoneda, width, height, xDesplasamiento);
         this.texturas = new Texturas();
         
         bloquesMoneda = texturas.getBloquesMoneda();
@@ -54,7 +54,7 @@ public class BloqueMoneda extends GameObject {
     
     @Override
     public GameObject clone() {
-        return new BloqueMoneda((int) x, (int) y, (int) width, (int) height, 1);
+        return new BloqueMoneda((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
     
     public void runAnimacionGolpe() {

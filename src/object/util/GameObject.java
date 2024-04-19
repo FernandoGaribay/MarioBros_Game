@@ -12,15 +12,15 @@ public abstract class GameObject {
     protected ObjectID id;
     private float velX, velY;
     private boolean golpeado;
-    private int scale;
+    protected int xDesplasamiento;
 
-    public GameObject(float x, float y, ObjectID id, float width, float height, int scale) {
+    public GameObject(float x, float y, ObjectID id, float width, float height, int xDesplasamiento) {
         this.x = x;
         this.y = y;
         this.id = id;
         this.width = width;
         this.height = height;
-        this.scale = scale;
+        this.xDesplasamiento = xDesplasamiento;
         this.golpeado = false;
     }
 
@@ -35,7 +35,7 @@ public abstract class GameObject {
     }
 
     public void setX(float x) {
-        this.x = x;
+        this.x = x - xDesplasamiento;
     }
 
     public float getX() {
@@ -80,6 +80,14 @@ public abstract class GameObject {
 
     public void setWidth(float width) {
         this.width = width;
+    }
+
+    public float getxDesplasamiento() {
+        return xDesplasamiento;
+    }
+
+    public void setxDesplasamiento(int xDesplasamiento) {
+        this.xDesplasamiento = xDesplasamiento;
     }
 
     public float getHeight() {

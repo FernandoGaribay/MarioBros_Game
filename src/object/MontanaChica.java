@@ -12,8 +12,8 @@ public class MontanaChica extends GameObject{
     // OBJETOS
     private Texturas texturas;
     
-    public MontanaChica(int x, int y, int width, int height, int scale) {
-        super(x, y, ObjectID.Background, width, height, scale);
+    public MontanaChica(int x, int y, int width, int height, int xDesplasamiento) {
+        super(x, y, ObjectID.Background, width, height, xDesplasamiento);
         this.texturas = new Texturas();
     }
 
@@ -35,6 +35,6 @@ public class MontanaChica extends GameObject{
     
         @Override
     public GameObject clone() {
-        return new MontanaChica((int)x, (int)y, (int)width, (int)height, 1);
+        return new MontanaChica((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
 }

@@ -30,7 +30,7 @@ public class Player extends GameObject {
     private float velocidadAnterior = 0.0f;
 
     public Player(float x, float y, Handler handler) {
-        super(x, y, ObjectID.Player, 32, 32, 1);
+        super(x, y, ObjectID.Player, 32, 32, 0);
         this.handler = handler;
         this.cambiarEstado(2);
     }
@@ -80,8 +80,8 @@ public class Player extends GameObject {
 //        showBounds(g);
 
         // Mostrar Limites del renderizado
-        g.drawLine((int) (getX() + Game.getMAX_RENDERIZADO()), 0, (int) (getX() + Game.getMAX_RENDERIZADO()), 600, Color.yellow);
-        g.drawLine((int) (getX() - Game.getMAX_RENDERIZADO()), 0, (int) (getX() - Game.getMAX_RENDERIZADO()), 600, Color.yellow);
+//        g.drawLine((int) (getX() + Game.getMAX_RENDERIZADO()), 0, (int) (getX() + Game.getMAX_RENDERIZADO()), 600, Color.yellow);
+//        g.drawLine((int) (getX() - Game.getMAX_RENDERIZADO()), 0, (int) (getX() - Game.getMAX_RENDERIZADO()), 600, Color.yellow);
     }
 
     private void aplicarMovimiendo() {

@@ -11,8 +11,8 @@ public class BloqueBandera extends GameObject {
     // OBJETOS
     private Texturas texturas;
 
-    public BloqueBandera(int x, int y, int width, int height, int scale) {
-        super(x, y, ObjectID.Bloque, width, height, scale);
+    public BloqueBandera(int x, int y, int width, int height, int xDesplasamiento) {
+        super(x, y, ObjectID.Bloque, width, height, xDesplasamiento);
         this.texturas = new Texturas();
     }
 
@@ -33,6 +33,6 @@ public class BloqueBandera extends GameObject {
     }
     @Override
     public GameObject clone() {
-        return new BloqueBandera((int)x, (int)y, (int)width, (int)height, 1);
+        return new BloqueBandera((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
 }

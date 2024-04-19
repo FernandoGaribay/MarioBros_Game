@@ -15,8 +15,8 @@ public class Ladrillo extends GameObject {
     // VARIABLES
     private int contAnimacionGolpe = 0;
 
-    public Ladrillo(int x, int y, int width, int height, int scale) {
-        super(x, y, ObjectID.Ladrillo, width, height, scale);
+    public Ladrillo(int x, int y, int width, int height, int xDesplasamiento) {
+        super(x, y, ObjectID.Ladrillo, width, height, xDesplasamiento);
         this.texturas = new Texturas();
     }
 
@@ -40,7 +40,7 @@ public class Ladrillo extends GameObject {
 
     @Override
     public GameObject clone() {
-        return new Ladrillo((int) x, (int) y, (int) width, (int) height, 1);
+        return new Ladrillo((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
 
     public void runAnimacionGolpe() {

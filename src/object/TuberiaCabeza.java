@@ -14,8 +14,8 @@ public class TuberiaCabeza extends GameObject{
     // VARIABLES
     public boolean enterable;
     
-    public TuberiaCabeza(int x, int y, int width, int height, int scale, boolean enterable) {
-        super(x, y, ObjectID.TuberiaCabeza, width, height, scale);
+    public TuberiaCabeza(int x, int y, int width, int height, int xDesplasamiento, boolean enterable) {
+        super(x, y, ObjectID.TuberiaCabeza, width, height, xDesplasamiento);
         this.enterable = enterable;
         this.texturas = new Texturas();
     }
@@ -37,6 +37,6 @@ public class TuberiaCabeza extends GameObject{
     
         @Override
     public GameObject clone() {
-        return new TuberiaCabeza((int)x, (int)y, (int)width, (int)height, 1, true);
+        return new TuberiaCabeza((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento, true);
     }
 }

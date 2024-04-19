@@ -26,24 +26,24 @@ public class ObjectFactory {
     private static final Map<String, GameObject> prototypes = new HashMap<>();
 
     static {
-        prototypes.put("tuberiaCabeza", new TuberiaCabeza(0, 0, 64, 32, 1, true));
-        prototypes.put("tuberia", new Tuberia(0, 0, 64, 32, 1));
-        prototypes.put("bloquePiso", new BloquePiso(0, 0, 32, 32, 1));
-        prototypes.put("bloqueBandera", new BloqueBandera(0, 0, 32, 32, 1));
-        prototypes.put("bloqueMoneda1", new BloqueMoneda(0, 0, 32, 32, 1));
-        prototypes.put("bloqueMonedaHit", new BloqueMonedaHit(0, 0, 32, 32, 1));
-        prototypes.put("bloqueLadrillo", new Ladrillo(0, 0, 32, 32, 1));
-        prototypes.put("banderaMastil", new BanderaMastil(0, 0, 32, 288, 1));
+        prototypes.put("tuberiaCabeza", new TuberiaCabeza(0, 0, 64, 32, 0, true));
+        prototypes.put("tuberia", new Tuberia(0, 0, 64, 32, 0));
+        prototypes.put("bloquePiso", new BloquePiso(0, 0, 32, 32, 0));
+        prototypes.put("bloqueBandera", new BloqueBandera(0, 0, 32, 32, 0));
+        prototypes.put("bloqueMoneda1", new BloqueMoneda(0, 0, 32, 32, 0));
+        prototypes.put("bloqueMonedaHit", new BloqueMonedaHit(0, 0, 32, 32, 0));
+        prototypes.put("bloqueLadrillo", new Ladrillo(0, 0, 32, 32, 0));
+        prototypes.put("banderaMastil", new BanderaMastil(0, 0, 32, 288, 0));
         prototypes.put("castillo", new Castillo(0, 0, 160, 160, 1));
-        prototypes.put("montanaChica", new MontanaChica(0, 0, 96, 32, 1));
-        prototypes.put("montanaGrande", new MontanaGrande(0, 0, 160, 64, 1));
-        prototypes.put("arbustoChico", new ArbustoChico(0, 0, 64, 32, 1));
-        prototypes.put("arbustoMediano", new ArbustoMediano(0, 0, 32, 256, 1));
-        prototypes.put("arbustoGrande", new ArbustoGrande(0, 0, 96, 32, 1));
-        prototypes.put("nubeChica", new NubeChica(0, 0, 64, 32, 1));
-        prototypes.put("nubeMediana", new NubeMediana(0, 0, 96, 32, 1));
-        prototypes.put("nubeGrande", new NubeGrande(0, 0, 128, 32, 1));
-        prototypes.put("bloqueBarrera", new Barrera(0, 0, 32, 32, 1));
+        prototypes.put("montanaChica", new MontanaChica(0, 0, 96, 32, 0));
+        prototypes.put("montanaGrande", new MontanaGrande(0, 0, 160, 64, 0));
+        prototypes.put("arbustoChico", new ArbustoChico(0, 0, 64, 32, 16));
+        prototypes.put("arbustoMediano", new ArbustoMediano(0, 0, 32, 256, 16));
+        prototypes.put("arbustoGrande", new ArbustoGrande(0, 0, 96, 32, 16));
+        prototypes.put("nubeChica", new NubeChica(0, 0, 64, 32, 16));
+        prototypes.put("nubeMediana", new NubeMediana(0, 0, 96, 32, 16));
+        prototypes.put("nubeGrande", new NubeGrande(0, 0, 128, 32, 16));
+        prototypes.put("bloqueBarrera", new Barrera(0, 0, 32, 32, 0));
     }
 
     public static GameObject createObject(String type) {

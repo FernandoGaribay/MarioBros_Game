@@ -85,6 +85,20 @@ public class PixelArtCreatorFrame extends JFrame {
         });
         menuOptions.add(menuItemRelleno);
 
+        // MENU CAMBIAR BACKGROUND ---------------------------------------------
+        JMenuItem menuItemBackground = new JMenuItem("Cambiar Color Background");
+        menuItemBackground.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Color color = showColorChooserDialog();
+                if (color != null) {
+                    panelCreator.setBackground(color);
+                    panelCreator.repaint();
+                }
+            }
+        });
+        menuOptions.add(menuItemBackground);
+
         // MENU NUEVO ARCHIVO --------------------------------------------------
         JMenuItem menuNuevo = new JMenuItem("Nuevo");
         menuNuevo.addActionListener(new ActionListener() {

@@ -23,7 +23,7 @@ public class PixelArtReader extends Canvas {
     }
 
     public void cargarMatrizDesdeArchivo(String nombreArchivo) {
-        try (BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo))){
+        try (BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo))) {
             String lineaEscaneada;
             Color colorPixel = null;
 
@@ -68,7 +68,7 @@ public class PixelArtReader extends Canvas {
         this.HEIGHT = ROWS * tamanoPixel;
 
         g = new LibreriaGrafica(WIDTH, HEIGHT);
-        
+
         int tamanoPixel = WIDTH / pixeles[0].length;
         for (int i = 0; i < pixeles.length; i++) {
             for (int j = 0; j < pixeles[0].length; j++) {
@@ -80,8 +80,8 @@ public class PixelArtReader extends Canvas {
 
         return g.getBuffer();
     }
-    
-        public void setTamanoPixel(int tamanoPixel) {
+
+    public void setTamanoPixel(int tamanoPixel) {
         this.tamanoPixel = tamanoPixel;
-    }
+    }    
 }

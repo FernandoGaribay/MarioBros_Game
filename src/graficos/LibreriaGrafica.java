@@ -1,15 +1,18 @@
 package graficos;
 
+import herramientasPixelArt.PixelArtReader;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
 
 public class LibreriaGrafica extends Canvas {
 
     private final int WIDTH;
     private final int HEIGHT;
+//    private final Tipografia tipografia;
     private BufferedImage buffer;
 
     // Variables para la traslación
@@ -21,6 +24,7 @@ public class LibreriaGrafica extends Canvas {
 
         this.WIDTH = width;
         this.HEIGHT = height;
+//        tipografia = new Tipografia();
         buffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
     }
 
@@ -104,6 +108,21 @@ public class LibreriaGrafica extends Canvas {
         g.drawImage(img, x + translateX, y + translateY, width, height, null);
     }
 
+    public void drawText(String texto, int x, int y, int fontSize) {
+        int count = texto.length();
+        int offsetX = 0;
+        int separacion = 5 * fontSize;
+
+        Tipografia.setFontSize(fontSize);
+        for (int i = 0; i < count; i++) {
+            System.out.println(texto.substring(i, i + 1));
+            BufferedImage letra = Tipografia.getLetra(texto.substring(i, i + 1));
+            buffer.getGraphics().drawImage(letra, x + offsetX, y, null);
+
+            offsetX += letra.getWidth() + separacion;
+        }
+    }
+
     private void putPixel(int x, int y, Color color) {
         if (x >= 0 && x < buffer.getWidth() && y >= 0 && y < buffer.getHeight()) {
             buffer.setRGB(x, y, color.getRGB());
@@ -127,5 +146,68 @@ public class LibreriaGrafica extends Canvas {
 
     public void limpiarBuffer() {
         buffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+    }
+}
+
+class Tipografia {
+
+    private static HashMap<String, BufferedImage> tipografiaMap;
+    private static PixelArtReader lectorMatriz;
+
+    static {
+        tipografiaMap = new HashMap<>();
+        lectorMatriz = new PixelArtReader(1);
+
+        getTipografiaTexturas();
+    }
+
+    private static void getTipografiaTexturas() {
+        tipografiaMap.put("a", lectorMatriz.drawPixelArt("Tipografia/a"));
+        tipografiaMap.put("b", lectorMatriz.drawPixelArt("Tipografia/b"));
+        tipografiaMap.put("c", lectorMatriz.drawPixelArt("Tipografia/c"));
+        tipografiaMap.put("d", lectorMatriz.drawPixelArt("Tipografia/d"));
+        tipografiaMap.put("e", lectorMatriz.drawPixelArt("Tipografia/e"));
+        tipografiaMap.put("f", lectorMatriz.drawPixelArt("Tipografia/f"));
+        tipografiaMap.put("g", lectorMatriz.drawPixelArt("Tipografia/g"));
+        tipografiaMap.put("h", lectorMatriz.drawPixelArt("Tipografia/h"));
+        tipografiaMap.put("i", lectorMatriz.drawPixelArt("Tipografia/i"));
+        tipografiaMap.put("j", lectorMatriz.drawPixelArt("Tipografia/j"));
+        tipografiaMap.put("k", lectorMatriz.drawPixelArt("Tipografia/k"));
+        tipografiaMap.put("l", lectorMatriz.drawPixelArt("Tipografia/l"));
+        tipografiaMap.put("m", lectorMatriz.drawPixelArt("Tipografia/m"));
+        tipografiaMap.put("n", lectorMatriz.drawPixelArt("Tipografia/n"));
+        tipografiaMap.put("o", lectorMatriz.drawPixelArt("Tipografia/o"));
+        tipografiaMap.put("p", lectorMatriz.drawPixelArt("Tipografia/p"));
+        tipografiaMap.put("q", lectorMatriz.drawPixelArt("Tipografia/q"));
+        tipografiaMap.put("r", lectorMatriz.drawPixelArt("Tipografia/r"));
+        tipografiaMap.put("s", lectorMatriz.drawPixelArt("Tipografia/s"));
+        tipografiaMap.put("t", lectorMatriz.drawPixelArt("Tipografia/t"));
+        tipografiaMap.put("u", lectorMatriz.drawPixelArt("Tipografia/u"));
+        tipografiaMap.put("v", lectorMatriz.drawPixelArt("Tipografia/v"));
+        tipografiaMap.put("w", lectorMatriz.drawPixelArt("Tipografia/w"));
+        tipografiaMap.put("x", lectorMatriz.drawPixelArt("Tipografia/x"));
+        tipografiaMap.put("y", lectorMatriz.drawPixelArt("Tipografia/y"));
+        tipografiaMap.put("z", lectorMatriz.drawPixelArt("Tipografia/z"));
+        tipografiaMap.put("0", lectorMatriz.drawPixelArt("Tipografia/0"));
+        tipografiaMap.put("1", lectorMatriz.drawPixelArt("Tipografia/1"));
+        tipografiaMap.put("2", lectorMatriz.drawPixelArt("Tipografia/2"));
+        tipografiaMap.put("3", lectorMatriz.drawPixelArt("Tipografia/3"));
+        tipografiaMap.put("4", lectorMatriz.drawPixelArt("Tipografia/4"));
+        tipografiaMap.put("5", lectorMatriz.drawPixelArt("Tipografia/5"));
+        tipografiaMap.put("6", lectorMatriz.drawPixelArt("Tipografia/6"));
+        tipografiaMap.put("7", lectorMatriz.drawPixelArt("Tipografia/7"));
+        tipografiaMap.put("8", lectorMatriz.drawPixelArt("Tipografia/8"));
+        tipografiaMap.put("9", lectorMatriz.drawPixelArt("Tipografia/9"));
+    }
+
+    public static BufferedImage getLetra(String letra) {
+        return tipografiaMap.get(letra);
+    }
+
+    public static void setFontSize(int size) {
+        tipografiaMap = new HashMap<>();
+
+        lectorMatriz.setTamanoPixel(size);
+        getTipografiaTexturas();
     }
 }

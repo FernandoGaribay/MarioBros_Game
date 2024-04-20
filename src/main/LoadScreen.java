@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class LoadScreen extends Canvas implements Runnable {
 
     // Constantes
-    private final int TIMEPO_CARGA = 550;
+    private final int TIMEPO_CARGA = 50050;
     private final int WIDTH;
     private final int HEIGHT;
 
@@ -32,7 +32,10 @@ public class LoadScreen extends Canvas implements Runnable {
     public void paint(Graphics g) {
         g2.fillRect(0, 0, WIDTH, HEIGHT, Color.BLACK);
         g2.drawImage(Texturas.getMarioTextura("S_mario"), 150, 150);
-
+        
+        g2.drawText("abcdefghijklmnopqrstuvwxyz", 200, 150, 1);
+        g2.drawText("0123456789", 200, 200, 1);
+        
         // Dibujar buffer de mi libreria grafica
         g.drawImage(g2.getBuffer(), 0, 0, null);
     }

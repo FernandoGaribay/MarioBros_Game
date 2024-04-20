@@ -25,6 +25,7 @@ public class PixelArtCreator extends JPanel {
 
     private Color[][] pixeles;
     private Color color = Color.BLACK;
+    private Color background = new Color(200, 200, 200);
     private boolean botonIzquierdo = false;
     private boolean botonDerecho = false;
     private boolean funcionRelleno = false;
@@ -35,6 +36,7 @@ public class PixelArtCreator extends JPanel {
         SwingUtilities.invokeLater(() -> {
             equilibrarTamanoPixeles(filas, columnas);
             setSize(new Dimension(WIDTH, HEIGHT));
+            setOpaque(true);
 
             initPixeles();
             initEvents();
@@ -147,7 +149,7 @@ public class PixelArtCreator extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        fillRectangle(0, 0, WIDTH, HEIGHT, background);
         pintarPixeles();
         pintarMallado();
 
@@ -159,7 +161,11 @@ public class PixelArtCreator extends JPanel {
             for (int j = 0; j < NUM_COLUMNAS; j++) {
                 int x = j * TAMANO_PIXEL;
                 int y = i * TAMANO_PIXEL;
-                fillRectangle(x, y, x + TAMANO_PIXEL, y + TAMANO_PIXEL, pixeles[i][j]);
+                if (pixeles[i][j].getRGB() == new Color(0, 0, 0, 0).getRGB()) {
+                    drawRectangle(x, y, x + TAMANO_PIXEL, y + TAMANO_PIXEL, Color.DARK_GRAY);
+                } else {
+                    fillRectangle(x, y, x + TAMANO_PIXEL, y + TAMANO_PIXEL, pixeles[i][j]);
+                }
             }
         }
     }
@@ -196,6 +202,13 @@ public class PixelArtCreator extends JPanel {
                 }
             }
         }
+    }
+    
+    public void drawRectangle(int x0, int y0, int x1, int y1, Color color) {
+        drawLine(x0, y0, x1, y0, color);
+        drawLine(x0, y0, x0, y1, color);
+        drawLine(x1, y0, x1, y1, color);
+        drawLine(x0, y1, x1, y1, color);
     }
 
     public void drawLine(int x0, int y0, int x1, int y1, Color color) {
@@ -276,6 +289,7 @@ public class PixelArtCreator extends JPanel {
                     int g = Integer.parseInt(partes[1]);
                     int b = Integer.parseInt(partes[2]);
                     int a = Integer.parseInt(partes[3]);
+                    
                     colorPixel = new Color(r, g, b, a);
                 }
                 if (lineaEscaneada.equals("Coordenada:")) {
@@ -304,6 +318,10 @@ public class PixelArtCreator extends JPanel {
 
     public void setFuncionRelleno(boolean funcionRelleno) {
         this.funcionRelleno = funcionRelleno;
+    }
+
+    public void setBackground(Color background) {
+        this.background = background;
     }
 
 }

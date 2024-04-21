@@ -5,6 +5,7 @@ import graficos.Texturas;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,10 +32,21 @@ public class LoadScreen extends Canvas implements Runnable {
     @Override
     public void paint(Graphics g) {
         g2.fillRect(0, 0, WIDTH, HEIGHT, Color.BLACK);
-        g2.drawImage(Texturas.getMarioTextura("S_mario"), 150, 150);
         
-        g2.drawText("abcdefghijklmnopqrstuvwxyz", 200, 150, 1);
-        g2.drawText("0123456789", 200, 200, 1);
+        int cuartoDePantalla = WIDTH / 5;
+        g2.drawText("mario", cuartoDePantalla * 1, 50, 1);
+        g2.drawText("000000", cuartoDePantalla * 1, 80, 1);
+        g2.drawText("x00", cuartoDePantalla * 2, 65, 1);
+        g2.drawText("world", cuartoDePantalla * 3, 50, 1);
+        g2.drawText("1-1", cuartoDePantalla * 3, 80, 1);
+        g2.drawText("time", cuartoDePantalla * 4, 50, 1);
+        g2.drawText("000000", cuartoDePantalla * 4, 80, 1);
+        
+        g2.drawText("world 1-1", WIDTH / 4 * 2, 200, 1);
+        
+        int medioDePantalla = WIDTH / 2;
+        g2.drawText("x 3", medioDePantalla + 25 - 5, 265, 1);
+        g2.drawImage(Texturas.getMarioTextura("S_mario"), medioDePantalla - (32 / 2) - 30 - 5, 250);
         
         // Dibujar buffer de mi libreria grafica
         g.drawImage(g2.getBuffer(), 0, 0, null);

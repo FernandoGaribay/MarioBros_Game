@@ -109,17 +109,18 @@ public class LibreriaGrafica extends Canvas {
     }
 
     public void drawText(String texto, int x, int y, int fontSize) {
-        int count = texto.length();
-        int offsetX = 0;
+        int cantidadLetras = texto.length();
+        int interlineado = 0;
         int separacion = 5 * fontSize;
+        int offSetX = cantidadLetras * 13 * fontSize + separacion * (cantidadLetras - 1); // 13 es la unidad minima en width para cada letra (15x13)
+        int offSetY = 13 * fontSize; // 15 es la unidad minima en height para cada letra (15x13)
 
         Tipografia.setFontSize(fontSize);
-        for (int i = 0; i < count; i++) {
-            System.out.println(texto.substring(i, i + 1));
+        for (int i = 0; i < cantidadLetras; i++) {
             BufferedImage letra = Tipografia.getLetra(texto.substring(i, i + 1));
-            buffer.getGraphics().drawImage(letra, x + offsetX, y, null);
+            buffer.getGraphics().drawImage(letra, x + interlineado - offSetX / 2, y - offSetY / 2, null);
 
-            offsetX += letra.getWidth() + separacion;
+            interlineado += letra.getWidth() + separacion;
         }
     }
 
@@ -198,6 +199,9 @@ class Tipografia {
         tipografiaMap.put("7", lectorMatriz.drawPixelArt("Tipografia/7"));
         tipografiaMap.put("8", lectorMatriz.drawPixelArt("Tipografia/8"));
         tipografiaMap.put("9", lectorMatriz.drawPixelArt("Tipografia/9"));
+        tipografiaMap.put(" ", lectorMatriz.drawPixelArt("Tipografia/espacio"));
+        tipografiaMap.put("-", lectorMatriz.drawPixelArt("Tipografia/-"));
+
     }
 
     public static BufferedImage getLetra(String letra) {

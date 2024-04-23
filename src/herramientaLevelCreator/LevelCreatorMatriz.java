@@ -4,6 +4,7 @@ import utils.CasillaNivel;
 import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -21,22 +22,22 @@ public class LevelCreatorMatriz extends JPanel implements InterfazLevelCreator {
     private static final int TAMANO_CELDA = 32;
 
     // OBJETOS
-    private LibreriaGrafica g2Cuadriculado;
-    private LibreriaGrafica g2Elementos;
-    private CasillaNivel[][] matrizElementos;
+    private static LibreriaGrafica g2Cuadriculado;
+    private static LibreriaGrafica g2Elementos;
+    private static CasillaNivel[][] matrizElementos;
 
     // VARIBLES
-    private static int NUM_FILAS = 15;
-    private static int NUM_COLUMNAS = 500;
-    private float velocidad;
-    private float zoom;
-    private boolean moviendo; // true mover, false pintar
-    private String elementoSelecionado;
-    private boolean borrando = false;
+    private static int NUM_FILAS;
+    private static int NUM_COLUMNAS;
+    private static float velocidad;
+    private static float zoom;
+    private static boolean moviendo; // true mover, false pintar
+    private static boolean borrando;
+    private static String elementoSelecionado;
 
     // COORDENADAS      
-    private Point ultimaPosicion;
-    private Point offsetPosicion;
+    private static Point ultimaPosicion;
+    private static Point offsetPosicion;
 
     public LevelCreatorMatriz() {
         setBackground(new Color(203, 203, 203));
@@ -47,11 +48,12 @@ public class LevelCreatorMatriz extends JPanel implements InterfazLevelCreator {
             velocidad = 1f;
             zoom = 1f;
             moviendo = false;
+            borrando = false;
             ultimaPosicion = new Point(0, 0);
             offsetPosicion = new Point();
             elementoSelecionado = "bloquePiso";
 
-            limpiarMatriz(500, 15);
+            limpiarMatriz(10, 5);
             initEventos();
         });
     }
@@ -176,7 +178,7 @@ public class LevelCreatorMatriz extends JPanel implements InterfazLevelCreator {
                     g2Cuadriculado.drawRect(x, y, x + NEW_TAMANO_CELDA, y + NEW_TAMANO_CELDA, Color.BLACK);
 
                     // Verificar que el elemento de la matriz no es nulo
-                    if (matrizElementos[i][j].getImagenElemento() != null) {
+                    if (matrizElementos[i][j] != null && matrizElementos[i][j].getImagenElemento() != null) {
                         int newWidth = (int) (matrizElementos[i][j].getImagenElemento().getWidth() * zoom);
                         int newHeight = (int) (matrizElementos[i][j].getImagenElemento().getHeight() * zoom);
                         BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, matrizElementos[i][j].getImagenElemento().getType());
@@ -201,14 +203,12 @@ public class LevelCreatorMatriz extends JPanel implements InterfazLevelCreator {
             matrizElementos[xClick][yClick].setNombreElemento(elementoSelecionado);
             matrizElementos[xClick][yClick].setCoordenadas(xClick, yClick);
         } else {
-            matrizElementos[xClick][yClick].setImagenElemento(null);
-            matrizElementos[xClick][yClick].setNombreElemento(null);
-            matrizElementos[xClick][yClick].setCoordenadas(0, 0);
+            matrizElementos[xClick][yClick] = new CasillaNivel();
         }
     }
 
     public void limpiarMatriz(int columnas, int filas) {
-        this.NUM_COLUMNAS = columnas;
+        this.NUM_FILAS = filas;
         this.NUM_COLUMNAS = columnas;
 
         matrizElementos = new CasillaNivel[NUM_COLUMNAS][NUM_FILAS];
@@ -217,6 +217,108 @@ public class LevelCreatorMatriz extends JPanel implements InterfazLevelCreator {
                 matrizElementos[i][j] = new CasillaNivel();
             }
         }
+        repaint();
+    }
+
+    public void addColumna() {
+        CasillaNivel[][] nuevaMatriz = new CasillaNivel[matrizElementos.length + 1][matrizElementos[0].length];
+
+        for (int i = 0; i < matrizElementos.length; i++) {
+            nuevaMatriz[i] = matrizElementos[i];
+        }
+        for (int j = 0; j < nuevaMatriz[0].length; j++) {
+            nuevaMatriz[matrizElementos.length][j] = new CasillaNivel();
+        }
+        matrizElementos = nuevaMatriz;
+        NUM_COLUMNAS = nuevaMatriz.length;
+        repaint();
+    }
+
+    public void removeColumna() {
+        CasillaNivel[][] nuevaMatriz = new CasillaNivel[matrizElementos.length - 1][matrizElementos[0].length];
+
+        if (matrizElementos.length <= 1) {
+            return;
+        }
+
+        for (int i = 0; i < nuevaMatriz.length; i++) {
+            nuevaMatriz[i] = matrizElementos[i];
+        }
+
+        matrizElementos = nuevaMatriz;
+        NUM_COLUMNAS = nuevaMatriz.length;
+        repaint();
+    }
+
+    public void addFila() {
+        CasillaNivel[][] nuevaMatriz = new CasillaNivel[matrizElementos.length][matrizElementos[0].length + 1];
+
+        for (int i = 0; i < matrizElementos.length; i++) {
+            for (int j = 0; j < matrizElementos[i].length; j++) {
+                nuevaMatriz[i][j] = matrizElementos[i][j];
+            }
+        }
+
+        for (int i = 0; i < nuevaMatriz.length; i++) {
+            nuevaMatriz[i][matrizElementos[0].length] = new CasillaNivel();
+        }
+
+        matrizElementos = nuevaMatriz;
+        NUM_FILAS = nuevaMatriz[0].length;
+        repaint();
+    }
+
+    public void removeFila() {
+        CasillaNivel[][] nuevaMatriz = new CasillaNivel[matrizElementos.length][matrizElementos[0].length - 1];
+
+        if (matrizElementos[0].length <= 1) {
+            return;
+        }
+
+        for (int i = 0; i < nuevaMatriz.length; i++) {
+            for (int j = 0; j < nuevaMatriz[i].length; j++) {
+                nuevaMatriz[i][j] = matrizElementos[i][j];
+            }
+        }
+
+        matrizElementos = nuevaMatriz;
+        NUM_FILAS = nuevaMatriz[0].length;
+        repaint();
+    }
+
+    public void recorrerMatriz(String direccion) {
+        int columnas = matrizElementos.length;
+        int filas = matrizElementos[0].length;
+
+        CasillaNivel[][] nuevaMatriz = new CasillaNivel[columnas][filas];
+
+        for (int i = 0; i < columnas; i++) {
+            for (int j = 0; j < filas; j++) {
+                switch (direccion) {
+                    case "arriba":
+                        if (j > 0) {
+                            nuevaMatriz[i][j - 1] = matrizElementos[i][j];
+                        }
+                        break;
+                    case "abajo":
+                        if (j < filas - 1) {
+                            nuevaMatriz[i][j + 1] = matrizElementos[i][j];
+                        }
+                        break;
+                    case "izquierda":
+                        if (i > 0) {
+                            nuevaMatriz[i - 1][j] = matrizElementos[i][j];
+                        }
+                        break;
+                    case "derecha":
+                        if (i < columnas - 1) {
+                            nuevaMatriz[i + 1][j] = matrizElementos[i][j];
+                        }
+                        break;
+                }
+            }
+        }
+        matrizElementos = nuevaMatriz;
         repaint();
     }
 
@@ -257,6 +359,8 @@ public class LevelCreatorMatriz extends JPanel implements InterfazLevelCreator {
 
     public void setMatrizElementos(CasillaNivel[][] matrizElementos) {
         this.matrizElementos = matrizElementos;
+        this.NUM_COLUMNAS = matrizElementos.length;
+        this.NUM_FILAS = matrizElementos[0].length;
         repaint();
     }
 

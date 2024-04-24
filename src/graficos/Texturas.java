@@ -14,6 +14,8 @@ public class Texturas {
 
     private static HashMap<String, BufferedImage> bloqueModena_Map;
 
+    private static HashMap<String, BufferedImage> bloquesEscombros_Map;
+
     private static PixelArtReader lectorMatriz;
 
     // Inicializar variables y valores estaticas de la clase
@@ -21,6 +23,7 @@ public class Texturas {
         texturasMap = new LinkedHashMap<>();
         marioTexturas_Map = new HashMap<>();
         bloqueModena_Map = new HashMap<>();
+        bloquesEscombros_Map = new HashMap<>();
         lectorMatriz = new PixelArtReader(2);
 
         getBloquesTecturas();
@@ -33,6 +36,7 @@ public class Texturas {
         getMarioTexturas();
 
         getBloqueMonedaTexturas();
+        getBloquesEscombrosTexturas();
     }
 
     public Texturas() {
@@ -46,7 +50,7 @@ public class Texturas {
         marioTexturas_Map.put("S_marioCaminando1", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/marioCaminando1"));
         marioTexturas_Map.put("S_marioCaminando2", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/marioCaminando2"));
         marioTexturas_Map.put("S_marioCaminando3", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/marioCaminando3"));
-        
+
         marioTexturas_Map.put("L_mario", lectorMatriz.drawPixelArt("Sprites/Mario/Grande/mario"));
         marioTexturas_Map.put("L_marioSaltando", lectorMatriz.drawPixelArt("Sprites/Mario/Grande/marioSaltando"));
         marioTexturas_Map.put("L_marioDerrapando", lectorMatriz.drawPixelArt("Sprites/Mario/Grande/marioDerrapando"));
@@ -64,6 +68,10 @@ public class Texturas {
         bloqueModena_Map.put("bloqueMoneda1", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueMoneda1"));
         bloqueModena_Map.put("bloqueMoneda2", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueMoneda2"));
         bloqueModena_Map.put("bloqueMoneda3", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueMoneda3"));
+    }
+
+    private static void getBloquesEscombrosTexturas() {
+        bloquesEscombros_Map.put("ladrilloEscombro", lectorMatriz.drawPixelArt("Sprites/Escombros/ladrilloEscombro"));
     }
 
     private static void getBloquesTecturas() {
@@ -100,6 +108,11 @@ public class Texturas {
 
     public static BufferedImage getTextura(String textura) {
         BufferedImage selectedImage = texturasMap.get(textura);
+        return selectedImage;
+    }
+
+    public static BufferedImage getEscombroTextura(String textura) {
+        BufferedImage selectedImage = bloquesEscombros_Map.get(textura);
         return selectedImage;
     }
 

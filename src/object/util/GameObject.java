@@ -6,13 +6,15 @@ import object.util.ObjectID;
 
 public abstract class GameObject {
 
+    protected ObjectID id;
+
     protected float x;
     protected float y;
     protected float width, height;
-    protected ObjectID id;
     private float velX, velY;
-    private boolean golpeado;
+
     protected int xDesplasamiento;
+    private boolean golpeado;
 
     public GameObject(float x, float y, ObjectID id, float width, float height, int xDesplasamiento) {
         this.x = x;

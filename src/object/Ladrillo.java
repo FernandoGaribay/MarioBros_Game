@@ -10,18 +10,22 @@ import object.util.ObjectID;
 public class Ladrillo extends GameObject {
 
     // OBJETOS
-    private Texturas texturas;
-    
+    private Escombros escombros;
+
     // VARIABLES
     private int contAnimacionGolpe = 0;
+    private boolean roto = false;
 
     public Ladrillo(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.Ladrillo, width, height, xDesplasamiento);
-        this.texturas = new Texturas();
+
     }
 
     @Override
     public void tick() {
+        if (roto) {
+            escombros.tick();
+        }
         if (isGolpeado()) {
             runAnimacionGolpe();
         }
@@ -29,8 +33,11 @@ public class Ladrillo extends GameObject {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("bloqueLadrillo"), (int) (getX()), (int) (getY()));
-//        g.drawRectangle(getBounds(), Color.white);
+        if (!roto) {
+            g.drawImage(Texturas.getTextura("bloqueLadrillo"), (int) (getX()), (int) (getY()));
+        } else {
+            escombros.render(g);
+        }
     }
 
     @Override
@@ -41,6 +48,13 @@ public class Ladrillo extends GameObject {
     @Override
     public GameObject clone() {
         return new Ladrillo((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
+    }
+    
+    public boolean sePuedeEliminar(){
+        if(escombros.sePuedeEliminar()){
+            return true;
+        }
+        return false;
     }
 
     public void runAnimacionGolpe() {
@@ -57,5 +71,10 @@ public class Ladrillo extends GameObject {
             setY(getY() + 3);
         }
         contAnimacionGolpe++;
+    }
+    
+    public void romper(){
+        roto = true;
+        escombros = new Escombros(x, y, width, height);
     }
 }

@@ -6,16 +6,23 @@ import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.util.LinkedList;
 import object.util.Handler;
 import main.Game;
 import object.util.ObjectID;
 import object.util.EstadoPlayer;
+import static object.util.ObjectID.Bandera;
+import static object.util.ObjectID.Bloque;
+import static object.util.ObjectID.BloqueMoneda;
+import static object.util.ObjectID.Ladrillo;
+import static object.util.ObjectID.TuberiaCabeza;
 
 public class Player extends GameObject {
 
     // OBJETOS
     private Handler handler;
     private Animacion animacionCaminando;
+    private LinkedList<Ladrillo> colaBloquesEliminados;
 
     // VARIABLES
     private EstadoPlayer estadoPlayer;
@@ -32,6 +39,7 @@ public class Player extends GameObject {
     public Player(float x, float y, Handler handler) {
         super(x, y, ObjectID.Player, 32, 32, 0);
         this.handler = handler;
+        this.colaBloquesEliminados = new LinkedList<Ladrillo>();
         this.cambiarEstado(2);
     }
 
@@ -78,7 +86,6 @@ public class Player extends GameObject {
         // Cajas de colisiones -------------------------------------------------
 //        g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.yellow);
 //        showBounds(g);
-
         // Mostrar Limites del renderizado
 //        g.drawLine((int) (getX() + Game.getMAX_RENDERIZADO()), 0, (int) (getX() + Game.getMAX_RENDERIZADO()), 600, Color.yellow);
 //        g.drawLine((int) (getX() - Game.getMAX_RENDERIZADO()), 0, (int) (getX() - Game.getMAX_RENDERIZADO()), 600, Color.yellow);
@@ -100,9 +107,7 @@ public class Player extends GameObject {
         } else if (getVelX() != 0) {
             if (Math.abs(getVelX()) < 0.01f) {
                 setVelX(0);
-            }
-
-            if (getVelX() > 0) {
+            } else if (getVelX() > 0) {
                 setVelX(getVelX() - 0.2f);
             } else if (getVelX() < 0) {
                 setVelX(getVelX() + 0.2f);
@@ -114,19 +119,29 @@ public class Player extends GameObject {
     }
 
     private void aplicarColisiones() {
-        for (int i = 0; i < handler.getGameObj().size(); i++) {
+        int size = handler.getGameObj().size() - 1;
+        int renderIzquierda = (int) (getX() - Game.getMAX_RENDERIZADO());
+        int renderDerecha = (int) (getX() + Game.getMAX_RENDERIZADO());
+
+        for (int i = 0; i < size; i++) {
             GameObject temp = handler.getGameObj().get(i);
 
-            switch (temp.getID()) {
-                case Bloque:
-                case TuberiaCabeza:
-                case BloqueMoneda:
-                case Ladrillo:
-                    handleColisionSolida(temp);
-                    break;
-                case Bandera:
-                    handleColisionBandera(temp, i);
-                    break;
+            if (colaBloquesEliminados.contains(temp)) {
+                continue;
+            } else {
+                if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
+                    switch (temp.getID()) {
+                        case Bloque:
+                        case TuberiaCabeza:
+                        case BloqueMoneda:
+                        case Ladrillo:
+                            handleColisionSolida(temp);
+                            break;
+                        case Bandera:
+                            handleColisionBandera(temp, i);
+                            break;
+                    }
+                }
             }
         }
     }
@@ -151,7 +166,8 @@ public class Player extends GameObject {
                 if (estadoPlayer == EstadoPlayer.Chico) {
                     temp.setGolpeado(true);
                 } else if (estadoPlayer == EstadoPlayer.Grande) {
-                    handler.removeObj(temp);
+                    ((Ladrillo) temp).romper();
+                    colaBloquesEliminados.add(((Ladrillo) temp));
                 }
             }
 
@@ -195,6 +211,23 @@ public class Player extends GameObject {
                 Texturas.getMarioTextura(prefijoTextura + "_marioCaminando1"),
                 Texturas.getMarioTextura(prefijoTextura + "_marioCaminando2"),
                 Texturas.getMarioTextura(prefijoTextura + "_marioCaminando3"));
+    }
+    
+    public LinkedList<Ladrillo> getBloquesAEliminar(){
+        LinkedList<Ladrillo> output = new LinkedList<Ladrillo>();
+        
+        for (Ladrillo removeBlock : colaBloquesEliminados) {
+            if(!removeBlock.sePuedeEliminar()){
+                continue;
+            }
+            output.add(removeBlock);
+        }
+        
+        for (Ladrillo bloqueEliminar : output) {
+            colaBloquesEliminados.remove(bloqueEliminar);
+        }
+        
+        return output;
     }
 
     public boolean hasJumped() {

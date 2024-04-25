@@ -12,8 +12,10 @@ import java.awt.image.BufferStrategy;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import object.Barrera;
+import object.EntidadHongo;
 import object.util.GameObject;
 import object.Player;
+import object.util.EntityHandler;
 import object.util.Handler;
 import object.util.KeyInput;
 import object.util.ObjectFactory;
@@ -43,7 +45,8 @@ public class Game extends Canvas implements Runnable {
     private Thread updateThread;
     private Thread renderThread;
     private Thread playerThread;
-    private Handler handler;
+    private Handler handlerBloques;
+    private EntityHandler handlerEntidades;
     private Ventana ventana;
     private Camara camara;
     private Player player;
@@ -58,10 +61,11 @@ public class Game extends Canvas implements Runnable {
 
     // <editor-fold defaultstate="collapsed" desc="Inizializar Elementos">  
     private void inicializarElementos() {
-        handler = new Handler();
+        handlerBloques = new Handler();
+        handlerEntidades = new EntityHandler();
         ventana = new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NOMBRE);
         camara = new Camara(0, SCREEN_OFFSET);
-        player = new Player(32 * 1, 32, handler);
+        player = new Player(32 * 1, 32, handlerBloques);
         keyInput = new KeyInput(player);
         background = new Background(0, 0, VENTANA_WIDTH, VENTANA_HEIGHT, SCREEN_OFFSET, camara);
         loadScreen = new LoadScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -69,10 +73,12 @@ public class Game extends Canvas implements Runnable {
         this.addKeyListener(keyInput);
 
         ventana.setCanvas(loadScreen);
-        handler.setPlayer(player);
+        handlerBloques.setPlayer(player);
+        handlerEntidades.setPlayer(player);
 
         cargarNivel("NivelesFiles/mundo_1-1");
         cargarBarreras();
+        handlerEntidades.addEntidad(new EntidadHongo(32*5, 32*1, 32, 32, handlerBloques));
 
         try {
             // Esperar a que el hilo finalize
@@ -89,10 +95,10 @@ public class Game extends Canvas implements Runnable {
     public void cargarBarreras() {
         // Barreras para no salir del mapa
         for (int i = 0; i < 500; i++) {
-            handler.addObj(new Barrera(i * 32, 32 * 16, 32, 32, 1));
+            handlerBloques.addObj(new Barrera(i * 32, 32 * 16, 32, 32, 1));
         }
         for (int i = 0; i < 15; i++) {
-            handler.addObj(new Barrera(-32, 32 * i, 32, 32, 1));
+            handlerBloques.addObj(new Barrera(-32, 32 * i, 32, 32, 1));
         }
     }
 
@@ -106,7 +112,7 @@ public class Game extends Canvas implements Runnable {
                     GameObject obj = ObjectFactory.createObject(casillaNivel.getNombreElemento());
                     obj.setX(casillaNivel.getX() * 32);
                     obj.setY(casillaNivel.getY() * 32);
-                    handler.addObj(obj);
+                    handlerBloques.addObj(obj);
                 }
             }
         }
@@ -214,7 +220,8 @@ public class Game extends Canvas implements Runnable {
     }
 
     private synchronized void objetosTick() {
-        handler.tick();
+        handlerBloques.tick();
+        handlerEntidades.tick();
     }
 
     private synchronized void playerTick() {
@@ -234,7 +241,8 @@ public class Game extends Canvas implements Runnable {
         g2.translate(camara.getX(), camara.getY());
 
         background.render(g2);
-        handler.render(g2);
+        handlerBloques.render(g2);
+        handlerEntidades.render(g2);
         player.render(g2);
 
         g.drawImage(g2.getBuffer(), 0, 0, null);

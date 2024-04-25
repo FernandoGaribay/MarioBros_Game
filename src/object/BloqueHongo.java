@@ -19,7 +19,6 @@ public class BloqueHongo extends GameObject {
     // Variables
     private boolean golpeado = false;
     private int contAnimacionGolpe = 0;
-    private int contAnimacionMoneda = 0;
 
     public BloqueHongo(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.BloqueHongo, width, height, xDesplasamiento);
@@ -34,7 +33,6 @@ public class BloqueHongo extends GameObject {
 
         if (golpeado) {
             runAnimacionGolpe();
-            runAnimacionMoneda();
         }
     }
 
@@ -65,29 +63,16 @@ public class BloqueHongo extends GameObject {
     }
 
     public void runAnimacionGolpe() {
-//        if (contAnimacionGolpe == 16) {
-//            return;
-//        }
-//
-//        if (contAnimacionGolpe < 8) {
-//            setY(getY() - 3);
-//        } else if (contAnimacionGolpe < 16 && contAnimacionGolpe >= 8) {
-//            setY(getY() + 3);
-//        }
-//        contAnimacionGolpe++;
-    }
+        if (contAnimacionGolpe == 16) {
+            return;
+        }
 
-    public void runAnimacionMoneda() {
-//        if (contAnimacionMoneda == 24) {
-//            moneda.setMoneda(null);
-//            return;
-//        }
-//        if (contAnimacionMoneda < 12) {
-//            moneda.setY(moneda.getY() - 8f);
-//        } else if (contAnimacionMoneda < 24 && contAnimacionMoneda >= 12) {
-//            moneda.setY(moneda.getY() + 5f);
-//        }
-//        contAnimacionMoneda++;
+        if (contAnimacionGolpe < 8) {
+            setY(getY() - 3);
+        } else if (contAnimacionGolpe < 16 && contAnimacionGolpe >= 8) {
+            setY(getY() + 3);
+        }
+        contAnimacionGolpe++;
     }
 }
 

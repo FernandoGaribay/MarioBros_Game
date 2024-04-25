@@ -17,6 +17,7 @@ public class BloqueMoneda extends GameObject {
     private Animacion animacion;
 
     // Variables
+    private boolean golpeado = false;
     private int contAnimacionGolpe = 0;
     private int contAnimacionMoneda = 0;
 
@@ -31,7 +32,7 @@ public class BloqueMoneda extends GameObject {
     public void tick() {
         animacion.runAnimacion();
 
-        if (isGolpeado()) {
+        if (golpeado) {
             runAnimacionGolpe();
             runAnimacionMoneda();
         }
@@ -39,7 +40,7 @@ public class BloqueMoneda extends GameObject {
 
     @Override
     public void render(LibreriaGrafica g) {
-        if (!isGolpeado()) {
+        if (!golpeado) {
             animacion.drawSprite(g, (int) getX(), (int) getY());
         } else {
             g.drawImage(Texturas.getTextura("bloqueMonedaHit"), (int) (getX()), (int) (getY()));
@@ -59,7 +60,7 @@ public class BloqueMoneda extends GameObject {
     }
 
     public void golpeado() {
-        setGolpeado(true);
+        golpeado = true;
         moneda = new Moneda(x + 8, y - 16);
     }
 

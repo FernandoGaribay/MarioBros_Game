@@ -40,7 +40,7 @@ public class Player extends GameObject {
         super(x, y, ObjectID.Player, 32, 32, 0);
         this.handler = handler;
         this.colaBloquesEliminados = new LinkedList<Ladrillo>();
-        this.cambiarEstado(2);
+        this.cambiarEstado(1);
     }
 
     @Override
@@ -164,7 +164,7 @@ public class Player extends GameObject {
                     break;
                 case Ladrillo:
                     if (estadoPlayer == EstadoPlayer.Chico) {
-                        temp.setGolpeado(true);
+                        ((Ladrillo) temp).golpear();
                     } else if (estadoPlayer == EstadoPlayer.Grande) {
                         ((Ladrillo) temp).romper();
                         colaBloquesEliminados.add(((Ladrillo) temp));

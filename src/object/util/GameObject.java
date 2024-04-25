@@ -14,7 +14,6 @@ public abstract class GameObject {
     private float velX, velY;
 
     protected int xDesplasamiento;
-    private boolean golpeado;
 
     public GameObject(float x, float y, ObjectID id, float width, float height, int xDesplasamiento) {
         this.x = x;
@@ -23,7 +22,6 @@ public abstract class GameObject {
         this.width = width;
         this.height = height;
         this.xDesplasamiento = xDesplasamiento;
-        this.golpeado = false;
     }
 
     public abstract void tick();
@@ -98,14 +96,6 @@ public abstract class GameObject {
 
     public void setHeight(float height) {
         this.height = height;
-    }
-
-    public boolean isGolpeado() {
-        return golpeado;
-    }
-
-    public void setGolpeado(boolean golpeado) {
-        this.golpeado = golpeado;
     }
 
     public abstract GameObject clone();

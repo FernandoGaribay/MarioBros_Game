@@ -14,6 +14,7 @@ public class Ladrillo extends GameObject {
 
     // VARIABLES
     private int contAnimacionGolpe = 0;
+    private boolean golpeado = false;
     private boolean roto = false;
 
     public Ladrillo(int x, int y, int width, int height, int xDesplasamiento) {
@@ -26,7 +27,7 @@ public class Ladrillo extends GameObject {
         if (roto) {
             escombros.tick();
         }
-        if (isGolpeado()) {
+        if (golpeado) {
             runAnimacionGolpe();
         }
     }
@@ -60,7 +61,7 @@ public class Ladrillo extends GameObject {
     public void runAnimacionGolpe() {
         if (contAnimacionGolpe == 16) {
             contAnimacionGolpe = 0;
-            setGolpeado(false);
+            golpeado = false;
 
             return;
         }
@@ -71,6 +72,10 @@ public class Ladrillo extends GameObject {
             setY(getY() + 3);
         }
         contAnimacionGolpe++;
+    }
+    
+    public void golpear(){
+        golpeado = true;
     }
     
     public void romper(){

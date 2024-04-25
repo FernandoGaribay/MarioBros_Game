@@ -83,6 +83,7 @@ public class Texturas {
         texturasMap.put("bloquePiso", lectorMatriz.drawPixelArt("Sprites/Bloques/bloquePiso"));
         texturasMap.put("bloqueBandera", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueBandera"));
         texturasMap.put("bloqueMoneda1", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueMoneda1"));
+        texturasMap.put("bloqueHongo", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueHongo"));
         texturasMap.put("bloqueMonedaHit", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueMonedaHit"));
         texturasMap.put("bloqueLadrillo", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueLadrillo"));
         texturasMap.put("bloqueBarrera", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueBarrera"));
@@ -113,6 +114,7 @@ public class Texturas {
 
     private static void getDropsTexturas() {
         dropsMap.put("moneda", lectorMatriz.drawPixelArt("Sprites/Drops/moneda"));
+        dropsMap.put("hongo", lectorMatriz.drawPixelArt("Sprites/Drops/hongo"));
     }
 
     public static BufferedImage getTextura(String textura) {

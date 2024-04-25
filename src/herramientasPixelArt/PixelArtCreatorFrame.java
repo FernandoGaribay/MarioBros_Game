@@ -6,11 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Box;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -117,7 +119,7 @@ public class PixelArtCreatorFrame extends JFrame {
         menuGuardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String nombre = JOptionPane.showInputDialog("Nombre del archivo");
+                String nombre = obtenerUbicacionArchivo();
                 panelCreator.guardarMatrizComoArchivo(nombre);
             }
         });
@@ -128,7 +130,7 @@ public class PixelArtCreatorFrame extends JFrame {
         menuAbrir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String nombre = JOptionPane.showInputDialog("Nombre del archivo");
+                String nombre = obtenerUbicacionArchivo();
                 panelCreator.cargarMatrizDesdeArchivo(nombre);
             }
         });
@@ -186,6 +188,22 @@ public class PixelArtCreatorFrame extends JFrame {
         menuBar.remove(rellenoActivo);
         menuBar.revalidate();
         menuBar.repaint();
+    }
+
+    public static String obtenerUbicacionArchivo() {
+        JFileChooser fileChooser = new JFileChooser();
+
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        fileChooser.setDialogTitle("Seleccionar archivo");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        int seleccion = fileChooser.showOpenDialog(null);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            var archivoSeleccionado = fileChooser.getSelectedFile();
+            return archivoSeleccionado.getAbsolutePath();
+        } else {
+            return null;
+        }
     }
 
     private Color showColorChooserDialog() {

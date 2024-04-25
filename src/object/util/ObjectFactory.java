@@ -8,6 +8,7 @@ import object.ArbustoMediano;
 import object.BanderaMastil;
 import object.Barrera;
 import object.BloqueBandera;
+import object.BloqueHongo;
 import object.BloqueMoneda;
 import object.BloqueMonedaHit;
 import object.BloquePiso;
@@ -31,6 +32,7 @@ public class ObjectFactory {
         prototypes.put("bloquePiso", new BloquePiso(0, 0, 32, 32, 0));
         prototypes.put("bloqueBandera", new BloqueBandera(0, 0, 32, 32, 0));
         prototypes.put("bloqueMoneda1", new BloqueMoneda(0, 0, 32, 32, 0));
+        prototypes.put("bloqueHongo", new BloqueHongo(0, 0, 32, 32, 0));
         prototypes.put("bloqueMonedaHit", new BloqueMonedaHit(0, 0, 32, 32, 0));
         prototypes.put("bloqueLadrillo", new Ladrillo(0, 0, 32, 32, 0));
         prototypes.put("banderaMastil", new BanderaMastil(0, 0, 32, 288, 0));

@@ -40,7 +40,7 @@ public class Player extends GameObject {
         super(x, y, ObjectID.Player, 32, 32, 0);
         this.handler = handler;
         this.colaBloquesEliminados = new LinkedList<Ladrillo>();
-        this.cambiarEstado(1);
+        this.cambiarEstado(2);
     }
 
     @Override
@@ -108,9 +108,9 @@ public class Player extends GameObject {
             if (Math.abs(getVelX()) < 0.01f) {
                 setVelX(0);
             } else if (getVelX() > 0) {
-                setVelX(getVelX() - 0.2f);
+                setVelX(getVelX() - 0.1f);
             } else if (getVelX() < 0) {
-                setVelX(getVelX() + 0.2f);
+                setVelX(getVelX() + 0.1f);
             }
         }
 
@@ -134,6 +134,7 @@ public class Player extends GameObject {
                         case Bloque:
                         case TuberiaCabeza:
                         case BloqueMoneda:
+                        case BloqueHongo:
                         case Ladrillo:
                             handleColisionSolida(temp);
                             break;
@@ -161,6 +162,9 @@ public class Player extends GameObject {
             switch (temp.getID()) {
                 case BloqueMoneda:
                     ((BloqueMoneda) temp).golpeado();
+                    break;
+                case BloqueHongo:
+                    ((BloqueHongo) temp).golpeado();
                     break;
                 case Ladrillo:
                     if (estadoPlayer == EstadoPlayer.Chico) {

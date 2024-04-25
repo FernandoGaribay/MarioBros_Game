@@ -10,6 +10,8 @@ public class Texturas {
 
     private static LinkedHashMap<String, BufferedImage> texturasMap;
 
+    private static HashMap<String, BufferedImage> dropsMap;
+
     private static HashMap<String, BufferedImage> marioTexturas_Map;
 
     private static HashMap<String, BufferedImage> bloqueModena_Map;
@@ -21,6 +23,7 @@ public class Texturas {
     // Inicializar variables y valores estaticas de la clase
     static {
         texturasMap = new LinkedHashMap<>();
+        dropsMap = new HashMap<>();
         marioTexturas_Map = new HashMap<>();
         bloqueModena_Map = new HashMap<>();
         bloquesEscombros_Map = new HashMap<>();
@@ -32,6 +35,8 @@ public class Texturas {
         getArbustosTexturas();
         getNubesTexturas();
         getElementosFondo();
+
+        getDropsTexturas();
 
         getMarioTexturas();
 
@@ -106,8 +111,17 @@ public class Texturas {
         texturasMap.put("nubeGrande", lectorMatriz.drawPixelArt("Sprites/Nubes/nubeGrande"));
     }
 
+    private static void getDropsTexturas() {
+        dropsMap.put("moneda", lectorMatriz.drawPixelArt("Sprites/Drops/moneda"));
+    }
+
     public static BufferedImage getTextura(String textura) {
         BufferedImage selectedImage = texturasMap.get(textura);
+        return selectedImage;
+    }
+
+    public static BufferedImage getDropsTextura(String textura) {
+        BufferedImage selectedImage = dropsMap.get(textura);
         return selectedImage;
     }
 

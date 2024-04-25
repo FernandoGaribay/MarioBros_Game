@@ -158,19 +158,19 @@ public class Player extends GameObject {
             setY(temp.getY() + temp.getHeight());
             setVelY(0);
 
-            if (temp.getID() == ObjectID.BloqueMoneda) {
-                temp.setGolpeado(true);
+            switch (temp.getID()) {
+                case BloqueMoneda:
+                    ((BloqueMoneda) temp).golpeado();
+                    break;
+                case Ladrillo:
+                    if (estadoPlayer == EstadoPlayer.Chico) {
+                        temp.setGolpeado(true);
+                    } else if (estadoPlayer == EstadoPlayer.Grande) {
+                        ((Ladrillo) temp).romper();
+                        colaBloquesEliminados.add(((Ladrillo) temp));
+                    }
+                    break;
             }
-
-            if (temp.getID() == ObjectID.Ladrillo) {
-                if (estadoPlayer == EstadoPlayer.Chico) {
-                    temp.setGolpeado(true);
-                } else if (estadoPlayer == EstadoPlayer.Grande) {
-                    ((Ladrillo) temp).romper();
-                    colaBloquesEliminados.add(((Ladrillo) temp));
-                }
-            }
-
         }
         // Bounding Box de la derecha
         if (getBoundsRight().intersects(temp.getBounds())) {
@@ -212,21 +212,21 @@ public class Player extends GameObject {
                 Texturas.getMarioTextura(prefijoTextura + "_marioCaminando2"),
                 Texturas.getMarioTextura(prefijoTextura + "_marioCaminando3"));
     }
-    
-    public LinkedList<Ladrillo> getBloquesAEliminar(){
+
+    public LinkedList<Ladrillo> getBloquesAEliminar() {
         LinkedList<Ladrillo> output = new LinkedList<Ladrillo>();
-        
+
         for (Ladrillo removeBlock : colaBloquesEliminados) {
-            if(!removeBlock.sePuedeEliminar()){
+            if (!removeBlock.sePuedeEliminar()) {
                 continue;
             }
             output.add(removeBlock);
         }
-        
+
         for (Ladrillo bloqueEliminar : output) {
             colaBloquesEliminados.remove(bloqueEliminar);
         }
-        
+
         return output;
     }
 

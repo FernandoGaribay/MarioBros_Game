@@ -2,7 +2,7 @@ package object.util;
 
 public enum ObjectID {
     Player,
-    Enemy,
+    Enemigo,
     Bloque,
     Background,
     BloqueMoneda,

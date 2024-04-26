@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.Box;
 import javax.swing.JColorChooser;
@@ -132,6 +133,12 @@ public class PixelArtCreatorFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String nombre = obtenerUbicacionArchivo();
                 panelCreator.cargarMatrizDesdeArchivo(nombre);
+                
+                LinkedList<Color> listaColores = panelCreator.getListaColores();
+                for (Color listaColore : listaColores) {
+                    agregarColorReciente(listaColore);
+                }
+                actualizarMenuColoresRecientes(coloresRecientes);
             }
         });
         opcionesArchivo.add(menuAbrir);

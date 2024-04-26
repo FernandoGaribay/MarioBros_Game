@@ -11,6 +11,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedList;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -26,6 +27,7 @@ public class PixelArtCreator extends JPanel {
     private Color[][] pixeles;
     private Color color = Color.BLACK;
     private Color background = new Color(200, 200, 200);
+    private LinkedList<Color> listaColores;
     private boolean botonIzquierdo = false;
     private boolean botonDerecho = false;
     private boolean funcionRelleno = false;
@@ -203,7 +205,7 @@ public class PixelArtCreator extends JPanel {
             }
         }
     }
-    
+
     public void drawRectangle(int x0, int y0, int x1, int y1, Color color) {
         drawLine(x0, y0, x1, y0, color);
         drawLine(x0, y0, x0, y1, color);
@@ -265,6 +267,7 @@ public class PixelArtCreator extends JPanel {
         try (BufferedReader lector = new BufferedReader(new FileReader(nombreArchivo))) {
             String lineaEscaneada;
             Color colorPixel = null;
+            listaColores = new LinkedList<>();
 
             while ((lineaEscaneada = lector.readLine()) != null) {
                 if (lineaEscaneada.equals("Dimensiones:")) {
@@ -289,8 +292,11 @@ public class PixelArtCreator extends JPanel {
                     int g = Integer.parseInt(partes[1]);
                     int b = Integer.parseInt(partes[2]);
                     int a = Integer.parseInt(partes[3]);
-                    
+
                     colorPixel = new Color(r, g, b, a);
+                    if (!(listaColores.contains(colorPixel))) {
+                        listaColores.add(colorPixel);
+                    }
                 }
                 if (lineaEscaneada.equals("Coordenada:")) {
                     lineaEscaneada = lector.readLine();
@@ -314,6 +320,10 @@ public class PixelArtCreator extends JPanel {
 
     public boolean isFuncionRelleno() {
         return funcionRelleno;
+    }
+
+    public LinkedList<Color> getListaColores() {
+        return listaColores;
     }
 
     public void setFuncionRelleno(boolean funcionRelleno) {

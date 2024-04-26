@@ -50,6 +50,7 @@ public class Texturas {
 
     private static void getMarioTexturas() {
         marioTexturas_Map.put("S_mario", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/mario"));
+        marioTexturas_Map.put("S_marioMuerte", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/marioMuerte"));
         marioTexturas_Map.put("S_marioSaltando", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/marioSaltando"));
         marioTexturas_Map.put("S_marioDerrapando", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/marioDerrapando"));
         marioTexturas_Map.put("S_marioCaminando1", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/marioCaminando1"));

@@ -1,5 +1,6 @@
 package object;
 
+import graficos.Animacion;
 import main.Game;
 import object.util.GameEntidad;
 import graficos.LibreriaGrafica;
@@ -17,13 +18,23 @@ import static object.util.ObjectID.TuberiaCabeza;
 
 public class EntidadGoomba extends GameEntidad {
 
+    // OBJETOS
+    private Animacion animacion;
+
     public EntidadGoomba(float x, float y, int width, int height, HandlerBloques handler) {
         super(x, y, EntidadID.Goomba, width, height, handler);
         setVelX(-1.2f);
+
+        animacion = new Animacion(10,
+                Texturas.getEntidadesTextura("entidadGoombaCaminando1"),
+                Texturas.getEntidadesTextura("entidadGoombaCaminando2")
+        );
     }
 
     @Override
     public void tick() {
+        animacion.runAnimacion();
+        
         aplicarMovimiento();
         aplicarGravedad();
         aplicarColisiones();
@@ -31,7 +42,7 @@ public class EntidadGoomba extends GameEntidad {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(Texturas.getEntidadesTextura("entidadGoomba"), (int) getX(), (int) getY());
+        animacion.drawSprite(g, (int) getX(), (int) getY());
 //        showBounds(g);
     }
 

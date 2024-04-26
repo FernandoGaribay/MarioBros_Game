@@ -9,6 +9,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import object.util.HandlerBloques;
 import main.Game;
+import static object.util.EntidadID.Hongo;
 import object.util.HandlerEntidades;
 import object.util.ObjectID;
 import object.util.EstadoPlayer;
@@ -26,12 +27,14 @@ public class Player extends GameObject {
     private HandlerBloques handlerBloques;
     private HandlerEntidades handlerEntidades;
     private Animacion animacionCaminando;
+    private Animacion animacionEstado;
     private ArrayList<Ladrillo> colaBloquesEliminados;
     private ArrayList<BloqueEnigma> colaBloquesDrops;
 
     // VARIABLES
     private EstadoPlayer estadoPlayer;
     private String prefijoTextura;
+    private int inmunidad;
     private int hp;
 
     private boolean mirarAdelante = true;
@@ -40,6 +43,8 @@ public class Player extends GameObject {
     private boolean caminarAtras = false;
 
     private float velocidadAnterior = 0.0f;
+    private boolean animacionEnCurso = false;
+    private int contAnimacionMuerte;
 
     public Player(float x, float y, HandlerBloques handlerBloques, HandlerEntidades handlerEntidades) {
         super(x, y, ObjectID.Player, 32, 32, 0);
@@ -55,11 +60,21 @@ public class Player extends GameObject {
         aplicarMovimiendo();
         aplicarGravedad();
         aplicarColisiones();
+        aplicarAnimaciones();
+        aplicarInmunidadMomentanea();
         animacionCaminando.runAnimacion();
+
     }
 
     @Override
     public void render(LibreriaGrafica g) {
+
+        // Si hay una animacion en curso, se mostrarar los sprites correspondiantes
+        if (animacionEnCurso) {
+            animacionEstado.drawSprite(g, (int) getX(), (int) getY());
+            return;
+        }
+
         if (saltando) {
             if (getVelX() > 0) {
                 g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) getX(), (int) getY());
@@ -90,14 +105,29 @@ public class Player extends GameObject {
         velocidadAnterior = getVelX();
 
         // Cajas de colisiones -------------------------------------------------
-//        g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.yellow);
 //        showBounds(g);
-        // Mostrar Limites del renderizado
-//        g.drawLine((int) (getX() + Game.getMAX_RENDERIZADO()), 0, (int) (getX() + Game.getMAX_RENDERIZADO()), 600, Color.yellow);
-//        g.drawLine((int) (getX() - Game.getMAX_RENDERIZADO()), 0, (int) (getX() - Game.getMAX_RENDERIZADO()), 600, Color.yellow);
+    }
+
+    @Override
+    public void aplicarGravedad() {
+        // Si el jugador esta en una animacion no sera afectado por la gravedad
+        if (animacionEnCurso) {
+            return;
+        }
+        setVelY(getVelY() + 0.5f);
     }
 
     private void aplicarMovimiendo() {
+        setX(getVelX() + getX());
+        setY(getVelY() + getY());
+
+        // si el jugador esta en una animacion no se puede mover
+        if (animacionEnCurso) {
+            setVelX(0);
+            setX(getX());
+            return;
+        }
+
         if (caminarAdelante || caminarAtras) {
             if (caminarAdelante) {
                 setVelX(getVelX() + 0.2f);
@@ -119,15 +149,23 @@ public class Player extends GameObject {
                 setVelX(getVelX() + 0.1f);
             }
         }
+    }
 
-        setX(getVelX() + getX());
-        setY(getVelY() + getY());
+    private void aplicarInmunidadMomentanea() {
+        if (inmunidad != 0) {
+            inmunidad--;
+        }
     }
 
     private void aplicarColisiones() {
         int size;
         int renderIzquierda = (int) (getX() - Game.getMAX_RENDERIZADO());
         int renderDerecha = (int) (getX() + Game.getMAX_RENDERIZADO());
+
+        // Si el jugador esta en una animacion, no se vera afectado por las colisiones
+        if (animacionEnCurso) {
+            return;
+        }
 
         size = handlerBloques.getGameObj().size();
         for (int i = 0; i < size; i++) {
@@ -161,6 +199,7 @@ public class Player extends GameObject {
 
             switch (temp.getID()) {
                 case Hongo:
+                case Goomba:
                     handlerColisionEntidad(temp);
                     break;
             }
@@ -222,9 +261,39 @@ public class Player extends GameObject {
     }
 
     private void handlerColisionEntidad(GameEntidad temp) {
+        // Bounding Box de los pies
         if (getBounds().intersects(temp.getBounds())) {
-            handlerEntidades.eliminarEntidad(temp);
-            cambiarEstado(2);
+            switch (temp.getID()) {
+                case Hongo:
+                    handlerEntidades.eliminarEntidad(temp);
+                    cambiarEstado(2);
+                    break;
+                case Goomba:
+                    handlerEntidades.eliminarEntidad(temp);
+                    setVelY(-6f);
+                    System.out.println("te pise");
+                    break;
+            }
+        }
+        // Bounding Box de la derecha e izquierda
+        if (getBoundsRight().intersects(temp.getBounds())
+                || getBoundsLeft().intersects(temp.getBounds())) {
+
+            // Si hay fotogramas de inmunidad al daño, se sale del metodo
+            if (inmunidad != 0) {
+                return;
+            }
+            switch (temp.getID()) {
+                case Goomba:
+                    if (hp == 1) {
+                        hp = 0;
+                        inmunidad = 120;
+                        break;
+                    }
+                    inmunidad = 120;
+                    cambiarEstado(1);
+                    break;
+            }
         }
     }
 
@@ -247,6 +316,26 @@ public class Player extends GameObject {
                 Texturas.getMarioTextura(prefijoTextura + "_marioCaminando1"),
                 Texturas.getMarioTextura(prefijoTextura + "_marioCaminando2"),
                 Texturas.getMarioTextura(prefijoTextura + "_marioCaminando3"));
+    }
+
+    public void aplicarAnimaciones() {
+        if (hp == 0) {
+            if(contAnimacionMuerte == 0){
+                animacionEstado = new Animacion(1, Texturas.getMarioTextura(prefijoTextura + "_marioMuerte"));
+            }
+            if (contAnimacionMuerte <= 20) {
+                animacionEnCurso = true;
+                setVelY(0);
+            } else if (contAnimacionMuerte <= 40) {
+                setVelY(getVelY() - 0.4f);
+            } else if (contAnimacionMuerte <= 120) {
+                setVelY(getVelY() + 0.7f);
+            } else {
+                animacionEnCurso = false;
+            }
+            animacionEstado.runAnimacion();
+            contAnimacionMuerte++;
+        }
     }
 
     public ArrayList<Ladrillo> getBloquesAEliminar() {
@@ -343,9 +432,14 @@ public class Player extends GameObject {
     }
 
     private void showBounds(LibreriaGrafica g) {
+//        g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.yellow);
+
         g.drawRectangle(getBounds(), Color.red);
         g.drawRectangle(getBoundsTop(), Color.red);
         g.drawRectangle(getBoundsRight(), Color.red);
         g.drawRectangle(getBoundsLeft(), Color.red);
+
+        g.drawLine((int) (getX() + Game.getMAX_RENDERIZADO()), 0, (int) (getX() + Game.getMAX_RENDERIZADO()), 600, Color.yellow);
+        g.drawLine((int) (getX() - Game.getMAX_RENDERIZADO()), 0, (int) (getX() - Game.getMAX_RENDERIZADO()), 600, Color.yellow);
     }
 }

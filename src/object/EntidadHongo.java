@@ -17,21 +17,37 @@ import static object.util.ObjectID.TuberiaCabeza;
 
 public class EntidadHongo extends GameEntidad {
 
+    // Variables
+    private int countAnimacion;
+    private boolean animacionInicioCompletada = false;
+
+    private float maskX;
+    private float maskY;
+
     public EntidadHongo(float x, float y, int width, int height, HandlerBloques handler) {
         super(x, y, EntidadID.Hongo, width, height, handler);
+        countAnimacion = 0;
+
+        maskX = x;
+        maskY = y;
         setVelX(2f);
     }
 
     @Override
     public void tick() {
-        aplicarMovimiento();
-        aplicarGravedad();
-        aplicarColisiones();
+        if (animacionInicioCompletada) {
+            aplicarMovimiento();
+            aplicarGravedad();
+            aplicarColisiones();
+        } else {
+            animacionDeInicio();
+        }
     }
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(Texturas.getDropsTextura("hongo"), (int) (getX()), (int) (getY()));
+        g.drawImage(Texturas.getDropsTextura("hongo"), (int) getX(), (int) getY());
+        g.drawImage(Texturas.getTextura("bloqueMonedaHit"), (int) maskX, (int) maskY);
 //        showBounds(g);
     }
 
@@ -89,6 +105,15 @@ public class EntidadHongo extends GameEntidad {
         if (getBoundsSides().intersects(temp.getBounds())) {
             setVelX(getVelX() * -1);
         }
+    }
+
+    private void animacionDeInicio() {
+        if (countAnimacion == 32) {
+            animacionInicioCompletada = true;
+        } else if (countAnimacion <= 32) {
+            setY(getY() - 1f);
+        }
+        countAnimacion++;
     }
 
     private void showBounds(LibreriaGrafica g) {

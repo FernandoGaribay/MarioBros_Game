@@ -272,7 +272,5 @@ public class Game extends Canvas implements Runnable {
     public static HandlerBloques getHandlerBloques() {
         return handlerBloques;
     }
-    
-    
 
 }

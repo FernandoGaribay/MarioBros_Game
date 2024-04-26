@@ -9,22 +9,12 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import object.util.ObjectID;
 
-public class BloqueHongo extends GameObject {
-
-    // OBJETOS
-    private BufferedImage[] bloquesMoneda;
-    private Hongo hongo;
-    private Animacion animacion;
+public class BloqueHongo extends BloqueEnigma {
 
     // Variables
-    private boolean golpeado = false;
-    private int contAnimacionGolpe = 0;
 
     public BloqueHongo(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.BloqueHongo, width, height, xDesplasamiento);
-
-        bloquesMoneda = Texturas.getBloquesMoneda();
-        animacion = new Animacion(12, bloquesMoneda);
     }
 
     @Override
@@ -42,7 +32,6 @@ public class BloqueHongo extends GameObject {
             animacion.drawSprite(g, (int) getX(), (int) getY());
         } else {
             g.drawImage(Texturas.getTextura("bloqueMonedaHit"), (int) (getX()), (int) (getY()));
-            g.drawImage(hongo.getMoneda(), (int) hongo.getX(), (int) hongo.getY());
         }
 //        g.drawRectangle(getBounds(), Color.white);
     }
@@ -56,59 +45,11 @@ public class BloqueHongo extends GameObject {
     public GameObject clone() {
         return new BloqueHongo((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
-
-    public void golpeado() {
-        golpeado = true;
-        hongo = new Hongo(x, y - 32);
-    }
-
-    public void runAnimacionGolpe() {
-        if (contAnimacionGolpe == 16) {
-            return;
+    
+    public boolean poderGenerarHongo(){
+        if(contAnimacionGolpe == 16){
+            return true;
         }
-
-        if (contAnimacionGolpe < 8) {
-            setY(getY() - 3);
-        } else if (contAnimacionGolpe < 16 && contAnimacionGolpe >= 8) {
-            setY(getY() + 3);
-        }
-        contAnimacionGolpe++;
-    }
-}
-
-class Hongo {
-
-    // OBJETOS
-    private BufferedImage moneda;
-    private float x, y;
-
-    public Hongo(float x, float y) {
-        this.moneda = Texturas.getDropsTextura("hongo");
-        this.x = x;
-        this.y = y;
-    }
-
-    public BufferedImage getMoneda() {
-        return moneda;
-    }
-
-    public void setMoneda(BufferedImage moneda) {
-        this.moneda = moneda;
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public void setX(float x) {
-        this.x = x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public void setY(float y) {
-        this.y = y;
+        return false;
     }
 }

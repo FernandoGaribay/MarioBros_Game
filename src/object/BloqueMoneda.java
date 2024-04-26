@@ -9,23 +9,16 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import object.util.ObjectID;
 
-public class BloqueMoneda extends GameObject {
+public class BloqueMoneda extends BloqueEnigma {
 
     // OBJETOS
-    private BufferedImage[] bloquesMoneda;
     private Moneda moneda;
-    private Animacion animacion;
 
     // Variables
-    private boolean golpeado = false;
-    private int contAnimacionGolpe = 0;
     private int contAnimacionMoneda = 0;
 
     public BloqueMoneda(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.BloqueMoneda, width, height, xDesplasamiento);
-
-        bloquesMoneda = Texturas.getBloquesMoneda();
-        animacion = new Animacion(12, bloquesMoneda);
     }
 
     @Override
@@ -59,22 +52,10 @@ public class BloqueMoneda extends GameObject {
         return new BloqueMoneda((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
 
+    @Override
     public void golpeado() {
         golpeado = true;
         moneda = new Moneda(x + 8, y - 16);
-    }
-
-    public void runAnimacionGolpe() {
-        if (contAnimacionGolpe == 16) {
-            return;
-        }
-
-        if (contAnimacionGolpe < 8) {
-            setY(getY() - 3);
-        } else if (contAnimacionGolpe < 16 && contAnimacionGolpe >= 8) {
-            setY(getY() + 3);
-        }
-        contAnimacionGolpe++;
     }
 
     public void runAnimacionMoneda() {

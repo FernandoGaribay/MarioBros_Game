@@ -9,10 +9,13 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 import object.util.Handler;
 import main.Game;
+import object.util.EntityHandler;
 import object.util.ObjectID;
 import object.util.EstadoPlayer;
+import object.util.GameEntidad;
 import static object.util.ObjectID.Bandera;
 import static object.util.ObjectID.Bloque;
+import static object.util.ObjectID.BloqueHongo;
 import static object.util.ObjectID.BloqueMoneda;
 import static object.util.ObjectID.Ladrillo;
 import static object.util.ObjectID.TuberiaCabeza;
@@ -21,8 +24,10 @@ public class Player extends GameObject {
 
     // OBJETOS
     private Handler handler;
+    private EntityHandler handlerEntidades;
     private Animacion animacionCaminando;
     private LinkedList<Ladrillo> colaBloquesEliminados;
+    private LinkedList<BloqueEnigma> colaBloquesDrops;
 
     // VARIABLES
     private EstadoPlayer estadoPlayer;
@@ -36,11 +41,13 @@ public class Player extends GameObject {
 
     private float velocidadAnterior = 0.0f;
 
-    public Player(float x, float y, Handler handler) {
+    public Player(float x, float y, Handler handler, EntityHandler handlerEntidades) {
         super(x, y, ObjectID.Player, 32, 32, 0);
         this.handler = handler;
+        this.handlerEntidades = handlerEntidades;
         this.colaBloquesEliminados = new LinkedList<Ladrillo>();
-        this.cambiarEstado(2);
+        this.colaBloquesDrops = new LinkedList<BloqueEnigma>();
+        this.cambiarEstado(1);
     }
 
     @Override
@@ -48,7 +55,6 @@ public class Player extends GameObject {
         aplicarMovimiendo();
         aplicarGravedad();
         aplicarColisiones();
-
         animacionCaminando.runAnimacion();
     }
 
@@ -119,14 +125,17 @@ public class Player extends GameObject {
     }
 
     private void aplicarColisiones() {
-        int size = handler.getGameObj().size() - 1;
+        int size;
         int renderIzquierda = (int) (getX() - Game.getMAX_RENDERIZADO());
         int renderDerecha = (int) (getX() + Game.getMAX_RENDERIZADO());
 
+        size = handler.getGameObj().size();
         for (int i = 0; i < size; i++) {
             GameObject temp = handler.getGameObj().get(i);
 
             if (colaBloquesEliminados.contains(temp)) {
+                continue;
+            } else if (colaBloquesDrops.contains(temp)) {
                 continue;
             } else {
                 if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
@@ -143,6 +152,17 @@ public class Player extends GameObject {
                             break;
                     }
                 }
+            }
+        }
+
+        size = handlerEntidades.getGameEntidades().size();
+        for (int i = 0; i < size; i++) {
+            GameEntidad temp = handlerEntidades.getGameEntidades().get(i);
+
+            switch (temp.getID()) {
+                case Hongo:
+                    handlerColisionEntidad(temp);
+                    break;
             }
         }
     }
@@ -164,7 +184,8 @@ public class Player extends GameObject {
                     ((BloqueMoneda) temp).golpeado();
                     break;
                 case BloqueHongo:
-                    ((BloqueHongo) temp).golpeado();
+                    ((BloqueEnigma) temp).golpeado();
+                    colaBloquesDrops.add(((BloqueEnigma) temp));
                     break;
                 case Ladrillo:
                     if (estadoPlayer == EstadoPlayer.Chico) {
@@ -193,6 +214,13 @@ public class Player extends GameObject {
     private void handleColisionBandera(GameObject temp, int i) {
         if (getBoundsRight().intersects(temp.getBounds())) {
             handler.getGameObj().get(i).setVelY(2);
+        }
+    }
+
+    private void handlerColisionEntidad(GameEntidad temp) {
+        if (getBounds().intersects(temp.getBounds())) {
+            handlerEntidades.eliminarEntidad(temp);
+            cambiarEstado(2);
         }
     }
 
@@ -229,6 +257,23 @@ public class Player extends GameObject {
 
         for (Ladrillo bloqueEliminar : output) {
             colaBloquesEliminados.remove(bloqueEliminar);
+        }
+
+        return output;
+    }
+
+    public LinkedList<BloqueEnigma> getBloquesDrops() {
+        LinkedList<BloqueEnigma> output = new LinkedList<BloqueEnigma>();
+
+        for (BloqueEnigma removeBlock : colaBloquesDrops) {
+            if (!removeBlock.poderGenerarDrops()) {
+                continue;
+            }
+            output.add(removeBlock);
+        }
+
+        for (BloqueEnigma bloqueEliminar : output) {
+            colaBloquesDrops.remove(bloqueEliminar);
         }
 
         return output;

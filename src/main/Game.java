@@ -45,8 +45,8 @@ public class Game extends Canvas implements Runnable {
     private Thread updateThread;
     private Thread renderThread;
     private Thread playerThread;
-    private Handler handlerBloques;
-    private EntityHandler handlerEntidades;
+    private static Handler handlerBloques;
+    private static EntityHandler handlerEntidades;
     private Ventana ventana;
     private Camara camara;
     private Player player;
@@ -65,7 +65,7 @@ public class Game extends Canvas implements Runnable {
         handlerEntidades = new EntityHandler();
         ventana = new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NOMBRE);
         camara = new Camara(0, SCREEN_OFFSET);
-        player = new Player(32 * 1, 32, handlerBloques);
+        player = new Player(32 * 1, 32, handlerBloques, handlerEntidades);
         keyInput = new KeyInput(player);
         background = new Background(0, 0, VENTANA_WIDTH, VENTANA_HEIGHT, SCREEN_OFFSET, camara);
         loadScreen = new LoadScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -78,7 +78,6 @@ public class Game extends Canvas implements Runnable {
 
         cargarNivel("NivelesFiles/mundo_1-1");
         cargarBarreras();
-        handlerEntidades.addEntidad(new EntidadHongo(32*5, 32*1, 32, 32, handlerBloques));
 
         try {
             // Esperar a que el hilo finalize
@@ -270,5 +269,11 @@ public class Game extends Canvas implements Runnable {
     public static int getMAX_RENDERIZADO() {
         return MAX_RENDERIZADO;
     }
+
+    public static Handler getHandlerBloques() {
+        return handlerBloques;
+    }
+    
+    
 
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import main.Game;
+import object.BloqueEnigma;
+import object.EntidadHongo;
 import object.Ladrillo;
 import object.Player;
 
@@ -26,6 +28,14 @@ public class EntityHandler {
                 obj.tick();
             }
         }
+        List<BloqueEnigma> elimiarBloques = player.getBloquesDrops();
+        for (BloqueEnigma elimiarBloque : elimiarBloques) {
+            switch (elimiarBloque.getID()) {
+                case BloqueHongo:
+                    addEntidad(new EntidadHongo(elimiarBloque.getX(), elimiarBloque.getY(), 32, 32, Game.getHandlerBloques()));
+                    break;
+            }
+        }
     }
 
     public void render(LibreriaGrafica g) {
@@ -33,9 +43,9 @@ public class EntityHandler {
         int renderDerecha = (int) (player.getX() + Game.getMAX_RENDERIZADO());
 
         for (GameEntidad obj : gameEntidades) {
-//            if (obj.getX() < renderDerecha && obj.getX() > renderIzquierda) {
+            if (obj.getX() < renderDerecha && obj.getX() > renderIzquierda) {
                 obj.render(g);
-//            }
+            }
         }
     }
 

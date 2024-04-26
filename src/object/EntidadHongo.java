@@ -17,7 +17,7 @@ import static object.util.ObjectID.TuberiaCabeza;
 
 public class EntidadHongo extends GameEntidad {
 
-    public EntidadHongo(int x, int y, int width, int height, Handler handler) {
+    public EntidadHongo(float x, float y, int width, int height, Handler handler) {
         super(x, y, EntidadID.Hongo, width, height, handler);
         setVelX(2f);
     }

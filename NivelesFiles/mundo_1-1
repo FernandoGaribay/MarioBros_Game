@@ -509,6 +509,11 @@ Elemento:
 bloquePiso
 
 Coordenada:
+40,12
+Elemento:
+entidadGoomba
+
+Coordenada:
 40,13
 Elemento:
 bloquePiso
@@ -659,6 +664,11 @@ Elemento:
 bloquePiso
 
 Coordenada:
+52,12
+Elemento:
+entidadGoomba
+
+Coordenada:
 52,13
 Elemento:
 bloquePiso
@@ -667,6 +677,11 @@ Coordenada:
 52,14
 Elemento:
 bloquePiso
+
+Coordenada:
+53,12
+Elemento:
+entidadGoomba
 
 Coordenada:
 53,13
@@ -1064,6 +1079,11 @@ Elemento:
 bloquePiso
 
 Coordenada:
+85,4
+Elemento:
+entidadGoomba
+
+Coordenada:
 85,5
 Elemento:
 bloqueLadrillo
@@ -1079,9 +1099,19 @@ Elemento:
 bloquePiso
 
 Coordenada:
+86,4
+Elemento:
+entidadGoomba
+
+Coordenada:
 86,5
 Elemento:
 bloqueLadrillo
+
+Coordenada:
+87,4
+Elemento:
+bloqueBarrera
 
 Coordenada:
 87,5
@@ -1239,6 +1269,11 @@ Elemento:
 bloqueLadrillo
 
 Coordenada:
+100,12
+Elemento:
+entidadGoomba
+
+Coordenada:
 100,13
 Elemento:
 bloquePiso
@@ -1252,6 +1287,11 @@ Coordenada:
 101,9
 Elemento:
 bloqueLadrillo
+
+Coordenada:
+101,12
+Elemento:
+entidadGoomba
 
 Coordenada:
 101,13
@@ -1444,6 +1484,11 @@ Elemento:
 bloquePiso
 
 Coordenada:
+116,12
+Elemento:
+entidadGoomba
+
+Coordenada:
 116,13
 Elemento:
 bloquePiso
@@ -1452,6 +1497,11 @@ Coordenada:
 116,14
 Elemento:
 bloquePiso
+
+Coordenada:
+117,12
+Elemento:
+entidadGoomba
 
 Coordenada:
 117,13
@@ -1619,6 +1669,11 @@ Elemento:
 bloqueLadrillo
 
 Coordenada:
+129,12
+Elemento:
+entidadGoomba
+
+Coordenada:
 129,13
 Elemento:
 bloquePiso
@@ -1637,6 +1692,11 @@ Coordenada:
 130,9
 Elemento:
 bloqueLadrillo
+
+Coordenada:
+130,12
+Elemento:
+entidadGoomba
 
 Coordenada:
 130,13
@@ -1664,6 +1724,11 @@ Elemento:
 bloquePiso
 
 Coordenada:
+132,12
+Elemento:
+entidadGoomba
+
+Coordenada:
 132,13
 Elemento:
 bloquePiso
@@ -1677,6 +1742,11 @@ Coordenada:
 133,2
 Elemento:
 bloqueNubeMediana
+
+Coordenada:
+133,12
+Elemento:
+entidadGoomba
 
 Coordenada:
 133,13
@@ -2374,6 +2444,11 @@ Elemento:
 bloquePiso
 
 Coordenada:
+176,12
+Elemento:
+entidadGoomba
+
+Coordenada:
 176,13
 Elemento:
 bloquePiso
@@ -2382,6 +2457,11 @@ Coordenada:
 176,14
 Elemento:
 bloquePiso
+
+Coordenada:
+177,12
+Elemento:
+entidadGoomba
 
 Coordenada:
 177,13

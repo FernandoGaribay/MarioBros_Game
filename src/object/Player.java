@@ -158,7 +158,6 @@ public class Player extends GameObject {
     }
 
     private void aplicarColisiones() {
-        int size;
         int renderIzquierda = (int) (getX() - Game.getMAX_RENDERIZADO());
         int renderDerecha = (int) (getX() + Game.getMAX_RENDERIZADO());
 
@@ -167,8 +166,7 @@ public class Player extends GameObject {
             return;
         }
 
-        size = handlerBloques.getGameObj().size();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < handlerBloques.getGameObj().size(); i++) {
             GameObject temp = handlerBloques.getGameObj().get(i);
 
             if (colaBloquesEliminados.contains(temp)) {
@@ -193,8 +191,7 @@ public class Player extends GameObject {
             }
         }
 
-        size = handlerEntidades.getGameEntidades().size();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < handlerEntidades.getGameEntidades().size(); i++) {
             GameEntidad temp = handlerEntidades.getGameEntidades().get(i);
 
             switch (temp.getID()) {

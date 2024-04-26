@@ -2,20 +2,18 @@ package object.util;
 
 import graficos.LibreriaGrafica;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import main.Game;
 import object.BloqueEnigma;
 import object.EntidadHongo;
-import object.Ladrillo;
 import object.Player;
 
-public class EntityHandler {
+public class HandlerEntidades {
 
     private List<GameEntidad> gameEntidades;
     private Player player;
 
-    public EntityHandler() {
+    public HandlerEntidades() {
         this.gameEntidades = new ArrayList<GameEntidad>();
     }
 
@@ -24,9 +22,10 @@ public class EntityHandler {
         int renderDerecha = (int) (player.getX() + Game.getMAX_RENDERIZADO());
 
         for (GameEntidad obj : gameEntidades) {
-            if (obj.getX() < renderDerecha && obj.getX() > renderIzquierda) {
-                obj.tick();
+            if (!(obj.getX() < renderDerecha && obj.getX() > renderIzquierda)) {
+                continue;
             }
+            obj.tick();
         }
         List<BloqueEnigma> elimiarBloques = player.getBloquesDrops();
         for (BloqueEnigma elimiarBloque : elimiarBloques) {
@@ -43,9 +42,9 @@ public class EntityHandler {
         int renderDerecha = (int) (player.getX() + Game.getMAX_RENDERIZADO());
 
         for (GameEntidad obj : gameEntidades) {
-            if (obj.getX() < renderDerecha && obj.getX() > renderIzquierda) {
-                obj.render(g);
-            }
+//            if (obj.getX() < renderDerecha && obj.getX() > renderIzquierda) {
+            obj.render(g);
+//            }
         }
     }
 

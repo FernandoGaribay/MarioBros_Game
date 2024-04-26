@@ -28,12 +28,20 @@ public class BloqueEnigma extends GameObject {
 
     @Override
     public void tick() {
+        animacion.runAnimacion();
 
+        if (golpeado) {
+            runAnimacionGolpe();
+        }
     }
 
     @Override
     public void render(LibreriaGrafica g) {
-
+        if (!golpeado) {
+            animacion.drawSprite(g, (int) getX(), (int) getY());
+        } else {
+            g.drawImage(Texturas.getTextura("bloqueMonedaHit"), (int) (getX()), (int) (getY()));
+        }
     }
 
     @Override

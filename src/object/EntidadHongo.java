@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import object.util.EntidadID;
 import object.util.GameObject;
-import object.util.Handler;
+import object.util.HandlerBloques;
 import static object.util.ObjectID.Bloque;
 import static object.util.ObjectID.BloqueHongo;
 import static object.util.ObjectID.BloqueMoneda;
@@ -17,7 +17,7 @@ import static object.util.ObjectID.TuberiaCabeza;
 
 public class EntidadHongo extends GameEntidad {
 
-    public EntidadHongo(float x, float y, int width, int height, Handler handler) {
+    public EntidadHongo(float x, float y, int width, int height, HandlerBloques handler) {
         super(x, y, EntidadID.Hongo, width, height, handler);
         setVelX(2f);
     }

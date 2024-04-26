@@ -8,12 +8,12 @@ import main.Game;
 import object.Ladrillo;
 import object.Player;
 
-public class Handler {
+public class HandlerBloques {
 
     private List<GameObject> gameObjs;
     private Player player;
 
-    public Handler() {
+    public HandlerBloques() {
         this.gameObjs = new ArrayList<GameObject>();
     }
 
@@ -21,17 +21,17 @@ public class Handler {
         int renderIzquierda = (int) (player.getX() - Game.getMAX_RENDERIZADO());
         int renderDerecha = (int) (player.getX() + Game.getMAX_RENDERIZADO());
 
-        for (GameObject obj : gameObjs) {
-            if (obj.getX() < renderDerecha && obj.getX() > renderIzquierda) {
-                obj.tick();
+        for (GameObject obj : gameObjs) { 
+            if (!(obj.getX() < renderDerecha && obj.getX() > renderIzquierda)) {
+                continue;
             }
+            obj.tick();
         }
         List<Ladrillo> elimiarBloques = player.getBloquesAEliminar();
         for (Ladrillo elimiarBloque : elimiarBloques) {
             eliminarObj(elimiarBloque);
         }
-                
-        
+
     }
 
     public void render(LibreriaGrafica g) {

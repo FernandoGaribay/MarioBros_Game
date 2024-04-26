@@ -2,7 +2,6 @@ package object.util;
 
 import graficos.LibreriaGrafica;
 import java.awt.Rectangle;
-import object.util.ObjectID;
 
 public abstract class GameEntidad {
 
@@ -11,10 +10,10 @@ public abstract class GameEntidad {
     protected float x;
     protected float y;
     protected float width, height;
-    protected Handler handler;
+    protected HandlerBloques handler;
     private float velX, velY;
 
-    public GameEntidad(float x, float y, EntidadID id, float width, float height, Handler handler) {
+    public GameEntidad(float x, float y, EntidadID id, float width, float height, HandlerBloques handler) {
         this.x = x;
         this.y = y;
         this.id = id;

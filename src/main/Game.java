@@ -12,11 +12,10 @@ import java.awt.image.BufferStrategy;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import object.Barrera;
-import object.EntidadHongo;
 import object.util.GameObject;
 import object.Player;
-import object.util.EntityHandler;
-import object.util.Handler;
+import object.util.HandlerEntidades;
+import object.util.HandlerBloques;
 import object.util.KeyInput;
 import object.util.ObjectFactory;
 
@@ -45,8 +44,8 @@ public class Game extends Canvas implements Runnable {
     private Thread updateThread;
     private Thread renderThread;
     private Thread playerThread;
-    private static Handler handlerBloques;
-    private static EntityHandler handlerEntidades;
+    private static HandlerBloques handlerBloques;
+    private static HandlerEntidades handlerEntidades;
     private Ventana ventana;
     private Camara camara;
     private Player player;
@@ -61,8 +60,8 @@ public class Game extends Canvas implements Runnable {
 
     // <editor-fold defaultstate="collapsed" desc="Inizializar Elementos">  
     private void inicializarElementos() {
-        handlerBloques = new Handler();
-        handlerEntidades = new EntityHandler();
+        handlerBloques = new HandlerBloques();
+        handlerEntidades = new HandlerEntidades();
         ventana = new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NOMBRE);
         camara = new Camara(0, SCREEN_OFFSET);
         player = new Player(32 * 1, 32, handlerBloques, handlerEntidades);
@@ -270,7 +269,7 @@ public class Game extends Canvas implements Runnable {
         return MAX_RENDERIZADO;
     }
 
-    public static Handler getHandlerBloques() {
+    public static HandlerBloques getHandlerBloques() {
         return handlerBloques;
     }
     

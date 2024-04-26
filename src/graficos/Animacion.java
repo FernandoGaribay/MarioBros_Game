@@ -41,10 +41,14 @@ public class Animacion {
     }
 
     public void drawSprite(LibreriaGrafica g, int x, int y) {
-        g.drawImage(spriteActual, x, y);
+        if (spriteActual != null) {
+            g.drawImage(spriteActual, x, y);
+        }
     }
 
     public void drawSpriteInverso(LibreriaGrafica g, int x, int y) {
-        g.drawImage(spriteActual, x + spriteActual.getWidth(), y, -spriteActual.getWidth(), spriteActual.getHeight());
+        if (spriteActual != null) {
+            g.drawImage(spriteActual, x + spriteActual.getWidth(), y, -spriteActual.getWidth(), spriteActual.getHeight());
+        }
     }
 }

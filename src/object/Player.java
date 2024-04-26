@@ -184,8 +184,11 @@ public class Player extends GameObject {
                     ((BloqueMoneda) temp).golpeado();
                     break;
                 case BloqueHongo:
-                    ((BloqueEnigma) temp).golpeado();
-                    colaBloquesDrops.add(((BloqueEnigma) temp));
+                    BloqueEnigma bloque = ((BloqueEnigma) temp);
+                    if (!bloque.isGolpeado()) {
+                        bloque.golpeado();
+                        colaBloquesDrops.add(bloque);
+                    }
                     break;
                 case Ladrillo:
                     if (estadoPlayer == EstadoPlayer.Chico) {

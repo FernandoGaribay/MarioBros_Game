@@ -69,4 +69,13 @@ public class BloqueEnigma extends GameObject {
         }
         contAnimacionGolpe++;
     }
+
+    public void setGolpeado(boolean golpeado) {
+        this.golpeado = golpeado;
+    }
+
+    public boolean isGolpeado() {
+        return golpeado;
+    }
+
 }

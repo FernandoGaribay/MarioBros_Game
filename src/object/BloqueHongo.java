@@ -1,17 +1,13 @@
 package object;
 
 import object.util.GameObject;
-import graficos.Animacion;
 import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 import object.util.ObjectID;
 
 public class BloqueHongo extends BloqueEnigma {
-
-    // Variables
 
     public BloqueHongo(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.BloqueHongo, width, height, xDesplasamiento);
@@ -45,9 +41,14 @@ public class BloqueHongo extends BloqueEnigma {
     public GameObject clone() {
         return new BloqueHongo((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
-    
-    public boolean poderGenerarHongo(){
-        if(contAnimacionGolpe == 16){
+
+    @Override
+    public void golpeado() {
+        golpeado = true;
+    }
+
+    public boolean poderGenerarHongo() {
+        if (contAnimacionGolpe == 16) {
             return true;
         }
         return false;

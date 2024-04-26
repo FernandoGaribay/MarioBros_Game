@@ -10,12 +10,10 @@ public class Texturas {
 
     private static LinkedHashMap<String, BufferedImage> texturasMap;
 
-    private static HashMap<String, BufferedImage> dropsMap;
+    private static HashMap<String, BufferedImage> entidadesMap;
 
     private static HashMap<String, BufferedImage> marioTexturas_Map;
     
-    private static HashMap<String, BufferedImage> goombaTexturas_Map;
-
     private static HashMap<String, BufferedImage> bloqueModena_Map;
 
     private static HashMap<String, BufferedImage> bloquesEscombros_Map;
@@ -25,9 +23,8 @@ public class Texturas {
     // Inicializar variables y valores estaticas de la clase
     static {
         texturasMap = new LinkedHashMap<>();
-        dropsMap = new HashMap<>();
+        entidadesMap = new HashMap<>();
         marioTexturas_Map = new HashMap<>();
-        goombaTexturas_Map = new HashMap<>();
         bloqueModena_Map = new HashMap<>();
         bloquesEscombros_Map = new HashMap<>();
         lectorMatriz = new PixelArtReader(2);
@@ -39,10 +36,9 @@ public class Texturas {
         getNubesTexturas();
         getElementosFondo();
 
-        getDropsTexturas();
+        getEntidadesTeturas();
 
         getMarioTexturas();
-        getGoombaTexturas();
 
         getBloqueMonedaTexturas();
         getBloquesEscombrosTexturas();
@@ -68,15 +64,6 @@ public class Texturas {
         marioTexturas_Map.put("L_marioCaminando3", lectorMatriz.drawPixelArt("Sprites/Mario/Grande/marioCaminando3"));
     }
     
-    private static void getGoombaTexturas() {
-        goombaTexturas_Map.put("S_mario", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/mario"));
-        goombaTexturas_Map.put("S_marioSaltando", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/marioSaltando"));
-        goombaTexturas_Map.put("S_marioDerrapando", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/marioDerrapando"));
-        goombaTexturas_Map.put("S_marioCaminando1", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/marioCaminando1"));
-        goombaTexturas_Map.put("S_marioCaminando2", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/marioCaminando2"));
-        goombaTexturas_Map.put("S_marioCaminando3", lectorMatriz.drawPixelArt("Sprites/Mario/Chico/marioCaminando3"));
-    }
-
     private static void getTuberiaTexturas() {
         texturasMap.put("tuberiaCabeza", lectorMatriz.drawPixelArt("Sprites/Tuberias/tuberiaCabeza"));
         texturasMap.put("tuberia", lectorMatriz.drawPixelArt("Sprites/Tuberias/tuberia"));
@@ -125,9 +112,9 @@ public class Texturas {
         texturasMap.put("nubeGrande", lectorMatriz.drawPixelArt("Sprites/Nubes/nubeGrande"));
     }
 
-    private static void getDropsTexturas() {
-        dropsMap.put("moneda", lectorMatriz.drawPixelArt("Sprites/Drops/moneda"));
-        dropsMap.put("hongo", lectorMatriz.drawPixelArt("Sprites/Drops/hongo"));
+    private static void getEntidadesTeturas() {
+        entidadesMap.put("moneda", lectorMatriz.drawPixelArt("Sprites/Entidades/moneda"));
+        entidadesMap.put("hongo", lectorMatriz.drawPixelArt("Sprites/Entidades/hongo"));
     }
 
     public static BufferedImage getTextura(String textura) {
@@ -135,8 +122,8 @@ public class Texturas {
         return selectedImage;
     }
 
-    public static BufferedImage getDropsTextura(String textura) {
-        BufferedImage selectedImage = dropsMap.get(textura);
+    public static BufferedImage getEntidadesTextura(String textura) {
+        BufferedImage selectedImage = entidadesMap.get(textura);
         return selectedImage;
     }
 
@@ -151,10 +138,6 @@ public class Texturas {
 
     public static BufferedImage getMarioTextura(String nombre) {
         return marioTexturas_Map.get(nombre);
-    }
-    
-    public static BufferedImage getGoombaTextura(String nombre) {
-        return goombaTexturas_Map.get(nombre);
     }
 
     public static BufferedImage[] getBloquesMoneda() {

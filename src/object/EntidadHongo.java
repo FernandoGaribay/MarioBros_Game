@@ -46,7 +46,7 @@ public class EntidadHongo extends GameEntidad {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(Texturas.getDropsTextura("hongo"), (int) getX(), (int) getY());
+        g.drawImage(Texturas.getEntidadesTextura("hongo"), (int) getX(), (int) getY());
         g.drawImage(Texturas.getTextura("bloqueMonedaHit"), (int) maskX, (int) maskY);
 //        showBounds(g);
     }

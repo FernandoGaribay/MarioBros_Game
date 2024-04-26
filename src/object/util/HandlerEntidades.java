@@ -10,6 +10,10 @@ import object.Player;
 
 public class HandlerEntidades {
 
+        // VARIABLES
+    private int renderIzquierda;
+    private int renderDerecha;
+    
     private List<GameEntidad> gameEntidades;
     private Player player;
 
@@ -18,12 +22,18 @@ public class HandlerEntidades {
     }
 
     public void tick() {
-        int renderIzquierda = (int) (player.getX() - Game.getMAX_RENDERIZADO());
-        int renderDerecha = (int) (player.getX() + Game.getMAX_RENDERIZADO());
+        renderIzquierda = (int) (player.getX() - Game.getMAX_RENDERIZADO());
+        renderDerecha = (int) (player.getX() + Game.getMAX_RENDERIZADO());
 
         for (GameEntidad obj : gameEntidades) {
-            if (!(obj.getX() < renderDerecha && obj.getX() > renderIzquierda)) {
+            // Se pausa la entidad si esta a fuera del render derecho
+            if (obj.getX() > renderDerecha) {
                 continue;
+            }
+            // Se elimina la entidad si esa fuera del render izquierdo
+            if (obj.getX() < renderIzquierda) {
+                eliminarEntidad(obj);
+                return;
             }
             obj.tick();
         }
@@ -38,13 +48,10 @@ public class HandlerEntidades {
     }
 
     public void render(LibreriaGrafica g) {
-        int renderIzquierda = (int) (player.getX() - Game.getMAX_RENDERIZADO());
-        int renderDerecha = (int) (player.getX() + Game.getMAX_RENDERIZADO());
-
         for (GameEntidad obj : gameEntidades) {
-//            if (obj.getX() < renderDerecha && obj.getX() > renderIzquierda) {
-            obj.render(g);
-//            }
+            if (obj.getX() < renderDerecha) {
+                obj.render(g);
+            }
         }
     }
 

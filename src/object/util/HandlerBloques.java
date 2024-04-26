@@ -10,6 +10,10 @@ import object.Player;
 
 public class HandlerBloques {
 
+    // VARIABLES
+    private int renderIzquierda;
+    private int renderDerecha;
+    
     private List<GameObject> gameObjs;
     private Player player;
 
@@ -18,12 +22,18 @@ public class HandlerBloques {
     }
 
     public void tick() {
-        int renderIzquierda = (int) (player.getX() - Game.getMAX_RENDERIZADO());
-        int renderDerecha = (int) (player.getX() + Game.getMAX_RENDERIZADO());
+        renderIzquierda = (int) (player.getX() - Game.getMAX_RENDERIZADO());
+        renderDerecha = (int) (player.getX() + Game.getMAX_RENDERIZADO());
 
         for (GameObject obj : gameObjs) { 
-            if (!(obj.getX() < renderDerecha && obj.getX() > renderIzquierda)) {
+            // Se pausa el bloque si esta a fuera del render derecho
+            if (obj.getX() > renderDerecha) {
                 continue;
+            }
+            // Se elimina el bloque si esa fuera del render izquierdo
+            if (obj.getX() < renderIzquierda) {
+                eliminarObj(obj);
+                return;
             }
             obj.tick();
         }
@@ -35,11 +45,8 @@ public class HandlerBloques {
     }
 
     public void render(LibreriaGrafica g) {
-        int renderIzquierda = (int) (player.getX() - Game.getMAX_RENDERIZADO());
-        int renderDerecha = (int) (player.getX() + Game.getMAX_RENDERIZADO());
-
         for (GameObject obj : gameObjs) {
-            if (obj.getX() < renderDerecha && obj.getX() > renderIzquierda) {
+            if (obj.getX() < renderDerecha) {
                 obj.render(g);
             }
         }

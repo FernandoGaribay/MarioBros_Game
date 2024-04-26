@@ -88,5 +88,9 @@ public abstract class GameEntidad {
         this.height = height;
     }
 
+    public void setHandler(HandlerBloques handler) {
+        this.handler = handler;
+    }
+
     public abstract GameEntidad clone();
 }

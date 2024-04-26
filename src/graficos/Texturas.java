@@ -29,7 +29,7 @@ public class Texturas {
         bloquesEscombros_Map = new HashMap<>();
         lectorMatriz = new PixelArtReader(2);
 
-        getBloquesTecturas();
+        getBloquesTexturas();
         getTuberiaTexturas();
         getMontanasTexturas();
         getArbustosTexturas();
@@ -65,8 +65,8 @@ public class Texturas {
     }
     
     private static void getTuberiaTexturas() {
-        texturasMap.put("tuberiaCabeza", lectorMatriz.drawPixelArt("Sprites/Tuberias/tuberiaCabeza"));
-        texturasMap.put("tuberia", lectorMatriz.drawPixelArt("Sprites/Tuberias/tuberia"));
+        texturasMap.put("bloqueTuberiaCabeza", lectorMatriz.drawPixelArt("Sprites/Tuberias/bloqueTuberiaCabeza"));
+        texturasMap.put("bloqueTuberia", lectorMatriz.drawPixelArt("Sprites/Tuberias/bloqueTuberia"));
     }
 
     private static void getBloqueMonedaTexturas() {
@@ -79,7 +79,7 @@ public class Texturas {
         bloquesEscombros_Map.put("ladrilloEscombro", lectorMatriz.drawPixelArt("Sprites/Escombros/ladrilloEscombro"));
     }
 
-    private static void getBloquesTecturas() {
+    private static void getBloquesTexturas() {
         texturasMap.put("bloquePiso", lectorMatriz.drawPixelArt("Sprites/Bloques/bloquePiso"));
         texturasMap.put("bloqueBandera", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueBandera"));
         texturasMap.put("bloqueMoneda1", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueMoneda1"));
@@ -87,34 +87,38 @@ public class Texturas {
         texturasMap.put("bloqueMonedaHit", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueMonedaHit"));
         texturasMap.put("bloqueLadrillo", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueLadrillo"));
         texturasMap.put("bloqueBarrera", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueBarrera"));
+        texturasMap.put("entidadGoomba", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoomba"));
     }
 
     private static void getElementosFondo() {
-        texturasMap.put("banderaMastil", lectorMatriz.drawPixelArt("Sprites/Backgrounds/banderaMastil"));
+        texturasMap.put("bloqueBanderaMastil", lectorMatriz.drawPixelArt("Sprites/Backgrounds/bloqueBanderaMastil"));
         texturasMap.put("bandera", lectorMatriz.drawPixelArt("Sprites/Backgrounds/bandera"));
-        texturasMap.put("castillo", lectorMatriz.drawPixelArt("Sprites/Backgrounds/castillo"));
+        texturasMap.put("bloqueCastillo", lectorMatriz.drawPixelArt("Sprites/Backgrounds/bloqueCastillo"));
     }
 
     private static void getMontanasTexturas() {
-        texturasMap.put("montanaChica", lectorMatriz.drawPixelArt("Sprites/Montanas/montanaChica"));
-        texturasMap.put("montanaGrande", lectorMatriz.drawPixelArt("Sprites/Montanas/montanaGrande"));
+        texturasMap.put("bloqueMontanaChica", lectorMatriz.drawPixelArt("Sprites/Montanas/bloqueMontanaChica"));
+        texturasMap.put("bloqueMontanaGrande", lectorMatriz.drawPixelArt("Sprites/Montanas/bloqueMontanaGrande"));
     }
 
     private static void getArbustosTexturas() {
-        texturasMap.put("arbustoChico", lectorMatriz.drawPixelArt("Sprites/Arbustos/arbustoChico"));
-        texturasMap.put("arbustoMediano", lectorMatriz.drawPixelArt("Sprites/Arbustos/arbustoMediano"));
-        texturasMap.put("arbustoGrande", lectorMatriz.drawPixelArt("Sprites/Arbustos/arbustoGrande"));
+        texturasMap.put("bloqueArbustoChico", lectorMatriz.drawPixelArt("Sprites/Arbustos/bloqueArbustoChico"));
+        texturasMap.put("bloqueArbustoMediano", lectorMatriz.drawPixelArt("Sprites/Arbustos/bloqueArbustoMediano"));
+        texturasMap.put("bloqueArbustoGrande", lectorMatriz.drawPixelArt("Sprites/Arbustos/bloqueArbustoGrande"));
     }
 
     private static void getNubesTexturas() {
-        texturasMap.put("nubeChica", lectorMatriz.drawPixelArt("Sprites/Nubes/nubeChica"));
-        texturasMap.put("nubeMediana", lectorMatriz.drawPixelArt("Sprites/Nubes/nubeMediana"));
-        texturasMap.put("nubeGrande", lectorMatriz.drawPixelArt("Sprites/Nubes/nubeGrande"));
+        texturasMap.put("bloqueNubeChica", lectorMatriz.drawPixelArt("Sprites/Nubes/bloqueNubeChica"));
+        texturasMap.put("bloqueNubeMediana", lectorMatriz.drawPixelArt("Sprites/Nubes/bloqueNubeMediana"));
+        texturasMap.put("bloqueNubeGrande", lectorMatriz.drawPixelArt("Sprites/Nubes/bloqueNubeGrande"));
     }
 
     private static void getEntidadesTeturas() {
-        entidadesMap.put("moneda", lectorMatriz.drawPixelArt("Sprites/Entidades/moneda"));
-        entidadesMap.put("hongo", lectorMatriz.drawPixelArt("Sprites/Entidades/hongo"));
+        entidadesMap.put("entidadMoneda", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadMoneda"));
+        entidadesMap.put("entidadHongo", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadHongo"));
+        entidadesMap.put("entidadGoomba", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoomba"));
+        entidadesMap.put("entidadGoombaCaminando1", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoombaCaminando1"));
+        entidadesMap.put("entidadGoombaCaminando2", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoombaCaminando2"));
     }
 
     public static BufferedImage getTextura(String textura) {

@@ -24,7 +24,7 @@ public class ArbustoGrande extends GameObject {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("arbustoGrande"), (int) (getX()), (int) (getY()));
+        g.drawImage(texturas.getTextura("bloqueArbustoGrande"), (int) (getX()), (int) (getY()));
 //        g.drawRectangle(getBounds(), Color.red);
     }
 

@@ -24,7 +24,7 @@ public class NubeGrande extends GameObject {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("nubeGrande"), (int) (getX()), (int) (getY()));
+        g.drawImage(texturas.getTextura("bloqueNubeGrande"), (int) (getX()), (int) (getY()));
 //        g.drawRectangle(getBounds(), Color.red);
     }
 

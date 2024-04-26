@@ -9,12 +9,8 @@ import object.util.ObjectID;
 
 public class ArbustoChico extends GameObject {
     
-    // OBJETOS
-    private Texturas texturas;
-
     public ArbustoChico(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.Background, width, height, xDesplasamiento);
-        this.texturas = new Texturas();
     }
 
     @Override
@@ -24,7 +20,7 @@ public class ArbustoChico extends GameObject {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("arbustoChico"), (int) (getX()), (int) (getY()));
+        g.drawImage(Texturas.getTextura("bloqueArbustoChico"), (int) (getX()), (int) (getY()));
 //        g.drawRectangle(getBounds(), Color.red);
     }
 

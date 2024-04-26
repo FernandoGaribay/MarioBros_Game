@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import object.Barrera;
 import object.util.GameObject;
 import object.Player;
+import object.util.GameEntidad;
 import object.util.HandlerEntidades;
 import object.util.HandlerBloques;
 import object.util.KeyInput;
@@ -107,10 +108,26 @@ public class Game extends Canvas implements Runnable {
         for (CasillaNivel[] casillaNivels : matrizNivel) {
             for (CasillaNivel casillaNivel : casillaNivels) {
                 if (!casillaNivel.getNombreElemento().isEmpty()) {
-                    GameObject obj = ObjectFactory.createObject(casillaNivel.getNombreElemento());
-                    obj.setX(casillaNivel.getX() * 32);
-                    obj.setY(casillaNivel.getY() * 32);
-                    handlerBloques.addObj(obj);
+                    String nombreElemento = casillaNivel.getNombreElemento();
+                    if (nombreElemento.startsWith("bloque")) {
+                        try {
+                            GameObject obj = ObjectFactory.crearBloque(nombreElemento);
+                            obj.setX(casillaNivel.getX() * 32);
+                            obj.setY(casillaNivel.getY() * 32);
+                            handlerBloques.addObj(obj);
+                        } catch (Exception e) {
+                            System.out.println("ERROR CON: " + nombreElemento);
+                        }
+
+                    } else if (nombreElemento.startsWith("entidad")) {
+                        GameEntidad obj = ObjectFactory.crearEntidad(nombreElemento);
+
+                        obj.setX(casillaNivel.getX() * 32);
+                        obj.setY(casillaNivel.getY() * 32);
+                        obj.setHandler(handlerBloques);
+                        handlerEntidades.addEntidad(obj);
+                    }
+
                 }
             }
         }

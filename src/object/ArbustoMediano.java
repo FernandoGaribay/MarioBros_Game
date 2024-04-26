@@ -24,7 +24,7 @@ public class ArbustoMediano extends GameObject {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("arbustoMediano"), (int) (getX()), (int) (getY()));
+        g.drawImage(texturas.getTextura("bloqueArbustoMediano"), (int) (getX()), (int) (getY()));
 //        g.drawRectangle(getBounds(), Color.red);
     }
 

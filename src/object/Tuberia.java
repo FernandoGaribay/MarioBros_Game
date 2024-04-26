@@ -23,7 +23,7 @@ public class Tuberia extends GameObject {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("tuberia"), (int) (getX()), (int) (getY()));
+        g.drawImage(texturas.getTextura("bloqueTuberia"), (int) (getX()), (int) (getY()));
     }
 
     @Override

@@ -24,7 +24,7 @@ public class NubeMediana extends GameObject {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("nubeMediana"), (int) (getX()), (int) (getY()));
+        g.drawImage(texturas.getTextura("bloqueNubeMediana"), (int) (getX()), (int) (getY()));
 //        g.drawRectangle(getBounds(), Color.red);
     }
 

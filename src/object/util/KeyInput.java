@@ -17,7 +17,7 @@ public class KeyInput extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.MOUSE_EVENT_MASK) {
+        if (key == KeyEvent.VK_ESCAPE) {
             System.exit(0);
         }
 

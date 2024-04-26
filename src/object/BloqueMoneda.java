@@ -78,7 +78,7 @@ class Moneda {
     private float x, y;
 
     public Moneda(float x, float y) {
-        this.moneda = Texturas.getEntidadesTextura("moneda");
+        this.moneda = Texturas.getEntidadesTextura("entidadMoneda");
         this.x = x;
         this.y = y;
     }

@@ -24,7 +24,7 @@ public class Castillo extends GameObject{
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("castillo"), (int) (getX()), (int) (getY()));
+        g.drawImage(texturas.getTextura("bloqueCastillo"), (int) (getX()), (int) (getY()));
 //        g.drawRectangle(getBounds(), Color.red);
     }
 

@@ -24,7 +24,7 @@ public class MontanaChica extends GameObject{
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("montanaChica"), (int) (getX()), (int) (getY()));
+        g.drawImage(texturas.getTextura("bloqueMontanaChica"), (int) (getX()), (int) (getY()));
 //        g.drawRectangle(getBounds(), Color.red);
     }
 

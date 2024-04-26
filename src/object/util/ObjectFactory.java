@@ -13,6 +13,7 @@ import object.BloqueMoneda;
 import object.BloqueMonedaHit;
 import object.BloquePiso;
 import object.Castillo;
+import object.EntidadGoomba;
 import object.Ladrillo;
 import object.MontanaChica;
 import object.MontanaGrande;
@@ -24,35 +25,47 @@ import object.TuberiaCabeza;
 
 public class ObjectFactory {
 
-    private static final Map<String, GameObject> prototypes = new HashMap<>();
+    private static final Map<String, GameObject> bloquesPrototipos = new HashMap<>();
+    private static final Map<String, GameEntidad> entidadesPrototipos = new HashMap<>();
 
     static {
-        prototypes.put("tuberiaCabeza", new TuberiaCabeza(0, 0, 64, 32, 0, true));
-        prototypes.put("tuberia", new Tuberia(0, 0, 64, 32, 0));
-        prototypes.put("bloquePiso", new BloquePiso(0, 0, 32, 32, 0));
-        prototypes.put("bloqueBandera", new BloqueBandera(0, 0, 32, 32, 0));
-        prototypes.put("bloqueMoneda1", new BloqueMoneda(0, 0, 32, 32, 0));
-        prototypes.put("bloqueHongo", new BloqueHongo(0, 0, 32, 32, 0));
-        prototypes.put("bloqueMonedaHit", new BloqueMonedaHit(0, 0, 32, 32, 0));
-        prototypes.put("bloqueLadrillo", new Ladrillo(0, 0, 32, 32, 0));
-        prototypes.put("banderaMastil", new BanderaMastil(0, 0, 32, 288, 0));
-        prototypes.put("castillo", new Castillo(0, 0, 160, 160, 1));
-        prototypes.put("montanaChica", new MontanaChica(0, 0, 96, 32, 0));
-        prototypes.put("montanaGrande", new MontanaGrande(0, 0, 160, 64, 0));
-        prototypes.put("arbustoChico", new ArbustoChico(0, 0, 64, 32, 16));
-        prototypes.put("arbustoMediano", new ArbustoMediano(0, 0, 32, 256, 16));
-        prototypes.put("arbustoGrande", new ArbustoGrande(0, 0, 96, 32, 16));
-        prototypes.put("nubeChica", new NubeChica(0, 0, 64, 32, 16));
-        prototypes.put("nubeMediana", new NubeMediana(0, 0, 96, 32, 16));
-        prototypes.put("nubeGrande", new NubeGrande(0, 0, 128, 32, 16));
-        prototypes.put("bloqueBarrera", new Barrera(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueTuberiaCabeza", new TuberiaCabeza(0, 0, 64, 32, 0, true));
+        bloquesPrototipos.put("bloqueTuberia", new Tuberia(0, 0, 64, 32, 0));
+        bloquesPrototipos.put("bloquePiso", new BloquePiso(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueBandera", new BloqueBandera(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueMoneda1", new BloqueMoneda(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueHongo", new BloqueHongo(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueMonedaHit", new BloqueMonedaHit(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueLadrillo", new Ladrillo(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueBanderaMastil", new BanderaMastil(0, 0, 32, 288, 0));
+        bloquesPrototipos.put("bloqueCastillo", new Castillo(0, 0, 160, 160, 1));
+        bloquesPrototipos.put("bloqueMontanaChica", new MontanaChica(0, 0, 96, 32, 0));
+        bloquesPrototipos.put("bloqueMontanaGrande", new MontanaGrande(0, 0, 160, 64, 0));
+        bloquesPrototipos.put("bloqueArbustoChico", new ArbustoChico(0, 0, 64, 32, 16));
+        bloquesPrototipos.put("bloqueArbustoMediano", new ArbustoMediano(0, 0, 32, 256, 16));
+        bloquesPrototipos.put("bloqueArbustoGrande", new ArbustoGrande(0, 0, 96, 32, 16));
+        bloquesPrototipos.put("bloqueNubeChica", new NubeChica(0, 0, 64, 32, 16));
+        bloquesPrototipos.put("bloqueNubeMediana", new NubeMediana(0, 0, 96, 32, 16));
+        bloquesPrototipos.put("bloqueNubeGrande", new NubeGrande(0, 0, 128, 32, 16));
+        bloquesPrototipos.put("bloqueBarrera", new Barrera(0, 0, 32, 32, 0));
+
+        entidadesPrototipos.put("entidadGoomba", new EntidadGoomba(0, 0, 32, 32, null));
     }
 
-    public static GameObject createObject(String type) {
-        GameObject prototype = prototypes.get(type);
-        if (prototype != null) {
+    public static GameObject crearBloque(String type) {
+        GameObject bloquePrototipo = bloquesPrototipos.get(type);
+        if (bloquePrototipo != null) {
             // Clona el prototipo
-            return prototype.clone();
+            return bloquePrototipo.clone();
+        }
+        return null;
+    }
+
+    public static GameEntidad crearEntidad(String type) {
+        GameEntidad entidadPrototipo = entidadesPrototipos.get(type);
+        if (entidadPrototipo != null) {
+            // Clona el prototipo
+            return entidadPrototipo.clone();
         }
         return null;
     }

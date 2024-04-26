@@ -53,7 +53,7 @@ public class LevelCreatorMatriz extends JPanel implements InterfazLevelCreator {
             offsetPosicion = new Point();
             elementoSelecionado = "bloquePiso";
 
-            limpiarMatriz(10, 5);
+            limpiarMatriz(500, 15);
             initEventos();
         });
     }

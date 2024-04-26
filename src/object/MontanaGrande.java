@@ -24,7 +24,7 @@ public class MontanaGrande extends GameObject{
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("montanaGrande"), (int) (getX()), (int) (getY()));
+        g.drawImage(texturas.getTextura("bloqueMontanaGrande"), (int) (getX()), (int) (getY()));
 //        g.drawRectangle(getBounds(), Color.red);
     }
 

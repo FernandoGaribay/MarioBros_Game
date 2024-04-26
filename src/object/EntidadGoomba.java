@@ -15,39 +15,23 @@ import static object.util.ObjectID.BloqueMoneda;
 import static object.util.ObjectID.Ladrillo;
 import static object.util.ObjectID.TuberiaCabeza;
 
-public class EntidadHongo extends GameEntidad {
+public class EntidadGoomba extends GameEntidad {
 
-    // Variables
-    private int countAnimacion;
-    private boolean animacionInicioCompletada = false;
-
-    private float maskX;
-    private float maskY;
-
-    public EntidadHongo(float x, float y, int width, int height, HandlerBloques handler) {
-        super(x, y, EntidadID.Hongo, width, height, handler);
-        countAnimacion = 0;
-
-        maskX = x;
-        maskY = y;
-        setVelX(2f);
+    public EntidadGoomba(float x, float y, int width, int height, HandlerBloques handler) {
+        super(x, y, EntidadID.Goomba, width, height, handler);
+        setVelX(-1.2f);
     }
 
     @Override
     public void tick() {
-        if (animacionInicioCompletada) {
-            aplicarMovimiento();
-            aplicarGravedad();
-            aplicarColisiones();
-        } else {
-            animacionDeInicio();
-        }
+        aplicarMovimiento();
+        aplicarGravedad();
+        aplicarColisiones();
     }
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(Texturas.getEntidadesTextura("entidadHongo"), (int) getX(), (int) getY());
-        g.drawImage(Texturas.getTextura("bloqueMonedaHit"), (int) maskX, (int) maskY);
+        g.drawImage(Texturas.getEntidadesTextura("entidadGoomba"), (int) getX(), (int) getY());
 //        showBounds(g);
     }
 
@@ -65,7 +49,7 @@ public class EntidadHongo extends GameEntidad {
 
     @Override
     public GameEntidad clone() {
-        return new EntidadHongo((int) x, (int) y, (int) width, (int) height, handler);
+        return new EntidadGoomba((int) x, (int) y, (int) width, (int) height, handler);
     }
 
     public void aplicarMovimiento() {
@@ -105,15 +89,6 @@ public class EntidadHongo extends GameEntidad {
         if (getBoundsSides().intersects(temp.getBounds())) {
             setVelX(getVelX() * -1);
         }
-    }
-
-    private void animacionDeInicio() {
-        if (countAnimacion == 32) {
-            animacionInicioCompletada = true;
-        } else if (countAnimacion <= 32) {
-            setY(getY() - 1f);
-        }
-        countAnimacion++;
     }
 
     private void showBounds(LibreriaGrafica g) {

@@ -40,7 +40,7 @@ public class BanderaMastil extends GameObject {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("banderaMastil"), (int) (getX()), (int) (getY()));
+        g.drawImage(texturas.getTextura("bloqueBanderaMastil"), (int) (getX()), (int) (getY()));
         g.drawImage(bandera.getBandera(), (int) (getX() - 16), heightBandera + 16);
 //        g.drawRectangle(getBounds(), Color.red);
     }

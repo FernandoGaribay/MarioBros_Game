@@ -1,6 +1,7 @@
 package object;
 
 public enum EntidadID {
-    Hongo,
+    HongoRojo,
+    HongoVerde,
     Goomba,
 }

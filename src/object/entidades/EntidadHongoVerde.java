@@ -1,6 +1,5 @@
 package object.entidades;
 
-import graficos.Animacion;
 import main.Game;
 import object.util.GameEntidad;
 import graficos.LibreriaGrafica;
@@ -8,41 +7,51 @@ import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
 import object.EntidadID;
+import static object.ObjectID.Bloque;
+import static object.ObjectID.BloqueHongoRojo;
+import static object.ObjectID.BloqueHongoVerde;
 import object.util.GameObjeto;
 import object.util.HandlerBloques;
-import static object.ObjectID.Bloque;
 import static object.ObjectID.BloqueMoneda;
 import static object.ObjectID.Ladrillo;
 import static object.ObjectID.TuberiaCabeza;
-import static object.ObjectID.BloqueHongoRojo;
+import static object.ObjectID.BloqueMoneda;
+import static object.ObjectID.Ladrillo;
+import static object.ObjectID.TuberiaCabeza;
 
-public class EntidadGoomba extends GameEntidad {
+public class EntidadHongoVerde extends GameEntidad {
 
-    // OBJETOS
-    private Animacion animacion;
+    // Variables
+    private int countAnimacion;
+    private boolean animacionInicioCompletada = false;
 
-    public EntidadGoomba(float x, float y, int width, int height, HandlerBloques handler) {
-        super(x, y, EntidadID.Goomba, width, height, handler);
-        setVelX(-1.2f);
+    private float maskX;
+    private float maskY;
 
-        animacion = new Animacion(10,
-                Texturas.getEntidadesTextura("entidadGoombaCaminando1"),
-                Texturas.getEntidadesTextura("entidadGoombaCaminando2")
-        );
+    public EntidadHongoVerde(float x, float y, int width, int height, HandlerBloques handler) {
+        super(x, y, EntidadID.HongoVerde, width, height, handler);
+        countAnimacion = 0;
+
+        maskX = x;
+        maskY = y;
+        setVelX(2f);
     }
 
     @Override
     public void tick() {
-        animacion.runAnimacion();
-        
-        aplicarMovimiento();
-        aplicarGravedad();
-        aplicarColisiones();
+        if (animacionInicioCompletada) {
+            aplicarMovimiento();
+            aplicarGravedad();
+            aplicarColisiones();
+        } else {
+            animacionDeInicio();
+        }
     }
 
     @Override
     public void render(LibreriaGrafica g) {
-        animacion.drawSprite(g, (int) getX(), (int) getY());
+        g.drawImage(Texturas.getEntidadesTextura("entidadHongoVerde"), (int) getX(), (int) getY());
+        g.drawImage(Texturas.getTextura("bloqueMonedaHit"), (int) maskX, (int) maskY);
 //        showBounds(g);
     }
 
@@ -60,7 +69,7 @@ public class EntidadGoomba extends GameEntidad {
 
     @Override
     public GameEntidad clone() {
-        return new EntidadGoomba((int) x, (int) y, (int) width, (int) height, handler);
+        return new EntidadHongoVerde((int) x, (int) y, (int) width, (int) height, handler);
     }
 
     public void aplicarMovimiento() {
@@ -79,10 +88,10 @@ public class EntidadGoomba extends GameEntidad {
             if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
                 switch (temp.getID()) {
                     case Bloque:
-                    case BarreraEntidades:
                     case TuberiaCabeza:
                     case BloqueMoneda:
                     case BloqueHongoRojo:
+                    case BloqueHongoVerde:
                     case Ladrillo:
                         handleColisionSolida(temp);
                         break;
@@ -101,6 +110,15 @@ public class EntidadGoomba extends GameEntidad {
         if (getBoundsSides().intersects(temp.getBounds())) {
             setVelX(getVelX() * -1);
         }
+    }
+
+    private void animacionDeInicio() {
+        if (countAnimacion == 32) {
+            animacionInicioCompletada = true;
+        } else if (countAnimacion <= 32) {
+            setY(getY() - 1f);
+        }
+        countAnimacion++;
     }
 
     private void showBounds(LibreriaGrafica g) {

@@ -14,17 +14,17 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import object.util.HandlerBloques;
 import main.Game;
-import static object.EntidadID.Hongo;
 import object.util.HandlerEntidades;
 import object.util.EstadoPlayer;
 import object.util.GameEntidad;
 import static object.ObjectID.Bandera;
 import static object.ObjectID.Bloque;
-import static object.ObjectID.BloqueHongo;
 import static object.ObjectID.BloqueMoneda;
 import static object.ObjectID.Ladrillo;
 import static object.ObjectID.LadrilloMonedas;
 import static object.ObjectID.TuberiaCabeza;
+import static object.ObjectID.BloqueHongoRojo;
+import static object.EntidadID.HongoRojo;
 
 public class Player extends GameObjeto {
 
@@ -185,7 +185,8 @@ public class Player extends GameObjeto {
                         case BarreraJugador:
                         case TuberiaCabeza:
                         case BloqueMoneda:
-                        case BloqueHongo:
+                        case BloqueHongoRojo:
+                        case BloqueHongoVerde:
                         case Ladrillo:
                         case LadrilloMonedas:
                             handleColicionSolida(temp);
@@ -202,7 +203,8 @@ public class Player extends GameObjeto {
             GameEntidad temp = handlerEntidades.getGameEntidades().get(i);
 
             switch (temp.getID()) {
-                case Hongo:
+                case HongoRojo:
+                case HongoVerde:
                 case Goomba:
                     handlerColisionEntidad(temp);
                     break;
@@ -221,13 +223,21 @@ public class Player extends GameObjeto {
         if (getBoundsTop().intersects(temp.getBounds())) {
             setY(temp.getY() + temp.getHeight());
             setVelY(0);
-
+            
+            BloqueEnigma bloque;
             switch (temp.getID()) {
                 case BloqueMoneda:
                     ((BloqueMoneda) temp).golpeado();
                     break;
-                case BloqueHongo:
-                    BloqueEnigma bloque = ((BloqueEnigma) temp);
+                case BloqueHongoRojo:
+                    bloque = ((BloqueEnigma) temp);
+                    if (!bloque.isGolpeado()) {
+                        bloque.golpeado();
+                        colaBloquesDrops.add(bloque);
+                    }
+                    break;
+                case BloqueHongoVerde:
+                    bloque = ((BloqueEnigma) temp);
                     if (!bloque.isGolpeado()) {
                         bloque.golpeado();
                         colaBloquesDrops.add(bloque);
@@ -276,9 +286,13 @@ public class Player extends GameObjeto {
         // Bounding Box de los pies
         if (getBounds().intersects(temp.getBounds())) {
             switch (temp.getID()) {
-                case Hongo:
+                case HongoRojo:
                     handlerEntidades.eliminarEntidad(temp);
                     cambiarEstado(2);
+                    break;
+                case HongoVerde:
+                    handlerEntidades.eliminarEntidad(temp);
+                    System.out.println("Hongo verde recogido");
                     break;
                 case Goomba:
                     handlerEntidades.eliminarEntidad(temp);

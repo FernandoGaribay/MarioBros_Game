@@ -256,7 +256,7 @@ bloquePiso
 Coordenada:
 21,9
 Elemento:
-bloqueHongo
+bloqueHongoRojo
 
 Coordenada:
 21,13
@@ -829,6 +829,11 @@ Elemento:
 bloquePiso
 
 Coordenada:
+64,8
+Elemento:
+bloqueHongoVerde
+
+Coordenada:
 64,12
 Elemento:
 bloqueMontanaChica
@@ -981,7 +986,7 @@ bloquePiso
 Coordenada:
 78,9
 Elemento:
-bloqueHongo
+bloqueHongoRojo
 
 Coordenada:
 78,13
@@ -1411,7 +1416,7 @@ bloquePiso
 Coordenada:
 109,5
 Elemento:
-bloqueHongo
+bloqueHongoRojo
 
 Coordenada:
 109,9

@@ -4,16 +4,18 @@ import graficos.LibreriaGrafica;
 import java.util.ArrayList;
 import java.util.List;
 import main.Game;
+import static object.ObjectID.BloqueHongoRojo;
 import object.bloques.BloqueEnigma;
-import object.entidades.EntidadHongo;
+import object.entidades.EntidadHongoRojo;
+import object.entidades.EntidadHongoVerde;
 import object.Player;
 
 public class HandlerEntidades {
 
-        // VARIABLES
+    // VARIABLES
     private int renderIzquierda;
     private int renderDerecha;
-    
+
     private List<GameEntidad> gameEntidades;
     private Player player;
 
@@ -40,8 +42,11 @@ public class HandlerEntidades {
         List<BloqueEnigma> elimiarBloques = player.getBloquesDrops();
         for (BloqueEnigma elimiarBloque : elimiarBloques) {
             switch (elimiarBloque.getID()) {
-                case BloqueHongo:
-                    addEntidad(new EntidadHongo(elimiarBloque.getX(), elimiarBloque.getY(), 32, 32, Game.getHandlerBloques()));
+                case BloqueHongoRojo:
+                    addEntidad(new EntidadHongoRojo(elimiarBloque.getX(), elimiarBloque.getY(), 32, 32, Game.getHandlerBloques()));
+                    break;
+                case BloqueHongoVerde:
+                    addEntidad(new EntidadHongoVerde(elimiarBloque.getX(), elimiarBloque.getY(), 32, 32, Game.getHandlerBloques()));
                     break;
             }
         }

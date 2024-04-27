@@ -6,10 +6,10 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import object.ObjectID;
 
-public class BloqueHongo extends BloqueEnigma {
+public class BloqueHongoRojo extends BloqueEnigma {
 
-    public BloqueHongo(int x, int y, int width, int height, int xDesplasamiento) {
-        super(x, y, ObjectID.BloqueHongo, width, height, xDesplasamiento);
+    public BloqueHongoRojo(int x, int y, int width, int height, int xDesplasamiento) {
+        super(x, y, ObjectID.BloqueHongoRojo, width, height, xDesplasamiento);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class BloqueHongo extends BloqueEnigma {
 
     @Override
     public GameObjeto clone() {
-        return new BloqueHongo((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
+        return new BloqueHongoRojo((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
 
     public boolean poderGenerarHongo() {

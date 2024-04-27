@@ -9,7 +9,8 @@ import object.bloques.BanderaMastil;
 import object.bloques.Barrera;
 import object.bloques.BloqueBandera;
 import object.bloques.BloqueBarreraEntidades;
-import object.bloques.BloqueHongo;
+import object.bloques.BloqueHongoRojo;
+import object.bloques.BloqueHongoVerde;
 import object.bloques.BloqueMoneda;
 import object.bloques.BloqueMonedaHit;
 import object.bloques.BloquePiso;
@@ -24,6 +25,8 @@ import object.bloques.NubeGrande;
 import object.bloques.NubeMediana;
 import object.bloques.Tuberia;
 import object.bloques.TuberiaCabeza;
+import object.entidades.EntidadHongoRojo;
+import object.entidades.EntidadHongoVerde;
 import object.util.GameObjeto;
 import object.util.GameEntidad;
 
@@ -38,7 +41,8 @@ public class ObjectFactory {
         bloquesPrototipos.put("bloquePiso", new BloquePiso(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueBandera", new BloqueBandera(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueMoneda1", new BloqueMoneda(0, 0, 32, 32, 0));
-        bloquesPrototipos.put("bloqueHongo", new BloqueHongo(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueHongoRojo", new BloqueHongoRojo(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueHongoVerde", new BloqueHongoVerde(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueMonedaHit", new BloqueMonedaHit(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueLadrillo", new Ladrillo(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueLadrilloMonedas", new LadrilloMonedas(0, 0, 32, 32, 0));
@@ -56,6 +60,8 @@ public class ObjectFactory {
         bloquesPrototipos.put("bloqueBarreraEntidades", new BloqueBarreraEntidades(0, 0, 32, 32, 0));
 
         entidadesPrototipos.put("entidadGoomba", new EntidadGoomba(0, 0, 32, 32, null));
+        entidadesPrototipos.put("entidadHongoRojo", new EntidadHongoRojo(0, 0, 32, 32, null));
+        entidadesPrototipos.put("entidadHongoVerde", new EntidadHongoVerde(0, 0, 32, 32, null));
     }
 
     public static GameObjeto crearBloque(String type) {

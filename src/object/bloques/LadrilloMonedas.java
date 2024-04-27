@@ -11,7 +11,7 @@ import object.ObjectID;
 public class LadrilloMonedas extends BloqueEnigma {
 
     // OBJETOS
-    private Moneda moneda;
+    private MonedaLadrillo moneda;
 
     // Variables
     private int numMonedas = 5;
@@ -57,7 +57,7 @@ public class LadrilloMonedas extends BloqueEnigma {
         if (numMonedas != 0) {
             numMonedas--;
             golpeado = true;
-            moneda = new Moneda(x + 8, y - 16);
+            moneda = new MonedaLadrillo(x + 8, y - 16);
         }
     }
 
@@ -79,13 +79,13 @@ public class LadrilloMonedas extends BloqueEnigma {
     }
 }
 
-class Moneda {
+class MonedaLadrillo {
 
     // OBJETOS
     private BufferedImage moneda;
     private float x, y;
 
-    public Moneda(float x, float y) {
+    public MonedaLadrillo(float x, float y) {
         this.moneda = Texturas.getEntidadesTextura("entidadMoneda");
         this.x = x;
         this.y = y;

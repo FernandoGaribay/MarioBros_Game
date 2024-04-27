@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/fernando/NetBeansProjects/MarioBros_Game/src/object/util/HandlerEntidades.java</file>
-            <file>file:/home/fernando/NetBeansProjects/MarioBros_Game/src/graficos/Texturas.java</file>
-            <file>file:/home/fernando/NetBeansProjects/MarioBros_Game/src/object/EntidadGoomba.java</file>
-            <file>file:/home/fernando/NetBeansProjects/MarioBros_Game/src/object/ArbustoChico.java</file>
-            <file>file:/home/fernando/NetBeansProjects/MarioBros_Game/src/object/util/ObjectFactory.java</file>
+            <file>file:/home/fernando/NetBeansProjects/MarioBros_Game/src/object/bloques/LadrilloMonedas.java</file>
+            <file>file:/home/fernando/NetBeansProjects/MarioBros_Game/src/object/bloques/BloqueEnigma.java</file>
+            <file>file:/home/fernando/NetBeansProjects/MarioBros_Game/src/object/bloques/BloqueHongoVerde.java</file>
+            <file>file:/home/fernando/NetBeansProjects/MarioBros_Game/src/object/entidades/EntidadHongo.java</file>
             <file>file:/home/fernando/NetBeansProjects/MarioBros_Game/src/main/Game.java</file>
-            <file>file:/home/fernando/NetBeansProjects/MarioBros_Game/src/object/util/GameEntidad.java</file>
-            <file>file:/home/fernando/NetBeansProjects/MarioBros_Game/src/herramientaLevelCreator/LevelCreatorFrame.java</file>
+            <file>file:/home/fernando/NetBeansProjects/MarioBros_Game/src/object/entidades/EntidadGoomba.java</file>
         </group>
     </open-files>
 </project-private>

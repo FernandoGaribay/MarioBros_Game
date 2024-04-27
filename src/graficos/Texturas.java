@@ -84,7 +84,8 @@ public class Texturas {
         texturasMap.put("bloquePiso", lectorMatriz.drawPixelArt("Sprites/Bloques/bloquePiso"));
         texturasMap.put("bloqueBandera", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueBandera"));
         texturasMap.put("bloqueMoneda1", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueMoneda1"));
-        texturasMap.put("bloqueHongo", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueHongo"));
+        texturasMap.put("bloqueHongoRojo", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueHongoRojo"));
+        texturasMap.put("bloqueHongoVerde", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueHongoVerde"));
         texturasMap.put("bloqueMonedaHit", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueMonedaHit"));
         texturasMap.put("bloqueLadrillo", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueLadrillo"));
         texturasMap.put("bloqueLadrilloMonedas", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueLadrilloMonedas"));
@@ -118,7 +119,8 @@ public class Texturas {
 
     private static void getEntidadesTeturas() {
         entidadesMap.put("entidadMoneda", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadMoneda"));
-        entidadesMap.put("entidadHongo", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadHongo"));
+        entidadesMap.put("entidadHongoRojo", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadHongoRojo"));
+        entidadesMap.put("entidadHongoVerde", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadHongoVerde"));
         entidadesMap.put("entidadGoomba", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoomba"));
         entidadesMap.put("entidadGoombaCaminando1", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoombaCaminando1"));
         entidadesMap.put("entidadGoombaCaminando2", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoombaCaminando2"));

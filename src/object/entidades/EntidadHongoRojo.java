@@ -10,12 +10,12 @@ import object.EntidadID;
 import object.util.GameObjeto;
 import object.util.HandlerBloques;
 import static object.ObjectID.Bloque;
-import static object.ObjectID.BloqueHongo;
 import static object.ObjectID.BloqueMoneda;
 import static object.ObjectID.Ladrillo;
 import static object.ObjectID.TuberiaCabeza;
+import static object.ObjectID.BloqueHongoRojo;
 
-public class EntidadHongo extends GameEntidad {
+public class EntidadHongoRojo extends GameEntidad {
 
     // Variables
     private int countAnimacion;
@@ -24,8 +24,8 @@ public class EntidadHongo extends GameEntidad {
     private float maskX;
     private float maskY;
 
-    public EntidadHongo(float x, float y, int width, int height, HandlerBloques handler) {
-        super(x, y, EntidadID.Hongo, width, height, handler);
+    public EntidadHongoRojo(float x, float y, int width, int height, HandlerBloques handler) {
+        super(x, y, EntidadID.HongoRojo, width, height, handler);
         countAnimacion = 0;
 
         maskX = x;
@@ -46,7 +46,7 @@ public class EntidadHongo extends GameEntidad {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(Texturas.getEntidadesTextura("entidadHongo"), (int) getX(), (int) getY());
+        g.drawImage(Texturas.getEntidadesTextura("entidadHongoRojo"), (int) getX(), (int) getY());
         g.drawImage(Texturas.getTextura("bloqueMonedaHit"), (int) maskX, (int) maskY);
 //        showBounds(g);
     }
@@ -65,7 +65,7 @@ public class EntidadHongo extends GameEntidad {
 
     @Override
     public GameEntidad clone() {
-        return new EntidadHongo((int) x, (int) y, (int) width, (int) height, handler);
+        return new EntidadHongoRojo((int) x, (int) y, (int) width, (int) height, handler);
     }
 
     public void aplicarMovimiento() {
@@ -86,7 +86,8 @@ public class EntidadHongo extends GameEntidad {
                     case Bloque:
                     case TuberiaCabeza:
                     case BloqueMoneda:
-                    case BloqueHongo:
+                    case BloqueHongoRojo:
+                    case BloqueHongoVerde:
                     case Ladrillo:
                         handleColisionSolida(temp);
                         break;

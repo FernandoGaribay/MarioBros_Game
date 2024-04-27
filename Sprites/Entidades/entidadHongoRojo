@@ -1,4 +1,4 @@
-Color y coordenadas -> hongo.txt
+Color y coordenadas -> /home/fernando/NetBeansProjects/MarioBros_Game/Sprites/Entidades/entidadHongoRojo.txt
 
 Dimensiones:
 16,16
@@ -939,17 +939,17 @@ Coordenada:
 11,10
 
 Color (RGB):
-225,153,51,255
+218,43,0,255
 Coordenada:
 11,11
 
 Color (RGB):
-225,153,51,255
+218,43,0,255
 Coordenada:
 11,12
 
 Color (RGB):
-225,153,51,255
+218,43,0,255
 Coordenada:
 11,13
 

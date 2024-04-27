@@ -3,11 +3,11 @@ package graficos;
 import graficos.LibreriaGrafica;
 import java.awt.Color;
 import java.awt.Rectangle;
-import object.util.GameObject;
-import object.Tuberia;
-import object.util.ObjectID;
+import object.util.GameObjeto;
+import object.bloques.Tuberia;
+import object.ObjectID;
 
-public class Background extends GameObject {
+public class Background extends GameObjeto {
 
     // CONSTANTES
     private final int SCREEN_OFFSET;
@@ -47,7 +47,7 @@ public class Background extends GameObject {
     }
 
     @Override
-    public GameObject clone() {
+    public GameObjeto clone() {
         return new Tuberia((int) x, (int) y, (int) width, (int) height, 1);
     }
 }

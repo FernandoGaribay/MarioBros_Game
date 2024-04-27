@@ -1,6 +1,6 @@
 package graficos;
 
-import object.util.GameObject;
+import object.util.GameObjeto;
 import main.Game;
 
 public class Camara {
@@ -14,7 +14,7 @@ public class Camara {
         this.ultimaX = 0;
     }
 
-    public void tick(GameObject player) {
+    public void tick(GameObjeto player) {
         this.x = (int) (-player.getX() + Game.getSCREEN_WIDTH() / 2 + 16);
         if (getX() > ultimaX) {
             setX(ultimaX);

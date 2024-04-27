@@ -684,11 +684,6 @@ Elemento:
 bloquePiso
 
 Coordenada:
-53,12
-Elemento:
-entidadGoomba
-
-Coordenada:
 53,13
 Elemento:
 bloquePiso
@@ -697,6 +692,11 @@ Coordenada:
 53,14
 Elemento:
 bloquePiso
+
+Coordenada:
+54,12
+Elemento:
+entidadGoomba
 
 Coordenada:
 54,13
@@ -3256,67 +3256,67 @@ bloquePiso
 Coordenada:
 227,0
 Elemento:
-bloqueBarrera
+bloqueBarreraJugador
 
 Coordenada:
 227,1
 Elemento:
-bloqueBarrera
+bloqueBarreraJugador
 
 Coordenada:
 227,2
 Elemento:
-bloqueBarrera
+bloqueBarreraJugador
 
 Coordenada:
 227,3
 Elemento:
-bloqueBarrera
+bloqueBarreraJugador
 
 Coordenada:
 227,4
 Elemento:
-bloqueBarrera
+bloqueBarreraJugador
 
 Coordenada:
 227,5
 Elemento:
-bloqueBarrera
+bloqueBarreraJugador
 
 Coordenada:
 227,6
 Elemento:
-bloqueBarrera
+bloqueBarreraJugador
 
 Coordenada:
 227,7
 Elemento:
-bloqueBarrera
+bloqueBarreraJugador
 
 Coordenada:
 227,8
 Elemento:
-bloqueBarrera
+bloqueBarreraJugador
 
 Coordenada:
 227,9
 Elemento:
-bloqueBarrera
+bloqueBarreraJugador
 
 Coordenada:
 227,10
 Elemento:
-bloqueBarrera
+bloqueBarreraJugador
 
 Coordenada:
 227,11
 Elemento:
-bloqueBarrera
+bloqueBarreraJugador
 
 Coordenada:
 227,12
 Elemento:
-bloqueBarrera
+bloqueBarreraJugador
 
 Coordenada:
 227,13

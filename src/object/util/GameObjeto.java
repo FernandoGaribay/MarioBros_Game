@@ -1,26 +1,27 @@
 package object.util;
 
-import object.EntidadID;
 import graficos.LibreriaGrafica;
 import java.awt.Rectangle;
+import object.ObjectID;
 
-public abstract class GameEntidad {
+public abstract class GameObjeto {
 
-    protected EntidadID id;
+    protected ObjectID id;
 
     protected float x;
     protected float y;
     protected float width, height;
-    protected HandlerBloques handler;
     private float velX, velY;
 
-    public GameEntidad(float x, float y, EntidadID id, float width, float height, HandlerBloques handler) {
+    protected int xDesplasamiento;
+
+    public GameObjeto(float x, float y, ObjectID id, float width, float height, int xDesplasamiento) {
         this.x = x;
         this.y = y;
         this.id = id;
         this.width = width;
         this.height = height;
-        this.handler = handler;
+        this.xDesplasamiento = xDesplasamiento;
     }
 
     public abstract void tick();
@@ -34,7 +35,7 @@ public abstract class GameEntidad {
     }
 
     public void setX(float x) {
-        this.x = x;
+        this.x = x - xDesplasamiento;
     }
 
     public float getX() {
@@ -49,11 +50,11 @@ public abstract class GameEntidad {
         return this.y;
     }
 
-    public void setId(EntidadID id) {
+    public void setId(ObjectID id) {
         this.id = id;
     }
 
-    public EntidadID getID() {
+    public ObjectID getID() {
         return this.id;
     }
 
@@ -81,6 +82,14 @@ public abstract class GameEntidad {
         this.width = width;
     }
 
+    public float getxDesplasamiento() {
+        return xDesplasamiento;
+    }
+
+    public void setxDesplasamiento(int xDesplasamiento) {
+        this.xDesplasamiento = xDesplasamiento;
+    }
+
     public float getHeight() {
         return height;
     }
@@ -89,9 +98,5 @@ public abstract class GameEntidad {
         this.height = height;
     }
 
-    public void setHandler(HandlerBloques handler) {
-        this.handler = handler;
-    }
-
-    public abstract GameEntidad clone();
+    public abstract GameObjeto clone();
 }

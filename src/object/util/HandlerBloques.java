@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import main.Game;
-import object.Ladrillo;
+import object.bloques.Ladrillo;
 import object.Player;
 
 public class HandlerBloques {
@@ -14,18 +14,18 @@ public class HandlerBloques {
     private int renderIzquierda;
     private int renderDerecha;
     
-    private List<GameObject> gameObjs;
+    private List<GameObjeto> gameObjs;
     private Player player;
 
     public HandlerBloques() {
-        this.gameObjs = new ArrayList<GameObject>();
+        this.gameObjs = new ArrayList<GameObjeto>();
     }
 
     public void tick() {
         renderIzquierda = (int) (player.getX() - Game.getMAX_RENDERIZADO());
         renderDerecha = (int) (player.getX() + Game.getMAX_RENDERIZADO());
 
-        for (GameObject obj : gameObjs) { 
+        for (GameObjeto obj : gameObjs) { 
             // Se pausa el bloque si esta a fuera del render derecho
             if (obj.getX() > renderDerecha) {
                 continue;
@@ -45,7 +45,7 @@ public class HandlerBloques {
     }
 
     public void render(LibreriaGrafica g) {
-        for (GameObject obj : gameObjs) {
+        for (GameObjeto obj : gameObjs) {
             if (obj.getX() < renderDerecha) {
                 obj.render(g);
             }
@@ -56,15 +56,15 @@ public class HandlerBloques {
         this.player = player;
     }
 
-    public void addObj(GameObject obj) {
+    public void addObj(GameObjeto obj) {
         gameObjs.add(obj);
     }
 
-    public void eliminarObj(GameObject obj) {
+    public void eliminarObj(GameObjeto obj) {
         gameObjs.remove(obj);
     }
 
-    public List<GameObject> getGameObj() {
+    public List<GameObjeto> getGameObj() {
         return gameObjs;
     }
 }

@@ -1,6 +1,10 @@
 package object;
 
-import object.util.GameObject;
+import object.bloques.BloqueMoneda;
+import object.bloques.Ladrillo;
+import object.bloques.Tuberia;
+import object.bloques.BloqueEnigma;
+import object.util.GameObjeto;
 import graficos.Animacion;
 import graficos.LibreriaGrafica;
 import graficos.Texturas;
@@ -9,19 +13,18 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import object.util.HandlerBloques;
 import main.Game;
-import static object.util.EntidadID.Hongo;
+import static object.EntidadID.Hongo;
 import object.util.HandlerEntidades;
-import object.util.ObjectID;
 import object.util.EstadoPlayer;
 import object.util.GameEntidad;
-import static object.util.ObjectID.Bandera;
-import static object.util.ObjectID.Bloque;
-import static object.util.ObjectID.BloqueHongo;
-import static object.util.ObjectID.BloqueMoneda;
-import static object.util.ObjectID.Ladrillo;
-import static object.util.ObjectID.TuberiaCabeza;
+import static object.ObjectID.Bandera;
+import static object.ObjectID.Bloque;
+import static object.ObjectID.BloqueHongo;
+import static object.ObjectID.BloqueMoneda;
+import static object.ObjectID.Ladrillo;
+import static object.ObjectID.TuberiaCabeza;
 
-public class Player extends GameObject {
+public class Player extends GameObjeto {
 
     // OBJETOS
     private HandlerBloques handlerBloques;
@@ -167,7 +170,7 @@ public class Player extends GameObject {
         }
 
         for (int i = 0; i < handlerBloques.getGameObj().size(); i++) {
-            GameObject temp = handlerBloques.getGameObj().get(i);
+            GameObjeto temp = handlerBloques.getGameObj().get(i);
 
             if (colaBloquesEliminados.contains(temp)) {
                 continue;
@@ -204,7 +207,7 @@ public class Player extends GameObject {
         }
     }
 
-    private void handleColicionSolida(GameObject temp) {
+    private void handleColicionSolida(GameObjeto temp) {
         // Bounding Box de los pies
         if (getBounds().intersects(temp.getBounds())) {
             setY(temp.getY() - getHeight());
@@ -252,7 +255,7 @@ public class Player extends GameObject {
         }
     }
 
-    private void handleColisionBandera(GameObject temp, int i) {
+    private void handleColisionBandera(GameObjeto temp, int i) {
         if (getBoundsRight().intersects(temp.getBounds())) {
             handlerBloques.getGameObj().get(i).setVelY(2);
         }
@@ -287,7 +290,7 @@ public class Player extends GameObject {
                         hp = 0;
                         break;
                     }
-                    inmunidad = 120;
+                    inmunidad = 60;
                     cambiarEstado(1);
                     break;
             }
@@ -394,7 +397,7 @@ public class Player extends GameObject {
     }
 
     @Override
-    public GameObject clone() {
+    public GameObjeto clone() {
         return new Tuberia((int) x, (int) y, (int) width, (int) height, 1);
     }
 

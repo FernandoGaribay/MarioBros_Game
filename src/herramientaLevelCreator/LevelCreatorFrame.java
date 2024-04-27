@@ -1,6 +1,6 @@
 package herramientaLevelCreator;
 
-import utils.EscritorLector_Niveles;
+import utils.LevelReaderWritter;
 import graficos.Texturas;
 import java.awt.Component;
 import java.awt.event.KeyAdapter;
@@ -345,14 +345,14 @@ public class LevelCreatorFrame extends JFrame {
     private void menuGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGuardarActionPerformed
         String archivo = obtenerUbicacionArchivo();
         if (archivo != null) {
-            EscritorLector_Niveles.guardarMatrizComoArchivo(CREADOR_NIVELES_MATRIZ.getMatrizElementos(), archivo);
+            LevelReaderWritter.guardarMatrizComoArchivo(CREADOR_NIVELES_MATRIZ.getMatrizElementos(), archivo);
         }
     }//GEN-LAST:event_menuGuardarActionPerformed
 
     private void menuAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAbrirActionPerformed
         String archivo = obtenerUbicacionArchivo();
         if (archivo != null) {
-            CREADOR_NIVELES_MATRIZ.setMatrizElementos(EscritorLector_Niveles.cargarMatrizDesdeArchivo(archivo));
+            CREADOR_NIVELES_MATRIZ.setMatrizElementos(LevelReaderWritter.cargarMatrizDesdeArchivo(archivo));
         }
     }//GEN-LAST:event_menuAbrirActionPerformed
 

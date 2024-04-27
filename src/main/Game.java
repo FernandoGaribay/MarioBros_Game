@@ -6,19 +6,19 @@ import graficos.LibreriaGrafica;
 import java.awt.Canvas;
 import graficos.Ventana;
 import utils.CasillaNivel;
-import utils.EscritorLector_Niveles;
+import utils.LevelReaderWritter;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import object.Barrera;
-import object.util.GameObject;
+import object.bloques.Barrera;
+import object.util.GameObjeto;
 import object.Player;
 import object.util.GameEntidad;
 import object.util.HandlerEntidades;
 import object.util.HandlerBloques;
-import object.util.KeyInput;
-import object.util.ObjectFactory;
+import utils.KeyInput;
+import object.ObjectFactory;
 
 public class Game extends Canvas implements Runnable {
 
@@ -103,7 +103,7 @@ public class Game extends Canvas implements Runnable {
 
     public void cargarNivel(String nombreArchivo) {
         CasillaNivel[][] matrizNivel;
-        matrizNivel = EscritorLector_Niveles.cargarMatrizDesdeArchivo(nombreArchivo);
+        matrizNivel = LevelReaderWritter.cargarMatrizDesdeArchivo(nombreArchivo);
 
         for (CasillaNivel[] casillaNivels : matrizNivel) {
             for (CasillaNivel casillaNivel : casillaNivels) {
@@ -111,7 +111,7 @@ public class Game extends Canvas implements Runnable {
                     String nombreElemento = casillaNivel.getNombreElemento();
                     if (nombreElemento.startsWith("bloque")) {
                         try {
-                            GameObject obj = ObjectFactory.crearBloque(nombreElemento);
+                            GameObjeto obj = ObjectFactory.crearBloque(nombreElemento);
                             obj.setX(casillaNivel.getX() * 32);
                             obj.setY(casillaNivel.getY() * 32);
                             handlerBloques.addObj(obj);

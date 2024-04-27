@@ -4,8 +4,8 @@ import graficos.LibreriaGrafica;
 import java.util.ArrayList;
 import java.util.List;
 import main.Game;
-import object.BloqueEnigma;
-import object.EntidadHongo;
+import object.bloques.BloqueEnigma;
+import object.entidades.EntidadHongo;
 import object.Player;
 
 public class HandlerEntidades {

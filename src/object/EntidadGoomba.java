@@ -79,6 +79,7 @@ public class EntidadGoomba extends GameEntidad {
             if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
                 switch (temp.getID()) {
                     case Bloque:
+                    case BarreraEntidades:
                     case TuberiaCabeza:
                     case BloqueMoneda:
                     case BloqueHongo:

@@ -7,13 +7,13 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import object.util.ObjectID;
 
-public class Barrera extends GameObject {
+public class BloqueBarreraEntidades extends GameObject {
 
     // OBJETOS
     private Texturas texturas;
 
-    public Barrera(int x, int y, int width, int height, int xDesplasamiento) {
-        super(x, y, ObjectID.BarreraJugador, width, height, xDesplasamiento);
+    public BloqueBarreraEntidades(int x, int y, int width, int height, int xDesplasamiento) {
+        super(x, y, ObjectID.BarreraEntidades, width, height, xDesplasamiento);
         this.texturas = new Texturas();
     }
 
@@ -24,7 +24,7 @@ public class Barrera extends GameObject {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("bloqueBarrera"), (int) (getX()), (int) (getY()));
+//        g.drawImage(texturas.getTextura("bloqueBarreraEntidades"), (int) (getX()), (int) (getY()));
 //        g.drawRect((int) getX(), (int) getY(), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.red);
     }
 
@@ -35,6 +35,6 @@ public class Barrera extends GameObject {
 
     @Override
     public GameObject clone() {
-        return new Barrera((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
+        return new BloqueBarreraEntidades((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
 }

@@ -177,6 +177,7 @@ public class Player extends GameObject {
                 if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
                     switch (temp.getID()) {
                         case Bloque:
+                        case BarreraJugador:
                         case TuberiaCabeza:
                         case BloqueMoneda:
                         case BloqueHongo:
@@ -258,6 +259,11 @@ public class Player extends GameObject {
     }
 
     private void handlerColisionEntidad(GameEntidad temp) {
+        // Si hay fotogramas de inmunidad al daño, se sale del metodo
+        if (inmunidad != 0 || hp == 0) {
+            return;
+        }
+
         // Bounding Box de los pies
         if (getBounds().intersects(temp.getBounds())) {
             switch (temp.getID()) {
@@ -268,7 +274,6 @@ public class Player extends GameObject {
                 case Goomba:
                     handlerEntidades.eliminarEntidad(temp);
                     setVelY(-6f);
-                    System.out.println("te pise");
                     break;
             }
         }
@@ -276,15 +281,10 @@ public class Player extends GameObject {
         if (getBoundsRight().intersects(temp.getBounds())
                 || getBoundsLeft().intersects(temp.getBounds())) {
 
-            // Si hay fotogramas de inmunidad al daño, se sale del metodo
-            if (inmunidad != 0) {
-                return;
-            }
             switch (temp.getID()) {
                 case Goomba:
                     if (hp == 1) {
                         hp = 0;
-                        inmunidad = 120;
                         break;
                     }
                     inmunidad = 120;
@@ -317,7 +317,7 @@ public class Player extends GameObject {
 
     public void aplicarAnimaciones() {
         if (hp == 0) {
-            if(contAnimacionMuerte == 0){
+            if (contAnimacionMuerte == 0) {
                 animacionEstado = new Animacion(1, Texturas.getMarioTextura(prefijoTextura + "_marioMuerte"));
             }
             if (contAnimacionMuerte <= 20) {

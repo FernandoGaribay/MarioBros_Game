@@ -8,6 +8,7 @@ import object.ArbustoMediano;
 import object.BanderaMastil;
 import object.Barrera;
 import object.BloqueBandera;
+import object.BloqueBarreraEntidades;
 import object.BloqueHongo;
 import object.BloqueMoneda;
 import object.BloqueMonedaHit;
@@ -48,6 +49,7 @@ public class ObjectFactory {
         bloquesPrototipos.put("bloqueNubeMediana", new NubeMediana(0, 0, 96, 32, 16));
         bloquesPrototipos.put("bloqueNubeGrande", new NubeGrande(0, 0, 128, 32, 16));
         bloquesPrototipos.put("bloqueBarrera", new Barrera(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueBarreraEntidades", new BloqueBarreraEntidades(0, 0, 32, 32, 0));
 
         entidadesPrototipos.put("entidadGoomba", new EntidadGoomba(0, 0, 32, 32, null));
     }

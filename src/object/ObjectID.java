@@ -9,6 +9,7 @@ public enum ObjectID {
     BloqueMoneda,
     BloqueHongo,
     Ladrillo,
+    LadrilloMonedas,
     Bandera,
     TuberiaCabeza;
 }

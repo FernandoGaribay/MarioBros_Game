@@ -16,6 +16,7 @@ import object.bloques.BloquePiso;
 import object.bloques.Castillo;
 import object.entidades.EntidadGoomba;
 import object.bloques.Ladrillo;
+import object.bloques.LadrilloMonedas;
 import object.bloques.MontanaChica;
 import object.bloques.MontanaGrande;
 import object.bloques.NubeChica;
@@ -40,6 +41,7 @@ public class ObjectFactory {
         bloquesPrototipos.put("bloqueHongo", new BloqueHongo(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueMonedaHit", new BloqueMonedaHit(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueLadrillo", new Ladrillo(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueLadrilloMonedas", new LadrilloMonedas(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueBanderaMastil", new BanderaMastil(0, 0, 32, 288, 0));
         bloquesPrototipos.put("bloqueCastillo", new Castillo(0, 0, 160, 160, 1));
         bloquesPrototipos.put("bloqueMontanaChica", new MontanaChica(0, 0, 96, 32, 0));

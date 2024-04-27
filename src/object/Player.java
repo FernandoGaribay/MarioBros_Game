@@ -2,6 +2,7 @@ package object;
 
 import object.bloques.BloqueMoneda;
 import object.bloques.Ladrillo;
+import object.bloques.LadrilloMonedas;
 import object.bloques.Tuberia;
 import object.bloques.BloqueEnigma;
 import object.util.GameObjeto;
@@ -22,6 +23,7 @@ import static object.ObjectID.Bloque;
 import static object.ObjectID.BloqueHongo;
 import static object.ObjectID.BloqueMoneda;
 import static object.ObjectID.Ladrillo;
+import static object.ObjectID.LadrilloMonedas;
 import static object.ObjectID.TuberiaCabeza;
 
 public class Player extends GameObjeto {
@@ -185,6 +187,7 @@ public class Player extends GameObjeto {
                         case BloqueMoneda:
                         case BloqueHongo:
                         case Ladrillo:
+                        case LadrilloMonedas:
                             handleColicionSolida(temp);
                             break;
                         case Bandera:
@@ -237,6 +240,9 @@ public class Player extends GameObjeto {
                         ((Ladrillo) temp).romper();
                         colaBloquesEliminados.add(((Ladrillo) temp));
                     }
+                    break;
+                case LadrilloMonedas:
+                    ((LadrilloMonedas) temp).golpeado();
                     break;
             }
         }

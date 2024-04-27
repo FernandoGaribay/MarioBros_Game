@@ -84,6 +84,11 @@ Elemento:
 bloquePiso
 
 Coordenada:
+7,9
+Elemento:
+bloqueLadrilloMonedas
+
+Coordenada:
 7,13
 Elemento:
 bloquePiso

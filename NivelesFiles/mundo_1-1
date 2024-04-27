@@ -84,11 +84,6 @@ Elemento:
 bloquePiso
 
 Coordenada:
-7,9
-Elemento:
-bloqueLadrilloMonedas
-
-Coordenada:
 7,13
 Elemento:
 bloquePiso
@@ -986,7 +981,7 @@ bloquePiso
 Coordenada:
 78,9
 Elemento:
-bloqueMoneda1
+bloqueHongo
 
 Coordenada:
 78,13
@@ -1221,7 +1216,7 @@ bloqueMoneda1
 Coordenada:
 94,9
 Elemento:
-bloqueLadrillo
+bloqueLadrilloMonedas
 
 Coordenada:
 94,13
@@ -1416,7 +1411,7 @@ bloquePiso
 Coordenada:
 109,5
 Elemento:
-bloqueMoneda1
+bloqueHongo
 
 Coordenada:
 109,9

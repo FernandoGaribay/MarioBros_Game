@@ -137,10 +137,12 @@ public class PlayerColisiones {
         // Bounding Box de la derecha
         if (player.getBoundsRight().intersects(temp.getBounds())) {
             player.setX(temp.getX() - player.getWidth());
+            player.setVelX(0);
         }
         // Bounding Box de la izquierda
         if (player.getBoundsLeft().intersects(temp.getBounds())) {
             player.setX(temp.getX() + temp.getWidth());
+            player.setVelX(0);
         }
 
         // Detectamos si el jugador esta callendo para evitar saltar en el aire

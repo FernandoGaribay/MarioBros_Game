@@ -3,10 +3,12 @@ package object.player;
 public class PlayerMovimiento {
 
     // Objeto jugador
-    Player player;
+    private Player player;
 
     private static boolean caminarAdelante = false;
     private static boolean caminarAtras = false;
+
+    private static float VELOCIDAD_MAXIMA = 5f;
 
     public PlayerMovimiento(Player player) {
         this.player = player;
@@ -24,13 +26,13 @@ public class PlayerMovimiento {
 
         if (caminarAdelante) {
             player.setVelX(player.getVelX() + 0.2f);
-            if (player.getVelX() > 4) {
-                player.setVelX(4);
+            if (player.getVelX() > VELOCIDAD_MAXIMA) {
+                player.setVelX(VELOCIDAD_MAXIMA);
             }
         } else if (caminarAtras) {
             player.setVelX(player.getVelX() - 0.2f);
-            if (player.getVelX() < -4) {
-                player.setVelX(-4);
+            if (player.getVelX() < -VELOCIDAD_MAXIMA) {
+                player.setVelX(-VELOCIDAD_MAXIMA);
             }
         } else if (player.getVelX() != 0) {
             if (Math.abs(player.getVelX()) < 0.01f) {

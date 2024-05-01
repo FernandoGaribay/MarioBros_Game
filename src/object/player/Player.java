@@ -70,34 +70,48 @@ public class Player extends GameObjeto {
         }
 
         if (saltando) {
-            if (getVelX() > 0) {
-                g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) getX(), (int) getY());
-            } else if (getVelX() < 0) {
-                g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
-            } else {
-                if (mirarAdelante) {
+            if (mirarAdelante) {
+                if (getVelX() > 0) {
+                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) getX(), (int) getY());
+                } else {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
+                }
+            } else {
+                if (getVelX() < 0) {
+                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
                 } else {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioSaltando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
                 }
             }
         } else {
-            if (getVelX() == 4.0f || getVelX() >= 2.0f) {
-                animacionCaminando.drawSprite(g, (int) (getX()), (int) (getY()));
-            } else if (getVelX() == -4.0f || getVelX() <= -2.0f) {
-                animacionCaminando.drawSpriteInverso(g, (int) (getX()), (int) (getY()));
-            } else if (getVelX() == 0 && mirarAdelante) {
-                g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) getX(), (int) getY());
-            } else if (getVelX() == 0 && !mirarAdelante) {
-                g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
-            } else if (getVelX() > velocidadAnterior) {
-                g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioDerrapando"), (int) getX(), (int) getY());
-            } else if (getVelX() < velocidadAnterior) {
-                g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioDerrapando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
+            if (mirarAdelante) {
+                if (getVelX() <= 5.0f && getVelX() > 0.6f) {
+                    animacionCaminando.drawSprite(g, (int) (getX()), (int) (getY()));
+                } else if (getVelX() <= 0.5f && getVelX() >= 0.0f) {
+                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) getX(), (int) getY());
+                } else if ((getVelX() > velocidadAnterior) || (getVelX() == -5.0f)) {
+                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioDerrapando"), (int) getX(), (int) getY());
+                } else {
+                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) getX(), (int) getY());
+                }
+            } else if (!mirarAdelante) {
+                if (getVelX() >= -5.0f && getVelX() < -0.6f) {
+                    animacionCaminando.drawSpriteInverso(g, (int) (getX()), (int) (getY()));
+                } else if (getVelX() >= -0.5f && getVelX() <= 0.0f) {
+                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
+                } else if ((getVelX() < velocidadAnterior) || getVelX() == 5.0f) {
+                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioDerrapando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
+                } else {
+                    g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
+                }
+            } else {
+                System.out.println("FALTA DE SPRIITE");
+                System.out.println(getVelX());
+                System.out.println("mirar adelante = " + isMirarAdelante());
+                System.out.println("velocidad anterior = " + velocidadAnterior);
             }
         }
         velocidadAnterior = getVelX();
-
         // Cajas de colisiones -------------------------------------------------
 //        showBounds(g);
     }

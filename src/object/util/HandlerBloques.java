@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import main.Game;
 import object.bloques.Ladrillo;
-import object.Player;
+import object.player.Player;
 
 public class HandlerBloques {
 

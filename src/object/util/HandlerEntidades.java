@@ -8,7 +8,7 @@ import static object.ObjectID.BloqueHongoRojo;
 import object.bloques.BloqueEnigma;
 import object.entidades.EntidadHongoRojo;
 import object.entidades.EntidadHongoVerde;
-import object.Player;
+import object.player.Player;
 
 public class HandlerEntidades {
 

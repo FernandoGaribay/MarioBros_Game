@@ -13,11 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import object.bloques.Barrera;
 import object.util.GameObjeto;
-import object.Player;
+import object.player.Player;
 import object.util.GameEntidad;
 import object.util.HandlerEntidades;
 import object.util.HandlerBloques;
-import utils.KeyInput;
+import object.player.KeyInput;
 import object.ObjectFactory;
 
 public class Game extends Canvas implements Runnable {

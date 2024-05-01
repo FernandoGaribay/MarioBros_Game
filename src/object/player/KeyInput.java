@@ -1,8 +1,9 @@
-package utils;
+package object.player;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import object.Player;
+import object.player.Player;
+import object.player.PlayerMovimiento;
 
 public class KeyInput extends KeyAdapter {
 
@@ -23,10 +24,10 @@ public class KeyInput extends KeyAdapter {
 
         // SALTO
         if (key == KeyEvent.VK_W) {
-            if (!player.hasJumped() && !teclaPresionada[0]) {
+            if (!player.isSaltando() && !teclaPresionada[0]) {
                 teclaPresionada[0] = true;
                 player.setVelY(-12);
-                player.setJumped(true);
+                player.setSaltando(true);
             }
         }
 
@@ -35,7 +36,7 @@ public class KeyInput extends KeyAdapter {
             if (!teclaPresionada[1]) {
                 teclaPresionada[1] = true;
                 player.setMirarAdelante(false);
-                player.setAtras(true);
+                PlayerMovimiento.setCaminarAtras(true);
             }
         }
 
@@ -44,7 +45,7 @@ public class KeyInput extends KeyAdapter {
             if (!teclaPresionada[2]) {
                 teclaPresionada[2] = true;
                 player.setMirarAdelante(true);
-                player.setAdelante(true);
+                PlayerMovimiento.setCaminarAdelante(true);
             }
         }
     }
@@ -59,12 +60,12 @@ public class KeyInput extends KeyAdapter {
 
         if (key == KeyEvent.VK_A) {
             teclaPresionada[1] = false;
-            player.setAtras(false);
+            PlayerMovimiento.setCaminarAtras(false);
         }
 
         if (key == KeyEvent.VK_D) {
             teclaPresionada[2] = false;
-            player.setAdelante(false);
+            PlayerMovimiento.setCaminarAdelante(false);
         }
     }
 }

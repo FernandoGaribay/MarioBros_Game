@@ -5,4 +5,5 @@ public enum EntidadID {
     HongoVerde,
     Goomba,
     Koopa,
+    KoopaCaparazon,
 }

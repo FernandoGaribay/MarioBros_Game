@@ -5,6 +5,7 @@ import main.Game;
 import static object.EntidadID.Goomba;
 import static object.EntidadID.HongoRojo;
 import static object.EntidadID.HongoVerde;
+import static object.EntidadID.KoopaCaparazon;
 import static object.ObjectID.Bandera;
 import static object.ObjectID.BarreraJugador;
 import static object.ObjectID.Bloque;
@@ -16,6 +17,7 @@ import object.bloques.BloqueMoneda;
 import object.bloques.Ladrillo;
 import object.bloques.LadrilloMonedas;
 import object.entidades.EntidadGoomba;
+import object.entidades.EntidadKoopaCaparazon;
 import object.util.EstadoPlayer;
 import object.util.GameEntidad;
 import object.util.GameObjeto;
@@ -92,6 +94,7 @@ public class PlayerColisiones {
                 case HongoVerde:
                 case Goomba:
                 case Koopa:
+                case KoopaCaparazon:
                     handlerColisionEntidad(temp);
                     break;
             }
@@ -139,12 +142,16 @@ public class PlayerColisiones {
         // Bounding Box de la derecha
         if (player.getBoundsRight().intersects(temp.getBounds())) {
             player.setX(temp.getX() - player.getWidth());
-            player.setVelX(0);
+            if (!player.isSaltando()) {
+                player.setVelX(0);
+            }
         }
         // Bounding Box de la izquierda
         if (player.getBoundsLeft().intersects(temp.getBounds())) {
             player.setX(temp.getX() + temp.getWidth());
-            player.setVelX(0);
+            if (!player.isSaltando()) {
+                player.setVelX(0);
+            }
         }
 
         // Detectamos si el jugador esta callendo para evitar saltar en el aire
@@ -164,13 +171,12 @@ public class PlayerColisiones {
         if (inmunidad != 0) {
             return;
         }
+        if (temp.getInmunidad() != 0) {
+            return;
+        }
 
         // Bounding Box de los pies
         if (player.getBounds().intersects(temp.getBounds())) {
-            if(temp.getInmunidad() != 0 ){
-                return;
-            }
-            
             switch (temp.getID()) {
                 case HongoRojo:
                     handlerEntidades.eliminarEntidad(temp);
@@ -182,15 +188,25 @@ public class PlayerColisiones {
                     break;
                 case Goomba:
                     handlerEntidades.eliminarEntidad(temp);
-                    player.setVelY(-7f);
+                    player.setVelY(-8f);
                     break;
                 case Koopa:
-                    EntidadGoomba newEntidad = new EntidadGoomba(temp.getX(), temp.getY(), 32, 32, handlerBloques);
+                    EntidadKoopaCaparazon newEntidad = new EntidadKoopaCaparazon(temp.getX(), temp.getY(), 32, 26, handlerBloques);
                     newEntidad.setInmunidad(5);
                     handlerEntidades.addEntidad(newEntidad);
                     handlerEntidades.eliminarEntidad(temp);
-                    
-                    player.setVelY(-7f);
+                    player.setVelY(-8f);
+                    break;
+                case KoopaCaparazon:
+                    EntidadKoopaCaparazon caparazon = ((EntidadKoopaCaparazon) temp);
+
+                    if (caparazon.getVelX() != 0) {
+                        caparazon.detenerMovimiento();
+                    } else {
+                        caparazon.iniciarMovimiento(true);
+                    }
+                    caparazon.setInmunidad(10);
+                    player.setVelY(-8f);
                     break;
             }
             return;
@@ -209,6 +225,26 @@ public class PlayerColisiones {
                         inmunidad = 120;
                         player.setAnimacionDano(true);
                         player.cambiarEstado(1);
+                    }
+                    break;
+                case KoopaCaparazon:
+                    EntidadKoopaCaparazon caparazon = ((EntidadKoopaCaparazon) temp);
+                    if (caparazon.getVelX() == 0) {
+                        if (player.isMirarAdelante()) {
+                            caparazon.iniciarMovimiento(true);
+                        } else {
+                            caparazon.iniciarMovimiento(false);
+                        }
+                        caparazon.setInmunidad(60);
+                    } else {
+                        if (player.getHp() == 1) {
+                            player.setAnimacionMuerte(true);
+                            break;
+                        } else {
+                            inmunidad = 120;
+                            player.setAnimacionDano(true);
+                            player.cambiarEstado(1);
+                        }
                     }
                     break;
             }

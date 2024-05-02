@@ -7,48 +7,45 @@ import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import object.EntidadID;
+import static object.ObjectID.BarreraEntidades;
+import static object.ObjectID.Bloque;
+import static object.ObjectID.BloqueHongoRojo;
 import object.util.GameObjeto;
 import object.util.HandlerBloques;
-import static object.ObjectID.Bloque;
 import static object.ObjectID.BloqueMoneda;
 import static object.ObjectID.Ladrillo;
 import static object.ObjectID.TuberiaCabeza;
-import static object.ObjectID.BloqueHongoRojo;
 
-public class EntidadGoomba extends GameEntidad {
+public class EntidadKoopaCaparazon extends GameEntidad {
 
     // OBJETOS
-    private Animacion animacion;
+    private BufferedImage img;
 
-    public EntidadGoomba(float x, float y, int width, int height, HandlerBloques handler) {
-        super(x, y, EntidadID.Goomba, width, height, handler);
-        setVelX(-1.2f);
-
-        animacion = new Animacion(10,
-                Texturas.getEntidadesTextura("entidadGoombaCaminando1"),
-                Texturas.getEntidadesTextura("entidadGoombaCaminando2")
-        );
+    public EntidadKoopaCaparazon(float x, float y, int width, int height, HandlerBloques handler) {
+        super(x, y, EntidadID.KoopaCaparazon, width, height, handler);
+        img = Texturas.getEntidadesTextura("entidadKoopaCaparazon");
+        detenerMovimiento();
     }
 
     @Override
     public void tick() {
-        animacion.runAnimacion();
-
         aplicarMovimiento();
         aplicarGravedad();
         aplicarColisiones();
+        aplicarInmunidad();
     }
 
     @Override
     public void render(LibreriaGrafica g) {
-        animacion.drawSprite(g, (int) getX(), (int) getY());
+        g.drawImage(img, (int) getX(), (int) getY());
         showBounds(g);
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int) (getX() + getWidth() / 4), (int) (getY() + getWidth() / 2), (int) (getWidth() / 2), (int) (getHeight() / 2));
+        return new Rectangle((int) (getX() + getWidth() / 4), (int) (getY() + getHeight() / 2), (int) (getWidth() / 2), (int) (getHeight() / 2));
     }
 
     public Rectangle getBoundsSides() {
@@ -60,7 +57,7 @@ public class EntidadGoomba extends GameEntidad {
 
     @Override
     public GameEntidad clone() {
-        return new EntidadGoomba((int) x, (int) y, (int) width, (int) height, handler);
+        return new EntidadKoopaCaparazon((int) x, (int) y, (int) width, (int) height, handler);
     }
 
     public void aplicarMovimiento() {
@@ -100,6 +97,24 @@ public class EntidadGoomba extends GameEntidad {
         // Bounding Box de los lados
         if (getBoundsSides().intersects(temp.getBounds())) {
             setVelX(getVelX() * -1);
+        }
+    }
+
+    public void detenerMovimiento() {
+        setVelX(0);
+    }
+
+    public void iniciarMovimiento(boolean adelante) {
+        if (adelante) {
+            setVelX(4.0f);
+        } else {
+            setVelX(-4.0f);
+        }
+    }
+
+    private void aplicarInmunidad() {
+        if (getInmunidad() != 0) {
+            setInmunidad(getInmunidad() - 1);
         }
     }
 

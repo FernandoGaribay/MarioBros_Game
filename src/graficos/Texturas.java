@@ -93,6 +93,7 @@ public class Texturas {
         texturasMap.put("bloqueBarreraEntidades", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueBarreraEntidades"));
         texturasMap.put("entidadGoomba", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoomba"));
         texturasMap.put("entidadKoopa", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadKoopa"));
+        texturasMap.put("entidadKoopaCaparazon", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadKoopaCaparazon"));
     }
 
     private static void getElementosFondo() {
@@ -126,6 +127,7 @@ public class Texturas {
         entidadesMap.put("entidadGoombaCaminando1", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoombaCaminando1"));
         entidadesMap.put("entidadGoombaCaminando2", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoombaCaminando2"));
         entidadesMap.put("entidadKoopa", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadKoopa"));
+        entidadesMap.put("entidadKoopaCaparazon", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadKoopaCaparazon"));
         entidadesMap.put("entidadKoopaCaminando1", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadKoopaCaminando1"));
         entidadesMap.put("entidadKoopaCaminando2", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadKoopaCaminando2"));
     }

@@ -28,6 +28,7 @@ import object.bloques.TuberiaCabeza;
 import object.entidades.EntidadHongoRojo;
 import object.entidades.EntidadHongoVerde;
 import object.entidades.EntidadKoopa;
+import object.entidades.EntidadKoopaCaparazon;
 import object.util.GameObjeto;
 import object.util.GameEntidad;
 
@@ -62,6 +63,7 @@ public class ObjectFactory {
 
         entidadesPrototipos.put("entidadGoomba", new EntidadGoomba(0, 0, 32, 32, null));
         entidadesPrototipos.put("entidadKoopa", new EntidadKoopa(0, 0, 32, 46, null));
+        entidadesPrototipos.put("entidadKoopaCaparazon", new EntidadKoopaCaparazon(0, 0, 32, 26, null));
         entidadesPrototipos.put("entidadHongoRojo", new EntidadHongoRojo(0, 0, 32, 32, null));
         entidadesPrototipos.put("entidadHongoVerde", new EntidadHongoVerde(0, 0, 32, 32, null));
     }

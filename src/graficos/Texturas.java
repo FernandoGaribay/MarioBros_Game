@@ -36,7 +36,7 @@ public class Texturas {
         getNubesTexturas();
         getElementosFondo();
 
-        getEntidadesTeturas();
+        getEntidadesTexturas();
 
         getMarioTexturas();
 
@@ -92,6 +92,7 @@ public class Texturas {
         texturasMap.put("bloqueBarreraJugador", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueBarreraJugador"));
         texturasMap.put("bloqueBarreraEntidades", lectorMatriz.drawPixelArt("Sprites/Bloques/bloqueBarreraEntidades"));
         texturasMap.put("entidadGoomba", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoomba"));
+        texturasMap.put("entidadKoopa", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadKoopa"));
     }
 
     private static void getElementosFondo() {
@@ -117,13 +118,16 @@ public class Texturas {
         texturasMap.put("bloqueNubeGrande", lectorMatriz.drawPixelArt("Sprites/Nubes/bloqueNubeGrande"));
     }
 
-    private static void getEntidadesTeturas() {
+    private static void getEntidadesTexturas() {
         entidadesMap.put("entidadMoneda", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadMoneda"));
         entidadesMap.put("entidadHongoRojo", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadHongoRojo"));
         entidadesMap.put("entidadHongoVerde", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadHongoVerde"));
         entidadesMap.put("entidadGoomba", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoomba"));
         entidadesMap.put("entidadGoombaCaminando1", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoombaCaminando1"));
         entidadesMap.put("entidadGoombaCaminando2", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadGoombaCaminando2"));
+        entidadesMap.put("entidadKoopa", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadKoopa"));
+        entidadesMap.put("entidadKoopaCaminando1", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadKoopaCaminando1"));
+        entidadesMap.put("entidadKoopaCaminando2", lectorMatriz.drawPixelArt("Sprites/Entidades/entidadKoopaCaminando2"));
     }
 
     public static BufferedImage getTextura(String textura) {

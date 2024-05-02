@@ -90,6 +90,7 @@ public class PlayerColisiones {
                 case HongoRojo:
                 case HongoVerde:
                 case Goomba:
+                case Koopa:
                     handlerColisionEntidad(temp);
                     break;
             }
@@ -175,10 +176,12 @@ public class PlayerColisiones {
                     System.out.println("Hongo verde recogido");
                     break;
                 case Goomba:
+                case Koopa:
                     handlerEntidades.eliminarEntidad(temp);
                     player.setVelY(-6f);
                     break;
             }
+            return;
         }
         // Bounding Box de la derecha e izquierda
         if (player.getBoundsRight().intersects(temp.getBounds())
@@ -186,6 +189,7 @@ public class PlayerColisiones {
 
             switch (temp.getID()) {
                 case Goomba:
+                case Koopa:
                     if (player.getHp() == 1) {
                         player.setAnimacionMuerte(true);
                         break;

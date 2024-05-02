@@ -8,33 +8,34 @@ import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
 import object.EntidadID;
+import static object.ObjectID.BarreraEntidades;
+import static object.ObjectID.Bloque;
+import static object.ObjectID.BloqueHongoRojo;
 import object.util.GameObjeto;
 import object.util.HandlerBloques;
-import static object.ObjectID.Bloque;
 import static object.ObjectID.BloqueMoneda;
 import static object.ObjectID.Ladrillo;
 import static object.ObjectID.TuberiaCabeza;
-import static object.ObjectID.BloqueHongoRojo;
 
-public class EntidadGoomba extends GameEntidad {
+public class EntidadKoopa extends GameEntidad {
 
     // OBJETOS
     private Animacion animacion;
 
-    public EntidadGoomba(float x, float y, int width, int height, HandlerBloques handler) {
-        super(x, y, EntidadID.Goomba, width, height, handler);
+    public EntidadKoopa(float x, float y, int width, int height, HandlerBloques handler) {
+        super(x, y, EntidadID.Koopa, width, height, handler);
         setVelX(-1.2f);
 
         animacion = new Animacion(10,
-                Texturas.getEntidadesTextura("entidadGoombaCaminando1"),
-                Texturas.getEntidadesTextura("entidadGoombaCaminando2")
+                Texturas.getEntidadesTextura("entidadKoopaCaminando1"),
+                Texturas.getEntidadesTextura("entidadKoopaCaminando2")
         );
     }
 
     @Override
     public void tick() {
         animacion.runAnimacion();
-        
+
         aplicarMovimiento();
         aplicarGravedad();
         aplicarColisiones();
@@ -42,13 +43,17 @@ public class EntidadGoomba extends GameEntidad {
 
     @Override
     public void render(LibreriaGrafica g) {
-        animacion.drawSprite(g, (int) getX(), (int) getY());
-        showBounds(g);
+        if (getVelX() > 0) {
+            animacion.drawSprite(g, (int) getX(), (int) getY());
+        } else {
+            animacion.drawSpriteInverso(g, (int) getX(), (int) getY());
+        }
+//        showBounds(g);
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int) (getX() + getWidth() / 4), (int) (getY() + getWidth() / 2), (int) (getWidth() / 2), (int) (getHeight() / 2));
+        return new Rectangle((int) (getX() + getWidth() / 4), (int) (getY() + getHeight() / 2), (int) (getWidth() / 2), (int) (getHeight() / 2));
     }
 
     public Rectangle getBoundsSides() {
@@ -60,7 +65,7 @@ public class EntidadGoomba extends GameEntidad {
 
     @Override
     public GameEntidad clone() {
-        return new EntidadGoomba((int) x, (int) y, (int) width, (int) height, handler);
+        return new EntidadKoopa((int) x, (int) y, (int) width, (int) height, handler);
     }
 
     public void aplicarMovimiento() {

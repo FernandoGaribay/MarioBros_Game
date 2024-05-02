@@ -34,10 +34,11 @@ public class EntidadGoomba extends GameEntidad {
     @Override
     public void tick() {
         animacion.runAnimacion();
-        
+
         aplicarMovimiento();
         aplicarGravedad();
         aplicarColisiones();
+        aplicarInmunidad();
     }
 
     @Override
@@ -100,6 +101,12 @@ public class EntidadGoomba extends GameEntidad {
         // Bounding Box de los lados
         if (getBoundsSides().intersects(temp.getBounds())) {
             setVelX(getVelX() * -1);
+        }
+    }
+
+    private void aplicarInmunidad() {
+        if (getInmunidad() != 0) {
+            setInmunidad(getInmunidad() - 1);
         }
     }
 

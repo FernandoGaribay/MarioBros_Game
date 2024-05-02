@@ -15,6 +15,7 @@ import object.bloques.BloqueEnigma;
 import object.bloques.BloqueMoneda;
 import object.bloques.Ladrillo;
 import object.bloques.LadrilloMonedas;
+import object.entidades.EntidadGoomba;
 import object.util.EstadoPlayer;
 import object.util.GameEntidad;
 import object.util.GameObjeto;
@@ -166,6 +167,10 @@ public class PlayerColisiones {
 
         // Bounding Box de los pies
         if (player.getBounds().intersects(temp.getBounds())) {
+            if(temp.getInmunidad() != 0 ){
+                return;
+            }
+            
             switch (temp.getID()) {
                 case HongoRojo:
                     handlerEntidades.eliminarEntidad(temp);
@@ -176,9 +181,16 @@ public class PlayerColisiones {
                     System.out.println("Hongo verde recogido");
                     break;
                 case Goomba:
-                case Koopa:
                     handlerEntidades.eliminarEntidad(temp);
-                    player.setVelY(-6f);
+                    player.setVelY(-7f);
+                    break;
+                case Koopa:
+                    EntidadGoomba newEntidad = new EntidadGoomba(temp.getX(), temp.getY(), 32, 32, handlerBloques);
+                    newEntidad.setInmunidad(5);
+                    handlerEntidades.addEntidad(newEntidad);
+                    handlerEntidades.eliminarEntidad(temp);
+                    
+                    player.setVelY(-7f);
                     break;
             }
             return;

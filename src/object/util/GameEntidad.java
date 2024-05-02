@@ -11,6 +11,7 @@ public abstract class GameEntidad {
     protected float x;
     protected float y;
     protected float width, height;
+    private int inmunidad;
     protected HandlerBloques handler;
     private float velX, velY;
 
@@ -88,6 +89,16 @@ public abstract class GameEntidad {
     public void setHeight(float height) {
         this.height = height;
     }
+
+    public int getInmunidad() {
+        return inmunidad;
+    }
+
+    public void setInmunidad(int inmunidad) {
+        this.inmunidad = inmunidad;
+    }
+    
+    
 
     public void setHandler(HandlerBloques handler) {
         this.handler = handler;

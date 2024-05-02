@@ -294,6 +294,11 @@ Elemento:
 bloqueMoneda1
 
 Coordenada:
+23,11
+Elemento:
+entidadKoopa
+
+Coordenada:
 23,13
 Elemento:
 bloquePiso
@@ -322,11 +327,6 @@ Coordenada:
 24,14
 Elemento:
 bloquePiso
-
-Coordenada:
-25,12
-Elemento:
-entidadGoomba
 
 Coordenada:
 25,13

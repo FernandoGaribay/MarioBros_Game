@@ -22,8 +22,8 @@ public class EntidadKoopa extends GameEntidad {
     // OBJETOS
     private Animacion animacion;
 
-    public EntidadKoopa(float x, float y, int width, int height, HandlerBloques handler) {
-        super(x, y, EntidadID.Koopa, width, height, handler);
+    public EntidadKoopa(float x, float y, int width, int height) {
+        super(x, y, EntidadID.Koopa, width, height);
         setVelX(-1.2f);
 
         animacion = new Animacion(10,
@@ -65,7 +65,7 @@ public class EntidadKoopa extends GameEntidad {
 
     @Override
     public GameEntidad clone() {
-        return new EntidadKoopa((int) x, (int) y, (int) width, (int) height, handler);
+        return new EntidadKoopa((int) x, (int) y, (int) width, (int) height);
     }
 
     public void aplicarMovimiento() {
@@ -74,12 +74,12 @@ public class EntidadKoopa extends GameEntidad {
     }
 
     private void aplicarColisiones() {
-        int size = handler.getGameObj().size() - 1;
+        int size = Game.getHandlerBloques().getGameObj().size() - 1;
         int renderIzquierda = (int) (getX() - Game.getMAX_RENDERIZADO());
         int renderDerecha = (int) (getX() + Game.getMAX_RENDERIZADO());
 
         for (int i = 0; i < size; i++) {
-            GameObjeto temp = handler.getGameObj().get(i);
+            GameObjeto temp = Game.getHandlerBloques().getGameObj().get(i);
 
             if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
                 switch (temp.getID()) {

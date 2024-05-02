@@ -20,14 +20,14 @@ public class EntidadHongoRojo extends GameEntidad {
     // Variables
     private int countAnimacion;
     private boolean animacionInicioCompletada = false;
-
+    HandlerBloques handler;
     private float maskX;
     private float maskY;
 
-    public EntidadHongoRojo(float x, float y, int width, int height, HandlerBloques handler) {
-        super(x, y, EntidadID.HongoRojo, width, height, handler);
+    public EntidadHongoRojo(float x, float y, int width, int height) {
+        super(x, y, EntidadID.HongoRojo, width, height);
         countAnimacion = 0;
-
+        handler = Game.getHandlerBloques();
         maskX = x;
         maskY = y;
         setVelX(2f);
@@ -65,7 +65,7 @@ public class EntidadHongoRojo extends GameEntidad {
 
     @Override
     public GameEntidad clone() {
-        return new EntidadHongoRojo((int) x, (int) y, (int) width, (int) height, handler);
+        return new EntidadHongoRojo((int) x, (int) y, (int) width, (int) height);
     }
 
     public void aplicarMovimiento() {
@@ -94,6 +94,26 @@ public class EntidadHongoRojo extends GameEntidad {
                 }
             }
         }
+
+        size = Game.getHandlerEntidades().getGameEntidades().size() - 1;
+        for (int i = 0; i < size; i++) {
+            GameEntidad temp = Game.getHandlerEntidades().getGameEntidades().get(i);
+
+            if(temp == this){
+                continue;
+            }
+            
+            if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
+                switch (temp.getID()) {
+                    case HongoRojo:
+//                        handleColisionEntidad(temp);
+                        break;
+                    case KoopaCaparazon:
+//                        handleColisionEntidad(temp);
+                        break;
+                }
+            }
+        }
     }
 
     private void handleColisionSolida(GameObjeto temp) {
@@ -108,6 +128,13 @@ public class EntidadHongoRojo extends GameEntidad {
         }
     }
 
+    private void handleColisionEntidad(GameEntidad temp) {
+        // Bounding Box de los pies
+        if (getBounds().intersects(temp.getBounds())) {
+            GameEntidad.addEntidadABorrar(this);
+        }
+    }
+
     private void animacionDeInicio() {
         if (countAnimacion == 32) {
             animacionInicioCompletada = true;
@@ -117,6 +144,10 @@ public class EntidadHongoRojo extends GameEntidad {
         countAnimacion++;
     }
 
+    public void actualizarHandler(){
+//        this.handler = Game.getHandlerBloques();
+    }
+    
     private void showBounds(LibreriaGrafica g) {
         g.drawRectangle(getBounds(), Color.red);
         g.drawRectangle(getBoundsSides(), Color.red);

@@ -15,6 +15,7 @@ import main.Game;
 import object.ObjectID;
 import object.util.HandlerEntidades;
 import object.util.EstadoPlayer;
+import object.util.GameEntidad;
 
 public class Player extends GameObjeto {
 
@@ -48,7 +49,7 @@ public class Player extends GameObjeto {
         this.playerMovimiento = new PlayerMovimiento(this);
         this.playerAnimaciones = new PlayerAnimaciones(this);
         this.playerColisiones = new PlayerColisiones(this, handlerBloques, handlerEntidades);
-        this.cambiarEstado(1);
+        this.cambiarEstado(2);
     }
 
     @Override
@@ -188,6 +189,11 @@ public class Player extends GameObjeto {
 
     public ArrayList<BloqueEnigma> getBloquesDrops() {
         ArrayList<BloqueEnigma> output = playerColisiones.getBloquesDrops();
+        return output;
+    }
+
+    public ArrayList<GameEntidad> getEntidadesDrops() {
+        ArrayList<GameEntidad> output = playerColisiones.getEntidadesDrops();
         return output;
     }
 

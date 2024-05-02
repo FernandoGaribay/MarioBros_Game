@@ -61,11 +61,11 @@ public class ObjectFactory {
         bloquesPrototipos.put("bloqueBarreraJugador", new Barrera(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueBarreraEntidades", new BloqueBarreraEntidades(0, 0, 32, 32, 0));
 
-        entidadesPrototipos.put("entidadGoomba", new EntidadGoomba(0, 0, 32, 32, null));
-        entidadesPrototipos.put("entidadKoopa", new EntidadKoopa(0, 0, 32, 46, null));
-        entidadesPrototipos.put("entidadKoopaCaparazon", new EntidadKoopaCaparazon(0, 0, 32, 26, null));
-        entidadesPrototipos.put("entidadHongoRojo", new EntidadHongoRojo(0, 0, 32, 32, null));
-        entidadesPrototipos.put("entidadHongoVerde", new EntidadHongoVerde(0, 0, 32, 32, null));
+        entidadesPrototipos.put("entidadGoomba", new EntidadGoomba(0, 0, 32, 32));
+        entidadesPrototipos.put("entidadKoopa", new EntidadKoopa(0, 0, 32, 46));
+        entidadesPrototipos.put("entidadKoopaCaparazon", new EntidadKoopaCaparazon(0, 0, 32, 26));
+        entidadesPrototipos.put("entidadHongoRojo", new EntidadHongoRojo(0, 0, 32, 32));
+        entidadesPrototipos.put("entidadHongoVerde", new EntidadHongoVerde(0, 0, 32, 32));
     }
 
     public static GameObjeto crearBloque(String type) {

@@ -8,6 +8,7 @@ import static object.ObjectID.BloqueHongoRojo;
 import object.bloques.BloqueEnigma;
 import object.entidades.EntidadHongoRojo;
 import object.entidades.EntidadHongoVerde;
+import object.entidades.EntidadKoopaCaparazon;
 import object.player.Player;
 
 public class HandlerEntidades {
@@ -43,12 +44,29 @@ public class HandlerEntidades {
         for (BloqueEnigma elimiarBloque : elimiarBloques) {
             switch (elimiarBloque.getID()) {
                 case BloqueHongoRojo:
-                    addEntidad(new EntidadHongoRojo(elimiarBloque.getX(), elimiarBloque.getY(), 32, 32, Game.getHandlerBloques()));
+                    addEntidad(new EntidadHongoRojo(elimiarBloque.getX(), elimiarBloque.getY(), 32, 32));
                     break;
                 case BloqueHongoVerde:
-                    addEntidad(new EntidadHongoVerde(elimiarBloque.getX(), elimiarBloque.getY(), 32, 32, Game.getHandlerBloques()));
+                    addEntidad(new EntidadHongoVerde(elimiarBloque.getX(), elimiarBloque.getY(), 32, 32));
                     break;
             }
+        }
+        List<GameEntidad> elimiarEntidades = player.getEntidadesDrops();
+        for (GameEntidad elimiarEntidad : elimiarEntidades) {
+            switch (elimiarEntidad.getID()) {
+                case Koopa:
+                    eliminarEntidad(elimiarEntidad);
+                    addEntidad(new EntidadKoopaCaparazon(elimiarEntidad.getX(), elimiarEntidad.getY(), 32, 26));
+                    break;
+            }
+        }
+        List<GameEntidad> entidadesBorrar = GameEntidad.getEntidadesBorrar();
+        for (GameEntidad eliminarEntidad : entidadesBorrar) {
+            eliminarEntidad(eliminarEntidad);
+        }
+        List<GameEntidad> aniadirEntidades = GameEntidad.getEntidadesAniadir();
+        for (GameEntidad addEntidad : aniadirEntidades) {
+            addEntidad(new EntidadKoopaCaparazon(addEntidad.getX(), addEntidad.getY(), 32, 26));
         }
     }
 

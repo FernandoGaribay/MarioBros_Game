@@ -124,7 +124,6 @@ public class Game extends Canvas implements Runnable {
 
                         obj.setX(casillaNivel.getX() * 32);
                         obj.setY(casillaNivel.getY() * 32);
-                        obj.setHandler(handlerBloques);
                         handlerEntidades.addEntidad(obj);
                     }
 
@@ -288,6 +287,10 @@ public class Game extends Canvas implements Runnable {
 
     public static HandlerBloques getHandlerBloques() {
         return handlerBloques;
+    }
+
+    public static HandlerEntidades getHandlerEntidades() {
+        return handlerEntidades;
     }
 
 }

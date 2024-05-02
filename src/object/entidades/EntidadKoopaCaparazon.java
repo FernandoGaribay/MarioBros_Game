@@ -23,8 +23,8 @@ public class EntidadKoopaCaparazon extends GameEntidad {
     // OBJETOS
     private BufferedImage img;
 
-    public EntidadKoopaCaparazon(float x, float y, int width, int height, HandlerBloques handler) {
-        super(x, y, EntidadID.KoopaCaparazon, width, height, handler);
+    public EntidadKoopaCaparazon(float x, float y, int width, int height) {
+        super(x, y, EntidadID.KoopaCaparazon, width, height);
         img = Texturas.getEntidadesTextura("entidadKoopaCaparazon");
         detenerMovimiento();
     }
@@ -40,7 +40,7 @@ public class EntidadKoopaCaparazon extends GameEntidad {
     @Override
     public void render(LibreriaGrafica g) {
         g.drawImage(img, (int) getX(), (int) getY());
-        showBounds(g);
+//        showBounds(g);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class EntidadKoopaCaparazon extends GameEntidad {
 
     @Override
     public GameEntidad clone() {
-        return new EntidadKoopaCaparazon((int) x, (int) y, (int) width, (int) height, handler);
+        return new EntidadKoopaCaparazon((int) x, (int) y, (int) width, (int) height);
     }
 
     public void aplicarMovimiento() {
@@ -66,12 +66,12 @@ public class EntidadKoopaCaparazon extends GameEntidad {
     }
 
     private void aplicarColisiones() {
-        int size = handler.getGameObj().size() - 1;
+        int size = Game.getHandlerBloques().getGameObj().size() - 1;
         int renderIzquierda = (int) (getX() - Game.getMAX_RENDERIZADO());
         int renderDerecha = (int) (getX() + Game.getMAX_RENDERIZADO());
 
         for (int i = 0; i < size; i++) {
-            GameObjeto temp = handler.getGameObj().get(i);
+            GameObjeto temp = Game.getHandlerBloques().getGameObj().get(i);
 
             if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
                 switch (temp.getID()) {
@@ -102,6 +102,7 @@ public class EntidadKoopaCaparazon extends GameEntidad {
 
     public void detenerMovimiento() {
         setVelX(0);
+        setInmunidad(30);
     }
 
     public void iniciarMovimiento(boolean adelante) {

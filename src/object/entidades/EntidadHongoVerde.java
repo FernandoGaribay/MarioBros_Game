@@ -28,8 +28,8 @@ public class EntidadHongoVerde extends GameEntidad {
     private float maskX;
     private float maskY;
 
-    public EntidadHongoVerde(float x, float y, int width, int height, HandlerBloques handler) {
-        super(x, y, EntidadID.HongoVerde, width, height, handler);
+    public EntidadHongoVerde(float x, float y, int width, int height) {
+        super(x, y, EntidadID.HongoVerde, width, height);
         countAnimacion = 0;
 
         maskX = x;
@@ -69,7 +69,7 @@ public class EntidadHongoVerde extends GameEntidad {
 
     @Override
     public GameEntidad clone() {
-        return new EntidadHongoVerde((int) x, (int) y, (int) width, (int) height, handler);
+        return new EntidadHongoVerde((int) x, (int) y, (int) width, (int) height);
     }
 
     public void aplicarMovimiento() {
@@ -78,12 +78,12 @@ public class EntidadHongoVerde extends GameEntidad {
     }
 
     private void aplicarColisiones() {
-        int size = handler.getGameObj().size() - 1;
+        int size = Game.getHandlerBloques().getGameObj().size() - 1;
         int renderIzquierda = (int) (getX() - Game.getMAX_RENDERIZADO());
         int renderDerecha = (int) (getX() + Game.getMAX_RENDERIZADO());
 
         for (int i = 0; i < size; i++) {
-            GameObjeto temp = handler.getGameObj().get(i);
+            GameObjeto temp = Game.getHandlerBloques().getGameObj().get(i);
 
             if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
                 switch (temp.getID()) {

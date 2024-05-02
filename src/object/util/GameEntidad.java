@@ -3,6 +3,8 @@ package object.util;
 import object.EntidadID;
 import graficos.LibreriaGrafica;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class GameEntidad {
 
@@ -12,18 +14,39 @@ public abstract class GameEntidad {
     protected float y;
     protected float width, height;
     private int inmunidad;
-    protected HandlerBloques handler;
     private float velX, velY;
+    private static List<GameEntidad> entidadesBorrar;
+    private static List<GameEntidad> entidadesAniadir;
 
-    public GameEntidad(float x, float y, EntidadID id, float width, float height, HandlerBloques handler) {
+    public GameEntidad(float x, float y, EntidadID id, float width, float height) {
         this.x = x;
         this.y = y;
         this.id = id;
         this.width = width;
         this.height = height;
-        this.handler = handler;
+        
+        entidadesBorrar = new ArrayList<>();
+        entidadesAniadir = new ArrayList<>();
     }
 
+    
+    
+    public static void addEntidadABorrar(GameEntidad entidad){
+        entidadesBorrar.add(entidad);
+    }
+    
+    public static List<GameEntidad> getEntidadesBorrar(){
+        return entidadesBorrar;
+    }
+    
+    public static void addEntidadAAniadir(GameEntidad entidad){
+        entidadesAniadir.add(entidad);
+    }
+    
+    public static List<GameEntidad> getEntidadesAniadir(){
+        return entidadesAniadir;
+    }
+    
     public abstract void tick();
 
     public abstract void render(LibreriaGrafica g);
@@ -98,11 +121,5 @@ public abstract class GameEntidad {
         this.inmunidad = inmunidad;
     }
     
-    
-
-    public void setHandler(HandlerBloques handler) {
-        this.handler = handler;
-    }
-
     public abstract GameEntidad clone();
 }

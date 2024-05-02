@@ -8,6 +8,7 @@ import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
 import object.EntidadID;
+import static object.EntidadID.HongoRojo;
 import object.util.GameObjeto;
 import object.util.HandlerBloques;
 import static object.ObjectID.Bloque;
@@ -21,8 +22,8 @@ public class EntidadGoomba extends GameEntidad {
     // OBJETOS
     private Animacion animacion;
 
-    public EntidadGoomba(float x, float y, int width, int height, HandlerBloques handler) {
-        super(x, y, EntidadID.Goomba, width, height, handler);
+    public EntidadGoomba(float x, float y, int width, int height) {
+        super(x, y, EntidadID.Goomba, width, height);
         setVelX(-1.2f);
 
         animacion = new Animacion(10,
@@ -43,7 +44,7 @@ public class EntidadGoomba extends GameEntidad {
     @Override
     public void render(LibreriaGrafica g) {
         animacion.drawSprite(g, (int) getX(), (int) getY());
-        showBounds(g);
+//        showBounds(g);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class EntidadGoomba extends GameEntidad {
 
     @Override
     public GameEntidad clone() {
-        return new EntidadGoomba((int) x, (int) y, (int) width, (int) height, handler);
+        return new EntidadGoomba((int) x, (int) y, (int) width, (int) height);
     }
 
     public void aplicarMovimiento() {
@@ -69,12 +70,12 @@ public class EntidadGoomba extends GameEntidad {
     }
 
     private void aplicarColisiones() {
-        int size = handler.getGameObj().size() - 1;
+        int size = Game.getHandlerBloques().getGameObj().size() - 1;
         int renderIzquierda = (int) (getX() - Game.getMAX_RENDERIZADO());
         int renderDerecha = (int) (getX() + Game.getMAX_RENDERIZADO());
 
         for (int i = 0; i < size; i++) {
-            GameObjeto temp = handler.getGameObj().get(i);
+            GameObjeto temp = Game.getHandlerBloques().getGameObj().get(i);
 
             if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
                 switch (temp.getID()) {
@@ -85,6 +86,23 @@ public class EntidadGoomba extends GameEntidad {
                     case BloqueHongoRojo:
                     case Ladrillo:
                         handleColisionSolida(temp);
+                        break;
+                }
+            }
+        }
+
+        size = Game.getHandlerEntidades().getGameEntidades().size();
+        for (int i = 0; i < size; i++) {
+            GameEntidad temp = Game.getHandlerEntidades().getGameEntidades().get(i);
+
+            if (temp == this) {
+                continue;
+            }
+
+            if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
+                switch (temp.getID()) {
+                    case KoopaCaparazon:
+                        handleColisionEntidad(temp);
                         break;
                 }
             }
@@ -100,6 +118,15 @@ public class EntidadGoomba extends GameEntidad {
         // Bounding Box de los lados
         if (getBoundsSides().intersects(temp.getBounds())) {
             setVelX(getVelX() * -1);
+        }
+    }
+
+    private void handleColisionEntidad(GameEntidad temp) {
+        // Bounding Box de los pies
+        if (getBounds().intersects(temp.getBounds())) {
+            if (temp.getVelX() != 0) {
+                GameEntidad.addEntidadABorrar(this);
+            }
         }
     }
 

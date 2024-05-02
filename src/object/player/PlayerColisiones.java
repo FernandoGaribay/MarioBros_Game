@@ -17,6 +17,8 @@ import object.bloques.BloqueMoneda;
 import object.bloques.Ladrillo;
 import object.bloques.LadrilloMonedas;
 import object.entidades.EntidadGoomba;
+import object.entidades.EntidadHongoRojo;
+import object.entidades.EntidadKoopa;
 import object.entidades.EntidadKoopaCaparazon;
 import object.util.EstadoPlayer;
 import object.util.GameEntidad;
@@ -36,6 +38,7 @@ public class PlayerColisiones {
     // LISTAS DE OBJETOS A ELIMINAR
     private ArrayList<Ladrillo> colaBloquesEliminados;
     private ArrayList<BloqueEnigma> colaBloquesDrops;
+    private ArrayList<GameEntidad> colaEntidadesDrops;
 
     // VARIABLES
     private int inmunidad;
@@ -46,6 +49,7 @@ public class PlayerColisiones {
         this.handlerEntidades = handlerEntidades;
         this.colaBloquesEliminados = new ArrayList<>();
         this.colaBloquesDrops = new ArrayList<>();
+        this.colaEntidadesDrops = new ArrayList<>();
         this.inmunidad = 0;
     }
 
@@ -191,10 +195,7 @@ public class PlayerColisiones {
                     player.setVelY(-8f);
                     break;
                 case Koopa:
-                    EntidadKoopaCaparazon newEntidad = new EntidadKoopaCaparazon(temp.getX(), temp.getY(), 32, 26, handlerBloques);
-                    newEntidad.setInmunidad(5);
-                    handlerEntidades.addEntidad(newEntidad);
-                    handlerEntidades.eliminarEntidad(temp);
+                    colaEntidadesDrops.add(temp);
                     player.setVelY(-8f);
                     break;
                 case KoopaCaparazon:
@@ -286,6 +287,20 @@ public class PlayerColisiones {
 
         for (BloqueEnigma bloqueEliminar : output) {
             colaBloquesDrops.remove(bloqueEliminar);
+        }
+
+        return output;
+    }
+    
+    public ArrayList<GameEntidad> getEntidadesDrops() {
+        ArrayList<GameEntidad> output = new ArrayList<>();
+
+        for (GameEntidad entidadDrop : colaEntidadesDrops) {
+            output.add(entidadDrop);
+        }
+
+        for (GameEntidad bloqueEliminar : output) {
+            colaEntidadesDrops.remove(bloqueEliminar);
         }
 
         return output;

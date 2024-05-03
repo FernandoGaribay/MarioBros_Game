@@ -4,6 +4,8 @@ import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.image.BufferedImage;
 import main.Game;
+import object.ObjectID;
+import static object.ObjectID.LadrilloRojo;
 
 public class Escombros {
 
@@ -11,7 +13,7 @@ public class Escombros {
     private float width, height, velX, velY;
     private float[] x, y;
 
-    public Escombros(float x, float y, float width, float height) {
+    public Escombros(float x, float y, float width, float height, ObjectID objectID) {
         this.x = new float[4];
         this.y = new float[4];
 
@@ -29,10 +31,20 @@ public class Escombros {
         this.height = height / 2;
 
         this.escombros = new BufferedImage[4];
-        this.escombros[0] = Texturas.getEscombroTextura("ladrilloEscombro");
-        this.escombros[1] = Texturas.getEscombroTextura("ladrilloEscombro");
-        this.escombros[2] = Texturas.getEscombroTextura("ladrilloEscombro");
-        this.escombros[3] = Texturas.getEscombroTextura("ladrilloEscombro");
+        switch (objectID) {
+            case LadrilloRojo:
+                this.escombros[0] = Texturas.getEscombroTextura("ladrilloEscombro");
+                this.escombros[1] = Texturas.getEscombroTextura("ladrilloEscombro");
+                this.escombros[2] = Texturas.getEscombroTextura("ladrilloEscombro");
+                this.escombros[3] = Texturas.getEscombroTextura("ladrilloEscombro");
+                break;
+            case LadrilloAzul:
+                this.escombros[0] = Texturas.getEscombroTextura("ladrilloEscombroAzul");
+                this.escombros[1] = Texturas.getEscombroTextura("ladrilloEscombroAzul");
+                this.escombros[2] = Texturas.getEscombroTextura("ladrilloEscombroAzul");
+                this.escombros[3] = Texturas.getEscombroTextura("ladrilloEscombroAzul");
+                break;
+        }
 
         this.velX = 1f;
         this.velY = -5f;

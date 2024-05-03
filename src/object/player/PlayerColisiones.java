@@ -11,14 +11,16 @@ import static object.ObjectID.BarreraJugador;
 import static object.ObjectID.Bloque;
 import static object.ObjectID.BloqueHongoRojo;
 import static object.ObjectID.BloqueHongoVerde;
+import static object.ObjectID.LadrilloAzul;
 import static object.ObjectID.TuberiaCabeza;
-import object.bloques.BloqueEnigma;
+import object.padres.BloqueEnigma;
+import object.bloques.BloqueLadrilloAzul;
 import object.bloques.BloqueMoneda;
-import object.bloques.Ladrillo;
+import object.bloques.BloqueLadrilloRojo;
 import object.bloques.LadrilloMonedas;
 import object.entidades.EntidadGoomba;
 import object.entidades.EntidadHongoRojo;
-import object.entidades.EntidadKoopa;
+import object.padres.BloqueLadrillo;
 import object.entidades.EntidadKoopaCaparazon;
 import object.util.EstadoPlayer;
 import object.util.GameEntidad;
@@ -36,7 +38,7 @@ public class PlayerColisiones {
     private HandlerEntidades handlerEntidades;
 
     // LISTAS DE OBJETOS A ELIMINAR
-    private ArrayList<Ladrillo> colaBloquesEliminados;
+    private ArrayList<BloqueLadrillo> colaBloquesEliminados;
     private ArrayList<BloqueEnigma> colaBloquesDrops;
     private ArrayList<GameEntidad> colaEntidadesDrops;
 
@@ -78,7 +80,8 @@ public class PlayerColisiones {
                         case BloqueMoneda:
                         case BloqueHongoRojo:
                         case BloqueHongoVerde:
-                        case Ladrillo:
+                        case LadrilloRojo:
+                        case LadrilloAzul:
                         case LadrilloMonedas:
                             handleColicionSolida(temp);
                             break;
@@ -99,6 +102,7 @@ public class PlayerColisiones {
                 case Goomba:
                 case Koopa:
                 case KoopaCaparazon:
+                case Moneda:
                     handlerColisionEntidad(temp);
                     break;
             }
@@ -133,12 +137,13 @@ public class PlayerColisiones {
                 case LadrilloMonedas:
                     ((LadrilloMonedas) temp).golpeado();
                     break;
-                case Ladrillo:
+                case LadrilloRojo:
+                case LadrilloAzul:
                     if (player.getEstadoPlayer() == EstadoPlayer.Chico) {
-                        ((Ladrillo) temp).golpear();
+                        ((BloqueLadrillo) temp).golpear();
                     } else if (player.getEstadoPlayer() == EstadoPlayer.Grande) {
-                        ((Ladrillo) temp).romper();
-                        colaBloquesEliminados.add(((Ladrillo) temp));
+                        ((BloqueLadrillo) temp).romper();
+                        colaBloquesEliminados.add(((BloqueLadrillo) temp));
                     }
                     break;
             }
@@ -208,6 +213,9 @@ public class PlayerColisiones {
                     }
                     player.setVelY(-8f);
                     break;
+                case Moneda:
+                    handlerEntidades.eliminarEntidad(temp);
+                    break;
             }
             return;
         }
@@ -256,17 +264,17 @@ public class PlayerColisiones {
         }
     }
 
-    public ArrayList<Ladrillo> getBloquesAEliminar() {
-        ArrayList<Ladrillo> output = new ArrayList<>();
+    public ArrayList<BloqueLadrillo> getBloquesAEliminar() {
+        ArrayList<BloqueLadrillo> output = new ArrayList<>();
 
-        for (Ladrillo removeBlock : colaBloquesEliminados) {
+        for (BloqueLadrillo removeBlock : colaBloquesEliminados) {
             if (!removeBlock.sePuedeEliminar()) {
                 continue;
             }
             output.add(removeBlock);
         }
 
-        for (Ladrillo bloqueEliminar : output) {
+        for (BloqueLadrillo bloqueEliminar : output) {
             colaBloquesEliminados.remove(bloqueEliminar);
         }
 
@@ -289,7 +297,7 @@ public class PlayerColisiones {
 
         return output;
     }
-    
+
     public ArrayList<GameEntidad> getEntidadesDrops() {
         ArrayList<GameEntidad> output = new ArrayList<>();
 

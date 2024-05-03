@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import main.Game;
-import object.bloques.Ladrillo;
+import object.bloques.BloqueLadrilloRojo;
+import object.padres.BloqueLadrillo;
 import object.player.Player;
 
 public class HandlerBloques {
@@ -37,8 +38,8 @@ public class HandlerBloques {
             }
             obj.tick();
         }
-        List<Ladrillo> elimiarBloques = player.getBloquesAEliminar();
-        for (Ladrillo elimiarBloque : elimiarBloques) {
+        List<BloqueLadrillo> elimiarBloques = player.getBloquesAEliminar();
+        for (BloqueLadrillo elimiarBloque : elimiarBloques) {
             eliminarObj(elimiarBloque);
         }
 

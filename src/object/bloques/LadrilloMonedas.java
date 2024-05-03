@@ -1,5 +1,6 @@
 package object.bloques;
 
+import object.padres.BloqueEnigma;
 import object.util.GameObjeto;
 import graficos.LibreriaGrafica;
 import graficos.Texturas;
@@ -86,7 +87,7 @@ class MonedaLadrillo {
     private float x, y;
 
     public MonedaLadrillo(float x, float y) {
-        this.moneda = Texturas.getEntidadesTextura("entidadMoneda");
+        this.moneda = Texturas.getEntidadesTextura("entidadMoneda1");
         this.x = x;
         this.y = y;
     }

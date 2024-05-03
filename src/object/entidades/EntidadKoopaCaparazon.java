@@ -15,8 +15,8 @@ import static object.ObjectID.BloqueHongoRojo;
 import object.util.GameObjeto;
 import object.util.HandlerBloques;
 import static object.ObjectID.BloqueMoneda;
-import static object.ObjectID.Ladrillo;
 import static object.ObjectID.TuberiaCabeza;
+import static object.ObjectID.LadrilloRojo;
 
 public class EntidadKoopaCaparazon extends GameEntidad {
 
@@ -77,7 +77,7 @@ public class EntidadKoopaCaparazon extends GameEntidad {
                 case TuberiaCabeza:
                 case BloqueMoneda:
                 case BloqueHongoRojo:
-                case Ladrillo:
+                case LadrilloRojo:
                     handleColisionSolida(temp);
                     break;
             }

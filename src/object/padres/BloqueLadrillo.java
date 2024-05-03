@@ -1,25 +1,32 @@
-package object.bloques;
+package object.padres;
 
 import object.util.GameObjeto;
 import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import object.ObjectID;
+import object.bloques.BloqueLadrilloRojo;
+import object.bloques.Escombros;
 
-public class Ladrillo extends GameObjeto {
+public class BloqueLadrillo extends GameObjeto {
 
     // OBJETOS
-    private Escombros escombros;
+    protected Escombros escombros;
 
     // VARIABLES
-    private int contAnimacionGolpe = 0;
-    private boolean golpeado = false;
-    private boolean roto = false;
+    protected int contAnimacionGolpe = 0;
+    protected boolean golpeado = false;
+    protected boolean roto = false;
+    
+    private final String texturaNombre;
+    private final ObjectID objectID;
 
-    public Ladrillo(int x, int y, int width, int height, int xDesplasamiento) {
-        super(x, y, ObjectID.Ladrillo, width, height, xDesplasamiento);
-
+    public BloqueLadrillo(int x, int y, ObjectID objectID, int width, int height, int xDesplasamiento, String texturaNombre) {
+        super(x, y, objectID, width, height, xDesplasamiento);
+        this.texturaNombre = texturaNombre;
+        this.objectID = objectID;
     }
 
     @Override
@@ -35,7 +42,7 @@ public class Ladrillo extends GameObjeto {
     @Override
     public void render(LibreriaGrafica g) {
         if (!roto) {
-            g.drawImage(Texturas.getTextura("bloqueLadrillo"), (int) (getX()), (int) (getY()));
+            g.drawImage(Texturas.getTextura(texturaNombre), (int) (getX()), (int) (getY()));
         } else {
             escombros.render(g);
         }
@@ -48,7 +55,7 @@ public class Ladrillo extends GameObjeto {
 
     @Override
     public GameObjeto clone() {
-        return new Ladrillo((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
+        return new BloqueLadrilloRojo((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
     
     public boolean sePuedeEliminar(){
@@ -80,6 +87,6 @@ public class Ladrillo extends GameObjeto {
     
     public void romper(){
         roto = true;
-        escombros = new Escombros(x, y, width, height);
+        escombros = new Escombros(x, y, width, height, objectID);
     }
 }

@@ -7,7 +7,7 @@ import object.util.GameObjeto;
 import object.bloques.Tuberia;
 import object.ObjectID;
 
-public class Background extends GameObjeto {
+public class Background {
 
     // CONSTANTES
     private final int SCREEN_OFFSET;
@@ -15,22 +15,29 @@ public class Background extends GameObjeto {
     // VARIABLES
     private Camara camara;
 
+    private static float x;
+    private static float y;
+    private static float width, height;
+    private static Color color;
+
     public Background(int x, int y, int width, int height, int SCREEN_OFFSET, Camara camara) {
-        super(x, y, ObjectID.Background, width + 20, height, 1);
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.color = new Color(111, 133, 255);
         this.SCREEN_OFFSET = SCREEN_OFFSET;
         this.camara = camara;
     }
 
-    @Override
     public void tick() {
         if (camara != null) {
-            this.setX((int) (-camara.getX() - 10));
+            this.setX((int) (-camara.getX()));
         }
     }
 
-    @Override
     public void render(LibreriaGrafica g) {
-        g.fillRect((int) getX(), (int) getY() - SCREEN_OFFSET, (int) (getWidth() + getX()), (int) getHeight(), new Color(111, 133, 255));
+        g.fillRect((int) getX(), (int) getY() - SCREEN_OFFSET, (int) (getWidth() + getX()), (int) (getY() + getHeight()), color);
 
         // Mostrar cuadricula
 //        for (int i = 0; i < getWidth() / 32; i++) {
@@ -41,13 +48,45 @@ public class Background extends GameObjeto {
 //        }
     }
 
-    @Override
-    public Rectangle getBounds() {
-        return new Rectangle((int) (getX()), (int) (getY()), (int) (getWidth()), (int) (getHeight()));
+    public static float getX() {
+        return x;
     }
 
-    @Override
-    public GameObjeto clone() {
-        return new Tuberia((int) x, (int) y, (int) width, (int) height, 1);
+    public static void setX(float x) {
+        Background.x = x;
     }
+
+    public static float getY() {
+        return y;
+    }
+
+    public static void setY(float y) {
+        Background.y = y;
+    }
+
+    public static float getWidth() {
+        return width;
+    }
+
+    public static void setWidth(float width) {
+        Background.width = width;
+    }
+
+    public static float getHeight() {
+        return height;
+    }
+
+    public static void setHeight(float height) {
+        Background.height = height;
+    }
+
+    public static Color getColor() {
+        return color;
+    }
+
+    public static void setColor(Color color) {
+        Background.color = color;
+    }
+
+    
 }

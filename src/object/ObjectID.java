@@ -9,7 +9,8 @@ public enum ObjectID {
     BloqueMoneda,
     BloqueHongoRojo,
     BloqueHongoVerde,
-    Ladrillo,
+    LadrilloRojo,
+    LadrilloAzul,
     LadrilloMonedas,
     Bandera,
     TuberiaCabeza;

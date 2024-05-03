@@ -5,7 +5,7 @@ import main.Game;
 
 public class Camara {
 
-    private int x, y;
+    private static int x, y;
     private int ultimaX;
 
     public Camara(int x, int y) {
@@ -15,27 +15,27 @@ public class Camara {
     }
 
     public void tick(GameObjeto player) {
-        this.x = (int) (-player.getX() + Game.getSCREEN_WIDTH() / 2 + 16);
+        x = (int) (-player.getX() + Game.getSCREEN_WIDTH() / 2 + 16);
         if (getX() > ultimaX) {
             setX(ultimaX);
         }
-        setLastX(this.x);
+        setLastX(x);
     }
 
-    public int getX() {
+    public static int getX() {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public static void setX(int newX) {
+        x = newX;
     }
 
-    public int getY() {
+    public static int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public static void setY(int newY) {
+        y = -newY;
     }
 
     public int getLastX() {

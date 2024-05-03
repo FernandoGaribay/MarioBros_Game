@@ -1,8 +1,8 @@
 package object.player;
 
-import object.bloques.Ladrillo;
+import object.bloques.BloqueLadrilloRojo;
 import object.bloques.Tuberia;
-import object.bloques.BloqueEnigma;
+import object.padres.BloqueEnigma;
 import object.util.GameObjeto;
 import graficos.Animacion;
 import graficos.LibreriaGrafica;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import object.util.HandlerBloques;
 import main.Game;
 import object.ObjectID;
+import object.padres.BloqueLadrillo;
 import object.util.HandlerEntidades;
 import object.util.EstadoPlayer;
 import object.util.GameEntidad;
@@ -182,8 +183,8 @@ public class Player extends GameObjeto {
                 Texturas.getMarioTextura(prefijoTextura + "_marioCaminando3"));
     }
 
-    public ArrayList<Ladrillo> getBloquesAEliminar() {
-        ArrayList<Ladrillo> output = playerColisiones.getBloquesAEliminar();
+    public ArrayList<BloqueLadrillo> getBloquesAEliminar() {
+        ArrayList<BloqueLadrillo> output = playerColisiones.getBloquesAEliminar();
         return output;
     }
 

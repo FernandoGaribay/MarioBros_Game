@@ -13,11 +13,11 @@ import static object.ObjectID.BloqueHongoVerde;
 import object.util.GameObjeto;
 import object.util.HandlerBloques;
 import static object.ObjectID.BloqueMoneda;
-import static object.ObjectID.Ladrillo;
 import static object.ObjectID.TuberiaCabeza;
 import static object.ObjectID.BloqueMoneda;
-import static object.ObjectID.Ladrillo;
 import static object.ObjectID.TuberiaCabeza;
+import static object.ObjectID.LadrilloRojo;
+import static object.ObjectID.LadrilloRojo;
 
 public class EntidadHongoVerde extends GameEntidad {
 
@@ -89,7 +89,7 @@ public class EntidadHongoVerde extends GameEntidad {
                 case BloqueMoneda:
                 case BloqueHongoRojo:
                 case BloqueHongoVerde:
-                case Ladrillo:
+                case LadrilloRojo:
                     handleColisionSolida(temp);
                     break;
             }

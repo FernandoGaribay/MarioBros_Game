@@ -1,4 +1,4 @@
-package object.bloques;
+package object.padres;
 
 import object.util.GameObjeto;
 import graficos.Animacion;
@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import object.ObjectID;
+import object.bloques.BloqueMoneda;
 
 public class BloqueEnigma extends GameObjeto {
 

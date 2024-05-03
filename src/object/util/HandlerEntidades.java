@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import main.Game;
 import static object.ObjectID.BloqueHongoRojo;
-import object.bloques.BloqueEnigma;
+import object.padres.BloqueEnigma;
 import object.entidades.EntidadHongoRojo;
 import object.entidades.EntidadHongoVerde;
 import object.entidades.EntidadKoopaCaparazon;

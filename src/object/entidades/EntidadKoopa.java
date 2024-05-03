@@ -12,9 +12,9 @@ import static object.ObjectID.BarreraEntidades;
 import static object.ObjectID.Bloque;
 import static object.ObjectID.BloqueHongoRojo;
 import static object.ObjectID.BloqueMoneda;
-import static object.ObjectID.Ladrillo;
 import object.util.GameObjeto;
 import static object.ObjectID.TuberiaCabeza;
+import static object.ObjectID.LadrilloRojo;
 
 public class EntidadKoopa extends GameEntidad {
 
@@ -84,7 +84,7 @@ public class EntidadKoopa extends GameEntidad {
                 case TuberiaCabeza:
                 case BloqueMoneda:
                 case BloqueHongoRojo:
-                case Ladrillo:
+                case LadrilloRojo:
                     handleColisionSolida(temp);
                     break;
             }

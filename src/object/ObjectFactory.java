@@ -11,12 +11,14 @@ import object.bloques.BloqueBandera;
 import object.bloques.BloqueBarreraEntidades;
 import object.bloques.BloqueHongoRojo;
 import object.bloques.BloqueHongoVerde;
+import object.bloques.BloqueLadrilloAzul;
 import object.bloques.BloqueMoneda;
 import object.bloques.BloqueMonedaHit;
 import object.bloques.BloquePiso;
+import object.bloques.BloquePisoAzul;
 import object.bloques.Castillo;
 import object.entidades.EntidadGoomba;
-import object.bloques.Ladrillo;
+import object.bloques.BloqueLadrilloRojo;
 import object.bloques.LadrilloMonedas;
 import object.bloques.MontanaChica;
 import object.bloques.MontanaGrande;
@@ -29,6 +31,7 @@ import object.entidades.EntidadHongoRojo;
 import object.entidades.EntidadHongoVerde;
 import object.entidades.EntidadKoopa;
 import object.entidades.EntidadKoopaCaparazon;
+import object.entidades.EntidadMonedaRoja;
 import object.util.GameObjeto;
 import object.util.GameEntidad;
 
@@ -41,12 +44,14 @@ public class ObjectFactory {
         bloquesPrototipos.put("bloqueTuberiaCabeza", new TuberiaCabeza(0, 0, 64, 32, 0, true));
         bloquesPrototipos.put("bloqueTuberia", new Tuberia(0, 0, 64, 32, 0));
         bloquesPrototipos.put("bloquePiso", new BloquePiso(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloquePisoAzul", new BloquePisoAzul(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueBandera", new BloqueBandera(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueMoneda1", new BloqueMoneda(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueHongoRojo", new BloqueHongoRojo(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueHongoVerde", new BloqueHongoVerde(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueMonedaHit", new BloqueMonedaHit(0, 0, 32, 32, 0));
-        bloquesPrototipos.put("bloqueLadrillo", new Ladrillo(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueLadrillo", new BloqueLadrilloRojo(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueLadrilloAzul", new BloqueLadrilloAzul(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueLadrilloMonedas", new LadrilloMonedas(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueBanderaMastil", new BanderaMastil(0, 0, 32, 288, 0));
         bloquesPrototipos.put("bloqueCastillo", new Castillo(0, 0, 160, 160, 1));
@@ -61,6 +66,7 @@ public class ObjectFactory {
         bloquesPrototipos.put("bloqueBarreraJugador", new Barrera(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueBarreraEntidades", new BloqueBarreraEntidades(0, 0, 32, 32, 0));
 
+        entidadesPrototipos.put("entidadMoneda1", new EntidadMonedaRoja(0, 0, 20, 28));
         entidadesPrototipos.put("entidadGoomba", new EntidadGoomba(0, 0, 32, 32));
         entidadesPrototipos.put("entidadKoopa", new EntidadKoopa(0, 0, 32, 46));
         entidadesPrototipos.put("entidadKoopaCaparazon", new EntidadKoopaCaparazon(0, 0, 32, 26));

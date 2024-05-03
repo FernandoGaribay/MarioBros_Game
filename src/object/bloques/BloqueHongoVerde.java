@@ -1,5 +1,6 @@
 package object.bloques;
 
+import object.padres.BloqueEnigma;
 import object.util.GameObjeto;
 import graficos.LibreriaGrafica;
 import graficos.Texturas;

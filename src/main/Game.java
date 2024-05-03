@@ -5,6 +5,7 @@ import graficos.Camara;
 import graficos.LibreriaGrafica;
 import java.awt.Canvas;
 import graficos.Ventana;
+import java.awt.Color;
 import utils.CasillaNivel;
 import utils.LevelReaderWritter;
 import java.awt.Graphics;
@@ -77,8 +78,12 @@ public class Game extends Canvas implements Runnable {
         handlerEntidades.setPlayer(player);
 
         cargarNivel("NivelesFiles/mundo_1-1");
-        cargarBarreras();
+//        cargarBarreras();
 
+//        player.setY(32*15);
+//        Camara.setY(SCREEN_OFFSET*15);
+//        Background.setY(SCREEN_OFFSET*15);
+//        Background.setColor(Color.BLACK);
         try {
             // Esperar a que el hilo finalize
             loadScreen.getHilo().join();
@@ -120,11 +125,15 @@ public class Game extends Canvas implements Runnable {
                         }
 
                     } else if (nombreElemento.startsWith("entidad")) {
-                        GameEntidad obj = ObjectFactory.crearEntidad(nombreElemento);
+                        try {
+                            GameEntidad obj = ObjectFactory.crearEntidad(nombreElemento);
 
-                        obj.setX(casillaNivel.getX() * 32);
-                        obj.setY(casillaNivel.getY() * 32);
-                        handlerEntidades.addEntidad(obj);
+                            obj.setX(casillaNivel.getX() * 32);
+                            obj.setY(casillaNivel.getY() * 32);
+                            handlerEntidades.addEntidad(obj);
+                        } catch (Exception e) {
+                            System.out.println("ERROR CON: " + nombreElemento);
+                        }
                     }
 
                 }

@@ -75,43 +75,19 @@ public class EntidadHongoRojo extends GameEntidad {
 
     private void aplicarColisiones() {
         int size = handler.getGameObj().size() - 1;
-        int renderIzquierda = (int) (getX() - Game.getMAX_RENDERIZADO());
-        int renderDerecha = (int) (getX() + Game.getMAX_RENDERIZADO());
 
         for (int i = 0; i < size; i++) {
             GameObjeto temp = handler.getGameObj().get(i);
 
-            if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
-                switch (temp.getID()) {
-                    case Bloque:
-                    case TuberiaCabeza:
-                    case BloqueMoneda:
-                    case BloqueHongoRojo:
-                    case BloqueHongoVerde:
-                    case Ladrillo:
-                        handleColisionSolida(temp);
-                        break;
-                }
-            }
-        }
-
-        size = Game.getHandlerEntidades().getGameEntidades().size() - 1;
-        for (int i = 0; i < size; i++) {
-            GameEntidad temp = Game.getHandlerEntidades().getGameEntidades().get(i);
-
-            if(temp == this){
-                continue;
-            }
-            
-            if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
-                switch (temp.getID()) {
-                    case HongoRojo:
-//                        handleColisionEntidad(temp);
-                        break;
-                    case KoopaCaparazon:
-//                        handleColisionEntidad(temp);
-                        break;
-                }
+            switch (temp.getID()) {
+                case Bloque:
+                case TuberiaCabeza:
+                case BloqueMoneda:
+                case BloqueHongoRojo:
+                case BloqueHongoVerde:
+                case Ladrillo:
+                    handleColisionSolida(temp);
+                    break;
             }
         }
     }
@@ -128,13 +104,6 @@ public class EntidadHongoRojo extends GameEntidad {
         }
     }
 
-    private void handleColisionEntidad(GameEntidad temp) {
-        // Bounding Box de los pies
-        if (getBounds().intersects(temp.getBounds())) {
-            GameEntidad.addEntidadABorrar(this);
-        }
-    }
-
     private void animacionDeInicio() {
         if (countAnimacion == 32) {
             animacionInicioCompletada = true;
@@ -144,10 +113,10 @@ public class EntidadHongoRojo extends GameEntidad {
         countAnimacion++;
     }
 
-    public void actualizarHandler(){
+    public void actualizarHandler() {
 //        this.handler = Game.getHandlerBloques();
     }
-    
+
     private void showBounds(LibreriaGrafica g) {
         g.drawRectangle(getBounds(), Color.red);
         g.drawRectangle(getBoundsSides(), Color.red);

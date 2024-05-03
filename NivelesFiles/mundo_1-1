@@ -109,11 +109,6 @@ Elemento:
 bloquePiso
 
 Coordenada:
-9,9
-Elemento:
-bloqueHongoVerde
-
-Coordenada:
 9,13
 Elemento:
 bloquePiso
@@ -167,11 +162,6 @@ Coordenada:
 13,14
 Elemento:
 bloquePiso
-
-Coordenada:
-14,12
-Elemento:
-entidadKoopa
 
 Coordenada:
 14,13
@@ -289,11 +279,6 @@ Elemento:
 bloqueLadrillo
 
 Coordenada:
-22,12
-Elemento:
-entidadGoomba
-
-Coordenada:
 22,13
 Elemento:
 bloquePiso
@@ -337,6 +322,11 @@ Coordenada:
 24,14
 Elemento:
 bloquePiso
+
+Coordenada:
+25,12
+Elemento:
+entidadGoomba
 
 Coordenada:
 25,13
@@ -1432,6 +1422,11 @@ Coordenada:
 109,9
 Elemento:
 bloqueMoneda1
+
+Coordenada:
+109,11
+Elemento:
+entidadKoopa
 
 Coordenada:
 109,13

@@ -49,7 +49,7 @@ public class Player extends GameObjeto {
         this.playerMovimiento = new PlayerMovimiento(this);
         this.playerAnimaciones = new PlayerAnimaciones(this);
         this.playerColisiones = new PlayerColisiones(this, handlerBloques, handlerEntidades);
-        this.cambiarEstado(2);
+        this.cambiarEstado(1);
     }
 
     @Override

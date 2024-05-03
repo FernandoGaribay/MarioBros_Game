@@ -206,7 +206,6 @@ public class PlayerColisiones {
                     } else {
                         caparazon.iniciarMovimiento(true);
                     }
-                    caparazon.setInmunidad(10);
                     player.setVelY(-8f);
                     break;
             }
@@ -236,7 +235,6 @@ public class PlayerColisiones {
                         } else {
                             caparazon.iniciarMovimiento(false);
                         }
-                        caparazon.setInmunidad(60);
                     } else {
                         if (player.getHp() == 1) {
                             player.setAnimacionMuerte(true);

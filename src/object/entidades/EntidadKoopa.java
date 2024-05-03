@@ -11,10 +11,9 @@ import object.EntidadID;
 import static object.ObjectID.BarreraEntidades;
 import static object.ObjectID.Bloque;
 import static object.ObjectID.BloqueHongoRojo;
-import object.util.GameObjeto;
-import object.util.HandlerBloques;
 import static object.ObjectID.BloqueMoneda;
 import static object.ObjectID.Ladrillo;
+import object.util.GameObjeto;
 import static object.ObjectID.TuberiaCabeza;
 
 public class EntidadKoopa extends GameEntidad {
@@ -74,24 +73,20 @@ public class EntidadKoopa extends GameEntidad {
     }
 
     private void aplicarColisiones() {
-        int size = Game.getHandlerBloques().getGameObj().size() - 1;
-        int renderIzquierda = (int) (getX() - Game.getMAX_RENDERIZADO());
-        int renderDerecha = (int) (getX() + Game.getMAX_RENDERIZADO());
+        int size = Game.getHandlerBloques().getGameObj().size();
 
         for (int i = 0; i < size; i++) {
             GameObjeto temp = Game.getHandlerBloques().getGameObj().get(i);
 
-            if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
-                switch (temp.getID()) {
-                    case Bloque:
-                    case BarreraEntidades:
-                    case TuberiaCabeza:
-                    case BloqueMoneda:
-                    case BloqueHongoRojo:
-                    case Ladrillo:
-                        handleColisionSolida(temp);
-                        break;
-                }
+            switch (temp.getID()) {
+                case Bloque:
+                case BarreraEntidades:
+                case TuberiaCabeza:
+                case BloqueMoneda:
+                case BloqueHongoRojo:
+                case Ladrillo:
+                    handleColisionSolida(temp);
+                    break;
             }
         }
     }
@@ -104,6 +99,11 @@ public class EntidadKoopa extends GameEntidad {
         }
         // Bounding Box de los lados
         if (getBoundsSides().intersects(temp.getBounds())) {
+            if (getVelX() < 0) {
+                setX(temp.getX() + getWidth());
+            } else {
+                setX(temp.getX() - getWidth());
+            }
             setVelX(getVelX() * -1);
         }
     }

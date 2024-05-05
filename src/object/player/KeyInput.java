@@ -48,6 +48,14 @@ public class KeyInput extends KeyAdapter {
                 PlayerMovimiento.setCaminarAdelante(true);
             }
         }
+        
+        // CORRER
+        if (key == KeyEvent.VK_SPACE) {
+            if (!teclaPresionada[3]) {
+                teclaPresionada[3] = true;
+                player.setVELOCIDAD_MAXIMA(5.5f);
+            }
+        }
     }
 
     @Override
@@ -66,6 +74,11 @@ public class KeyInput extends KeyAdapter {
         if (key == KeyEvent.VK_D) {
             teclaPresionada[2] = false;
             PlayerMovimiento.setCaminarAdelante(false);
+        }
+
+        if (key == KeyEvent.VK_SPACE) {
+            teclaPresionada[3] = false;
+            player.setVELOCIDAD_MAXIMA(4.5f);
         }
     }
 }

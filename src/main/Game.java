@@ -66,7 +66,7 @@ public class Game extends Canvas implements Runnable {
         handlerEntidades = new HandlerEntidades();
         ventana = new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NOMBRE);
         camara = new Camara(0, SCREEN_OFFSET);
-        player = new Player(32 * 1, 32, handlerBloques, handlerEntidades);
+        player = new Player(32 * 1, 32 * 1, handlerBloques, handlerEntidades);
         keyInput = new KeyInput(player);
         background = new Background(0, 0, VENTANA_WIDTH, VENTANA_HEIGHT, SCREEN_OFFSET, camara);
         loadScreen = new LoadScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -80,9 +80,9 @@ public class Game extends Canvas implements Runnable {
         cargarNivel("NivelesFiles/mundo_1-1");
 //        cargarBarreras();
 
-//        player.setY(32*15);
-//        Camara.setY(SCREEN_OFFSET*15);
-//        Background.setY(SCREEN_OFFSET*15);
+//        player.setY(32 * 15);
+//        Camara.setY(SCREEN_OFFSET * 15);
+//        Background.setY(SCREEN_OFFSET * 15);
 //        Background.setColor(Color.BLACK);
         try {
             // Esperar a que el hilo finalize

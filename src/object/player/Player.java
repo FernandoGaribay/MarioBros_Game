@@ -30,6 +30,7 @@ public class Player extends GameObjeto {
     private Animacion animacionEstado;
 
     // VARIABLES
+    private float VELOCIDAD_MAXIMA = 4.0f;
     private EstadoPlayer estadoPlayer;
     private String prefijoTextura;
     private int hp;
@@ -87,21 +88,21 @@ public class Player extends GameObjeto {
             }
         } else {
             if (mirarAdelante) {
-                if (getVelX() <= 5.0f && getVelX() > 0.6f) {
+                if (getVelX() <= VELOCIDAD_MAXIMA && getVelX() > 0.6f) {
                     animacionCaminando.drawSprite(g, (int) (getX()), (int) (getY()));
                 } else if (getVelX() <= 0.5f && getVelX() >= 0.0f) {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) getX(), (int) getY());
-                } else if ((getVelX() > velocidadAnterior) || (getVelX() == -5.0f)) {
+                } else if ((getVelX() > velocidadAnterior) || (getVelX() == -VELOCIDAD_MAXIMA)) {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioDerrapando"), (int) getX(), (int) getY());
                 } else {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) getX(), (int) getY());
                 }
             } else if (!mirarAdelante) {
-                if (getVelX() >= -5.0f && getVelX() < -0.6f) {
+                if (getVelX() >= -VELOCIDAD_MAXIMA && getVelX() < -0.6f) {
                     animacionCaminando.drawSpriteInverso(g, (int) (getX()), (int) (getY()));
                 } else if (getVelX() >= -0.5f && getVelX() <= 0.0f) {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
-                } else if ((getVelX() < velocidadAnterior) || getVelX() == 5.0f) {
+                } else if ((getVelX() < velocidadAnterior) || getVelX() == VELOCIDAD_MAXIMA) {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioDerrapando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
                 } else {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
@@ -214,6 +215,14 @@ public class Player extends GameObjeto {
         this.hp = hp;
     }
 
+    public float getVELOCIDAD_MAXIMA() {
+        return VELOCIDAD_MAXIMA;
+    }
+
+    public void setVELOCIDAD_MAXIMA(float VELOCIDAD_MAXIMA) {
+        this.VELOCIDAD_MAXIMA = VELOCIDAD_MAXIMA;
+    }
+    
     public boolean isMirarAdelante() {
         return mirarAdelante;
     }

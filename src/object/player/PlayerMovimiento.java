@@ -8,8 +8,6 @@ public class PlayerMovimiento {
     private static boolean caminarAdelante = false;
     private static boolean caminarAtras = false;
 
-    private static float VELOCIDAD_MAXIMA = 5f;
-
     public PlayerMovimiento(Player player) {
         this.player = player;
     }
@@ -26,13 +24,13 @@ public class PlayerMovimiento {
 
         if (caminarAdelante) {
             player.setVelX(player.getVelX() + 0.2f);
-            if (player.getVelX() > VELOCIDAD_MAXIMA) {
-                player.setVelX(VELOCIDAD_MAXIMA);
+            if (player.getVelX() > player.getVELOCIDAD_MAXIMA()) {
+                player.setVelX(player.getVELOCIDAD_MAXIMA());
             }
         } else if (caminarAtras) {
             player.setVelX(player.getVelX() - 0.2f);
-            if (player.getVelX() < -VELOCIDAD_MAXIMA) {
-                player.setVelX(-VELOCIDAD_MAXIMA);
+            if (player.getVelX() < -player.getVELOCIDAD_MAXIMA()) {
+                player.setVelX(-player.getVELOCIDAD_MAXIMA());
             }
         } else if (player.getVelX() != 0) {
             if (Math.abs(player.getVelX()) < 0.01f) {

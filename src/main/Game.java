@@ -32,8 +32,8 @@ public class Game extends Canvas implements Runnable {
     private static final double NUM_FPS = 60.0;
     private static final String NOMBRE = "Super Mario Bros";
 
-    private static final int VENTANA_WIDTH = 960;
-    private static final int MAX_RENDERIZADO = 960;
+    private static final int VENTANA_WIDTH = 800;
+    private static final int MAX_RENDERIZADO = 800;
     private static final int SCREEN_OFFSET = 32 * 1; // 1 bloque de offset
     private static final int VENTANA_HEIGHT = 480 + SCREEN_OFFSET; // 32 x 15 = 480 (15 bloques de 16x16 de alto)
     private static final int SCREEN_WIDTH = VENTANA_WIDTH;

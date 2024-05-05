@@ -1,10 +1,12 @@
 package object.player;
 
 import object.bloques.BloqueLadrilloRojo;
-import object.bloques.Tuberia;
+import object.bloques.BloqueTuberia;
 import object.padres.BloqueEnigma;
 import object.util.GameObjeto;
 import graficos.Animacion;
+import graficos.Background;
+import graficos.Camara;
 import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.Color;
@@ -38,6 +40,7 @@ public class Player extends GameObjeto {
     // BANDERAS
     private boolean mirarAdelante = true;
     private boolean saltando = false;
+    private boolean decenderTuberia = false;
     private boolean ignorarColisiones = false;
     private boolean ignorarInput = false;
     private boolean animacionMuerte = false;
@@ -163,6 +166,23 @@ public class Player extends GameObjeto {
         }
     }
 
+    public void cambiarEscena(int x, int y) {
+        int posX = x * 32;
+        int posY = y * 32;
+        if (y > 14) { // Mayor a 14 bloques de profundidad
+            Camara.setY(Game.getSCREEN_OFFSET() * 15);
+            Background.setY(Game.getSCREEN_OFFSET() * 15);
+            Background.setColor(Color.BLACK);
+        } else {
+            Camara.setY(-Game.getSCREEN_OFFSET());
+            Background.setY(0);
+            Background.setColor(new Color(111, 133, 255));
+        }
+        Camara.setLastX((int)(-posX + 96)); // 3 * 32 = 96
+        setX(posX);
+        setY(posY);
+    }
+
     public void cambiarEstado(int hp) {
         if (hp == 2) {
             this.estadoPlayer = EstadoPlayer.Grande;
@@ -223,13 +243,21 @@ public class Player extends GameObjeto {
         this.VELOCIDAD_MAXIMA = VELOCIDAD_MAXIMA;
         this.animacionCaminando.setVelocidad(velocidadAnimacion);
     }
-    
+
     public boolean isMirarAdelante() {
         return mirarAdelante;
     }
 
     public void setMirarAdelante(boolean mirarAdelante) {
         this.mirarAdelante = mirarAdelante;
+    }
+
+    public boolean isDecenderTuberia() {
+        return decenderTuberia;
+    }
+
+    public void setDecenderTuberia(boolean decenderTuberia) {
+        this.decenderTuberia = decenderTuberia;
     }
 
     public boolean isSaltando() {
@@ -274,7 +302,7 @@ public class Player extends GameObjeto {
 
     @Override
     public GameObjeto clone() {
-        return new Tuberia((int) x, (int) y, (int) width, (int) height, 1);
+        return new BloqueTuberia((int) x, (int) y, (int) width, (int) height, 1);
     }
 
     @Override

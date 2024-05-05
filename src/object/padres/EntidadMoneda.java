@@ -15,14 +15,13 @@ public class EntidadMoneda extends GameEntidad {
     protected Animacion animacion;
     private EntidadID entidadID;
 
-    public EntidadMoneda(float x, float y, EntidadID entidadID, int width, int height) {
+    public EntidadMoneda(float x, float y, EntidadID entidadID, int width, int height, String texturaNombre) {
         super(x, y, entidadID, width, height);
-
         this.entidadID = entidadID;
         this.animacion = new Animacion(10,
-                Texturas.getEntidadesTextura("entidadMoneda1"),
-                Texturas.getEntidadesTextura("entidadMoneda2"),
-                Texturas.getEntidadesTextura("entidadMoneda3")
+                Texturas.getEntidadesTextura(texturaNombre + "1"),
+                Texturas.getEntidadesTextura(texturaNombre + "2"),
+                Texturas.getEntidadesTextura(texturaNombre + "3")
         );
     }
 
@@ -44,7 +43,7 @@ public class EntidadMoneda extends GameEntidad {
 
     @Override
     public GameEntidad clone() {
-        return new EntidadMoneda((int) x, (int) y, entidadID, (int) width, (int) height);
+        return new EntidadMonedaRoja((int) x, (int) y, (int) width, (int) height);
     }
 
     public void showBounds(LibreriaGrafica g) {

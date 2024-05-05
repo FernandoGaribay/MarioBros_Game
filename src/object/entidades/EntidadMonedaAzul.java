@@ -9,10 +9,10 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import object.EntidadID;
 
-public class EntidadMonedaRoja extends EntidadMoneda {
+public class EntidadMonedaAzul extends EntidadMoneda {
 
-    public EntidadMonedaRoja(float x, float y, int width, int height) {
-        super(x, y, EntidadID.Moneda, width, height, "entidadMoneda");
+    public EntidadMonedaAzul(float x, float y, int width, int height) {
+        super(x, y, EntidadID.Moneda, width, height, "entidadMonedaAzul");
     }
 
     @Override
@@ -32,6 +32,6 @@ public class EntidadMonedaRoja extends EntidadMoneda {
 
     @Override
     public GameEntidad clone() {
-        return new EntidadMonedaRoja((int) x, (int) y, (int) width, (int) height);
+        return new EntidadMonedaAzul((int) x, (int) y, (int) width, (int) height);
     }
 }

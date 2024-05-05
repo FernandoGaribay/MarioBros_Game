@@ -4,7 +4,6 @@ import graficos.LibreriaGrafica;
 import java.awt.Color;
 import java.awt.Rectangle;
 import object.util.GameObjeto;
-import object.bloques.Tuberia;
 import object.ObjectID;
 
 public class Background {

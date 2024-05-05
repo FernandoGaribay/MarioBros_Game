@@ -1,6 +1,8 @@
 package object;
 
 public enum ObjectID {
+    Entrada,
+    Salida,
     Player,
     Bloque,
     BarreraJugador,

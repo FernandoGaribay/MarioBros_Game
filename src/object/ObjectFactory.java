@@ -9,6 +9,7 @@ import object.bloques.BanderaMastil;
 import object.bloques.Barrera;
 import object.bloques.BloqueBandera;
 import object.bloques.BloqueBarreraEntidades;
+import object.bloques.BloqueEntrada;
 import object.bloques.BloqueHongoRojo;
 import object.bloques.BloqueHongoVerde;
 import object.bloques.BloqueLadrilloAzul;
@@ -19,18 +20,23 @@ import object.bloques.BloquePisoAzul;
 import object.bloques.Castillo;
 import object.entidades.EntidadGoomba;
 import object.bloques.BloqueLadrilloRojo;
+import object.bloques.BloqueSalida;
 import object.bloques.LadrilloMonedas;
 import object.bloques.MontanaChica;
 import object.bloques.MontanaGrande;
 import object.bloques.NubeChica;
 import object.bloques.NubeGrande;
 import object.bloques.NubeMediana;
-import object.bloques.Tuberia;
+import object.bloques.BloqueTuberia;
+import object.bloques.BloqueTuberiaCabezaVertical;
+import object.bloques.BloqueTuberiaTerminalVertical;
+import object.bloques.BloqueTuberiaVertical;
 import object.bloques.TuberiaCabeza;
 import object.entidades.EntidadHongoRojo;
 import object.entidades.EntidadHongoVerde;
 import object.entidades.EntidadKoopa;
 import object.entidades.EntidadKoopaCaparazon;
+import object.entidades.EntidadMonedaAzul;
 import object.entidades.EntidadMonedaRoja;
 import object.util.GameObjeto;
 import object.util.GameEntidad;
@@ -42,7 +48,10 @@ public class ObjectFactory {
 
     static {
         bloquesPrototipos.put("bloqueTuberiaCabeza", new TuberiaCabeza(0, 0, 64, 32, 0, true));
-        bloquesPrototipos.put("bloqueTuberia", new Tuberia(0, 0, 64, 32, 0));
+        bloquesPrototipos.put("bloqueTuberiaCabezaVertical", new BloqueTuberiaCabezaVertical(0, 0, 32, 64, 0, true));
+        bloquesPrototipos.put("bloqueTuberia", new BloqueTuberia(0, 0, 64, 32, 0));
+        bloquesPrototipos.put("bloqueTuberiaVertical", new BloqueTuberiaVertical(0, 0, 32, 64, 0));
+        bloquesPrototipos.put("bloqueTuberiaTerminalVertical", new BloqueTuberiaTerminalVertical(0, 0, 64, 64, 0));
         bloquesPrototipos.put("bloquePiso", new BloquePiso(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloquePisoAzul", new BloquePisoAzul(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueBandera", new BloqueBandera(0, 0, 32, 32, 0));
@@ -65,8 +74,12 @@ public class ObjectFactory {
         bloquesPrototipos.put("bloqueNubeGrande", new NubeGrande(0, 0, 128, 32, 16));
         bloquesPrototipos.put("bloqueBarreraJugador", new Barrera(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueBarreraEntidades", new BloqueBarreraEntidades(0, 0, 32, 32, 0));
+        
+        bloquesPrototipos.put("entradaA", new BloqueEntrada(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("salidaB", new BloqueSalida(0, 0, 32, 32, 0));
 
         entidadesPrototipos.put("entidadMoneda1", new EntidadMonedaRoja(0, 0, 20, 28));
+        entidadesPrototipos.put("entidadMonedaAzul1", new EntidadMonedaAzul(0, 0, 20, 28));
         entidadesPrototipos.put("entidadGoomba", new EntidadGoomba(0, 0, 32, 32));
         entidadesPrototipos.put("entidadKoopa", new EntidadKoopa(0, 0, 32, 46));
         entidadesPrototipos.put("entidadKoopaCaparazon", new EntidadKoopaCaparazon(0, 0, 32, 26));

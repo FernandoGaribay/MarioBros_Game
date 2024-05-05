@@ -5,11 +5,15 @@ import graficos.Camara;
 import graficos.LibreriaGrafica;
 import java.awt.Canvas;
 import graficos.Ventana;
+import java.util.List;
 import java.awt.Color;
 import utils.CasillaNivel;
 import utils.LevelReaderWritter;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import object.bloques.Barrera;
@@ -37,6 +41,7 @@ public class Game extends Canvas implements Runnable {
     private static LibreriaGrafica g2 = new LibreriaGrafica(VENTANA_WIDTH, VENTANA_HEIGHT);
 
     // VARIABLES
+    public static HashMap<List<Integer>, List<Integer>> ENTRADAS_SALIDAS = new HashMap<>();
     private boolean running;
     private int frames = 0;
     private int updates = 0;
@@ -66,7 +71,7 @@ public class Game extends Canvas implements Runnable {
         handlerEntidades = new HandlerEntidades();
         ventana = new Ventana(VENTANA_WIDTH, VENTANA_HEIGHT, NOMBRE);
         camara = new Camara(0, SCREEN_OFFSET);
-        player = new Player(32 * 1, 32 * 1, handlerBloques, handlerEntidades);
+        player = new Player(32 * 2, 32 * 12, handlerBloques, handlerEntidades);
         keyInput = new KeyInput(player);
         background = new Background(0, 0, VENTANA_WIDTH, VENTANA_HEIGHT, SCREEN_OFFSET, camara);
         loadScreen = new LoadScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -80,10 +85,6 @@ public class Game extends Canvas implements Runnable {
         cargarNivel("NivelesFiles/mundo_1-1");
 //        cargarBarreras();
 
-//        player.setY(32 * 15);
-//        Camara.setY(SCREEN_OFFSET * 15);
-//        Background.setY(SCREEN_OFFSET * 15);
-//        Background.setColor(Color.BLACK);
         try {
             // Esperar a que el hilo finalize
             loadScreen.getHilo().join();
@@ -109,35 +110,63 @@ public class Game extends Canvas implements Runnable {
     public void cargarNivel(String nombreArchivo) {
         CasillaNivel[][] matrizNivel;
         matrizNivel = LevelReaderWritter.cargarMatrizDesdeArchivo(nombreArchivo);
+        List<Integer> entrada = null;
+        List<Integer> salida = null;
 
         for (CasillaNivel[] casillaNivels : matrizNivel) {
             for (CasillaNivel casillaNivel : casillaNivels) {
                 if (!casillaNivel.getNombreElemento().isEmpty()) {
                     String nombreElemento = casillaNivel.getNombreElemento();
-                    if (nombreElemento.startsWith("bloque")) {
-                        try {
-                            GameObjeto obj = ObjectFactory.crearBloque(nombreElemento);
-                            obj.setX(casillaNivel.getX() * 32);
-                            obj.setY(casillaNivel.getY() * 32);
-                            handlerBloques.addObj(obj);
-                        } catch (Exception e) {
-                            System.out.println("ERROR CON: " + nombreElemento);
-                        }
+                    GameObjeto objeto;
+                    try {
+                        if (nombreElemento.startsWith("bloque")) {
 
-                    } else if (nombreElemento.startsWith("entidad")) {
-                        try {
+                            objeto = ObjectFactory.crearBloque(nombreElemento);
+                            objeto.setX(casillaNivel.getX() * 32);
+                            objeto.setY(casillaNivel.getY() * 32);
+                            handlerBloques.addObj(objeto);
+
+                        } else if (nombreElemento.startsWith("entidad")) {
                             GameEntidad obj = ObjectFactory.crearEntidad(nombreElemento);
 
                             obj.setX(casillaNivel.getX() * 32);
                             obj.setY(casillaNivel.getY() * 32);
                             handlerEntidades.addEntidad(obj);
-                        } catch (Exception e) {
-                            System.out.println("ERROR CON: " + nombreElemento);
-                        }
-                    }
+                        } else if (nombreElemento.startsWith("entradaA")) {
+                            // Guardar coordenada A
+                            entrada = new ArrayList<>();
+                            entrada.add(casillaNivel.getX());
+                            entrada.add(casillaNivel.getY());
 
+                            objeto = ObjectFactory.crearBloque("entradaA");
+                            objeto.setX(casillaNivel.getX() * 32);
+                            objeto.setY(casillaNivel.getY() * 32);
+                            objeto.setWidth(nombreElemento.contains("Horizontal") ? 64 : objeto.getHeight());
+                            objeto.setHeight(nombreElemento.contains("Vertical") ? 64 : objeto.getHeight());
+                            handlerBloques.addObj(objeto);
+                        } else if (nombreElemento.startsWith("salidaB")) {
+                            // Guardar coordenada B
+                            salida = new ArrayList<>();
+                            salida.add(casillaNivel.getX());
+                            salida.add(casillaNivel.getY());
+
+                            objeto = ObjectFactory.crearBloque("salidaB");
+                            objeto.setX(casillaNivel.getX() * 32);
+                            objeto.setY(casillaNivel.getY() * 32);
+                            objeto.setWidth(nombreElemento.contains("Horizontal") ? 64 : objeto.getHeight());
+                            objeto.setHeight(nombreElemento.contains("Vertical") ? 64 : objeto.getHeight());
+                            handlerBloques.addObj(objeto);
+                            ENTRADAS_SALIDAS.put(entrada, salida);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("ERROR CON: " + nombreElemento);
+                    }
                 }
             }
+        }
+        // Imprimir todas las entradas y salidas
+        for (Map.Entry<List<Integer>, List<Integer>> entry : ENTRADAS_SALIDAS.entrySet()) {
+            System.out.println("Entrada: " + entry.getKey() + " Salida: " + entry.getValue());
         }
     }
     // </editor-fold>  
@@ -288,6 +317,10 @@ public class Game extends Canvas implements Runnable {
 
     public static int getSCREEN_HEIGHT() {
         return SCREEN_HEIGHT;
+    }
+
+    public static int getSCREEN_OFFSET() {
+        return SCREEN_OFFSET;
     }
 
     public static int getMAX_RENDERIZADO() {

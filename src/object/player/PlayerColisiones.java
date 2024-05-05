@@ -1,17 +1,25 @@
 package object.player;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import main.Game;
 import static object.EntidadID.Goomba;
 import static object.EntidadID.HongoRojo;
 import static object.EntidadID.HongoVerde;
+import static object.EntidadID.Koopa;
 import static object.EntidadID.KoopaCaparazon;
+import static object.EntidadID.Moneda;
+import object.ObjectID;
 import static object.ObjectID.Bandera;
 import static object.ObjectID.BarreraJugador;
 import static object.ObjectID.Bloque;
 import static object.ObjectID.BloqueHongoRojo;
 import static object.ObjectID.BloqueHongoVerde;
+import static object.ObjectID.Entrada;
 import static object.ObjectID.LadrilloAzul;
+import static object.ObjectID.LadrilloRojo;
+import static object.ObjectID.Salida;
 import static object.ObjectID.TuberiaCabeza;
 import object.padres.BloqueEnigma;
 import object.bloques.BloqueLadrilloAzul;
@@ -74,6 +82,9 @@ public class PlayerColisiones {
             } else {
                 if (temp.getX() < renderDerecha && temp.getX() > renderIzquierda) {
                     switch (temp.getID()) {
+                        case Entrada:
+                            handdleColisionInteraccion(temp);
+                            break;
                         case Bloque:
                         case BarreraJugador:
                         case TuberiaCabeza:
@@ -166,6 +177,23 @@ public class PlayerColisiones {
         // Detectamos si el jugador esta callendo para evitar saltar en el aire
         if (!(player.getVelY() >= 0 && player.getVelY() <= 2.0)) {
             player.setSaltando(true);
+        }
+    }
+
+    private void handdleColisionInteraccion(GameObjeto temp) {
+        if (player.getBounds().intersects(temp.getBounds()) && player.isDecenderTuberia()) {
+            List<Integer> entrada = new ArrayList<>();
+            List<Integer> salida = new ArrayList<>();
+
+            switch (temp.getID()) {
+                case Entrada:
+                    entrada.add((int) (temp.getX() / 32));
+                    entrada.add((int) (temp.getY() / 32));
+                    
+                    salida = Game.ENTRADAS_SALIDAS.get(entrada);
+                    player.cambiarEscena(salida.get(0), salida.get(1));
+                    break;
+            }
         }
     }
 

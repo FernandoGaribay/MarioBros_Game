@@ -6,14 +6,10 @@ import graficos.Texturas;
 import java.awt.Rectangle;
 import object.ObjectID;
 
-public class Tuberia extends GameObjeto {
+public class BloqueTuberiaVertical extends GameObjeto {
 
-    // OBJETOS
-    private Texturas texturas;
-
-    public Tuberia(int x, int y, int width, int height, int xDesplasamiento) {
+    public BloqueTuberiaVertical(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.Bloque, width, height, xDesplasamiento);
-        this.texturas = new Texturas();
     }
 
     @Override
@@ -23,7 +19,7 @@ public class Tuberia extends GameObjeto {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("bloqueTuberia"), (int) (getX()), (int) (getY()));
+        g.drawImage(Texturas.getTextura("bloqueTuberiaVertical"), (int) (getX()), (int) (getY()));
     }
 
     @Override
@@ -33,6 +29,6 @@ public class Tuberia extends GameObjeto {
 
     @Override
     public GameObjeto clone() {
-        return new Tuberia((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
+        return new BloqueTuberiaVertical((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
 }

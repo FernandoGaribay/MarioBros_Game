@@ -6,7 +6,7 @@ import main.Game;
 public class Camara {
 
     private static int x, y;
-    private int ultimaX;
+    private static int ultimaX;
 
     public Camara(int x, int y) {
         this.x = x;
@@ -38,12 +38,12 @@ public class Camara {
         y = -newY;
     }
 
-    public int getLastX() {
+    public static int getLastX() {
         return ultimaX;
     }
 
-    public void setLastX(int lastX) {
-        this.ultimaX = lastX;
+    public static void setLastX(int lastX) {
+        ultimaX = lastX;
     }
 
 }

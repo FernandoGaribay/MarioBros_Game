@@ -39,6 +39,10 @@ public class Animacion {
             count = 0;
         }
     }
+    
+    public void setVelocidad(int velocidad){
+        this.velocidad = velocidad;
+    }
 
     public void drawSprite(LibreriaGrafica g, int x, int y) {
         if (spriteActual != null) {

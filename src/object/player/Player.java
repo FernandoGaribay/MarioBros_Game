@@ -219,8 +219,9 @@ public class Player extends GameObjeto {
         return VELOCIDAD_MAXIMA;
     }
 
-    public void setVELOCIDAD_MAXIMA(float VELOCIDAD_MAXIMA) {
+    public void setVELOCIDAD_MAXIMA(float VELOCIDAD_MAXIMA, int velocidadAnimacion) {
         this.VELOCIDAD_MAXIMA = VELOCIDAD_MAXIMA;
+        this.animacionCaminando.setVelocidad(velocidadAnimacion);
     }
     
     public boolean isMirarAdelante() {

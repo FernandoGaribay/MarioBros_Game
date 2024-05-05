@@ -509,21 +509,6 @@ Elemento:
 bloquePiso
 
 Coordenada:
-22,26
-Elemento:
-bloqueTuberiaCabeza
-
-Coordenada:
-22,27
-Elemento:
-bloqueTuberia
-
-Coordenada:
-22,28
-Elemento:
-bloqueTuberia
-
-Coordenada:
 22,29
 Elemento:
 bloquePisoAzul
@@ -717,21 +702,6 @@ Coordenada:
 30,14
 Elemento:
 bloquePiso
-
-Coordenada:
-30,26
-Elemento:
-bloqueTuberiaCabeza
-
-Coordenada:
-30,27
-Elemento:
-bloqueTuberia
-
-Coordenada:
-30,28
-Elemento:
-bloqueTuberia
 
 Coordenada:
 30,29

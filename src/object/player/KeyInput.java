@@ -53,7 +53,7 @@ public class KeyInput extends KeyAdapter {
         if (key == KeyEvent.VK_SPACE) {
             if (!teclaPresionada[3]) {
                 teclaPresionada[3] = true;
-                player.setVELOCIDAD_MAXIMA(5.5f);
+                player.setVELOCIDAD_MAXIMA(5.5f, 3);
             }
         }
     }
@@ -78,7 +78,7 @@ public class KeyInput extends KeyAdapter {
 
         if (key == KeyEvent.VK_SPACE) {
             teclaPresionada[3] = false;
-            player.setVELOCIDAD_MAXIMA(4.5f);
+            player.setVELOCIDAD_MAXIMA(4.5f, 5);
         }
     }
 }

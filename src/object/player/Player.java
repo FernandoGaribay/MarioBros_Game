@@ -307,36 +307,36 @@ public class Player extends GameObjeto {
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int) (getX() + getWidth() / 2 - getWidth() / 4),
+        return new Rectangle((int) (getX() + getWidth() / 2 - 11),
                 (int) (getY() + getHeight() / 2),
-                (int) (getWidth() / 2),
+                (int) (getWidth() / 2 + 6),
                 (int) (getHeight() / 2));
     }
 
     public Rectangle getBoundsTop() {
-        return new Rectangle((int) (getX() + getWidth() / 2 - getWidth() / 4),
+        return new Rectangle((int) (getX() + getWidth() / 2 - 11),
                 (int) (getY()),
-                (int) (getWidth() / 2),
+                (int) (getWidth() / 2 + 6),
                 (int) (getHeight() / 2));
     }
 
     public Rectangle getBoundsRight() {
         return new Rectangle(
-                (int) (getX() + getWidth() - 8),
+                (int) (getX() + getWidth() - 5),
                 (int) (getY() + 4),
-                8,
-                (int) (getHeight() - 8));
+                5,
+                (int) (getHeight() - 12));
     }
 
     public Rectangle getBoundsLeft() {
         return new Rectangle((int) (getX()),
                 (int) (getY() + 4),
-                8,
-                (int) (getHeight() - 8));
+                5,
+                (int) (getHeight() - 12));
     }
 
     private void showBounds(LibreriaGrafica g) {
-//        g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.yellow);
+        g.fillRect((int) (getX()), (int) (getY()), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.yellow);
 
         g.drawRectangle(getBounds(), Color.red);
         g.drawRectangle(getBoundsTop(), Color.red);

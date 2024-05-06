@@ -899,11 +899,6 @@ Elemento:
 bloquePiso
 
 Coordenada:
-70,12
-Elemento:
-bloqueBarreraEntidades
-
-Coordenada:
 71,13
 Elemento:
 bloquePiso
@@ -1129,22 +1124,12 @@ Elemento:
 bloqueLadrillo
 
 Coordenada:
-86,12
-Elemento:
-bloqueBarreraEntidades
-
-Coordenada:
 87,5
 Elemento:
 bloqueLadrillo
 
 Coordenada:
 88,4
-Elemento:
-bloqueBarreraEntidades
-
-Coordenada:
-88,12
 Elemento:
 bloqueBarreraEntidades
 

@@ -669,11 +669,6 @@ Elemento:
 bloquePiso
 
 Coordenada:
-52,12
-Elemento:
-entidadGoomba
-
-Coordenada:
 52,13
 Elemento:
 bloquePiso
@@ -682,6 +677,11 @@ Coordenada:
 52,14
 Elemento:
 bloquePiso
+
+Coordenada:
+53,12
+Elemento:
+entidadGoomba
 
 Coordenada:
 53,13

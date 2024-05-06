@@ -95,6 +95,7 @@ public class EntidadGoomba extends GameEntidad {
             }
 
             switch (temp.getID()) {
+                case Goomba:
                 case KoopaCaparazon:
                     handleColisionEntidad(temp);
                     break;
@@ -117,8 +118,20 @@ public class EntidadGoomba extends GameEntidad {
     private void handleColisionEntidad(GameEntidad temp) {
         // Bounding Box de los pies
         if (getBounds().intersects(temp.getBounds())) {
-            if (temp.getVelX() != 0) {
-                GameEntidad.addEntidadABorrar(this);
+            switch (temp.getID()) {
+                case KoopaCaparazon:
+                    if (temp.getVelX() != 0) {
+                        GameEntidad.addEntidadABorrar(this);
+                    }
+                    break;
+            }
+        }
+
+        if (getBounds().intersects(temp.getBounds())) {
+            switch (temp.getID()) {
+                case Goomba:
+                    setVelX(-getVelX());
+                    break;
             }
         }
     }

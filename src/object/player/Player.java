@@ -38,6 +38,8 @@ public class Player extends GameObjeto {
     private int hp;
 
     // BANDERAS
+    private boolean bloquearAtras = false;
+    private boolean bloquearAdelante = false;
     private boolean mirarAdelante = true;
     private boolean saltando = false;
     private boolean decenderTuberia = false;
@@ -91,9 +93,10 @@ public class Player extends GameObjeto {
             }
         } else {
             if (mirarAdelante) {
+                bloquearAtras = false;
                 if (getVelX() <= VELOCIDAD_MAXIMA && getVelX() > 0.6f) {
                     animacionCaminando.drawSprite(g, (int) (getX()), (int) (getY()));
-                } else if (getVelX() <= 0.5f && getVelX() >= 0.0f) {
+                } else if ((getVelX() <= 0.5f && getVelX() >= 0.0f) || bloquearAdelante) {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) getX(), (int) getY());
                 } else if ((getVelX() > velocidadAnterior) || (getVelX() == -VELOCIDAD_MAXIMA)) {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioDerrapando"), (int) getX(), (int) getY());
@@ -101,9 +104,10 @@ public class Player extends GameObjeto {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) getX(), (int) getY());
                 }
             } else if (!mirarAdelante) {
+                bloquearAdelante = false;
                 if (getVelX() >= -VELOCIDAD_MAXIMA && getVelX() < -0.6f) {
                     animacionCaminando.drawSpriteInverso(g, (int) (getX()), (int) (getY()));
-                } else if (getVelX() >= -0.5f && getVelX() <= 0.0f) {
+                } else if ((getVelX() >= -0.5f && getVelX() <= 0.0f) || bloquearAtras) {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_mario"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
                 } else if ((getVelX() < velocidadAnterior) || getVelX() == VELOCIDAD_MAXIMA) {
                     g.drawImage(Texturas.getMarioTextura(prefijoTextura + "_marioDerrapando"), (int) (getX() + getWidth()), (int) getY(), (int) -getWidth(), (int) getHeight());
@@ -178,7 +182,7 @@ public class Player extends GameObjeto {
             Background.setY(0);
             Background.setColor(new Color(111, 133, 255));
         }
-        Camara.setLastX((int)(-posX + 96)); // 3 * 32 = 96
+        Camara.setLastX((int) (-posX + 96)); // 3 * 32 = 96
         setX(posX);
         setY(posY);
     }
@@ -294,6 +298,22 @@ public class Player extends GameObjeto {
 
     public boolean isAnimacionDano() {
         return animacionDano;
+    }
+
+    public boolean isBloquearAtras() {
+        return bloquearAtras;
+    }
+
+    public void setBloquearAtras(boolean bloquearAtras) {
+        this.bloquearAtras = bloquearAtras;
+    }
+
+    public boolean isBloquearAdelante() {
+        return bloquearAdelante;
+    }
+
+    public void setBloquearAdelante(boolean bloquearAdelante) {
+        this.bloquearAdelante = bloquearAdelante;
     }
 
     public void setAnimacionDano(boolean animacionDano) {

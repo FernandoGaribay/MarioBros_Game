@@ -161,6 +161,7 @@ public class PlayerColisiones {
         }
         // Bounding Box de la derecha
         if (player.getBoundsRight().intersects(temp.getBounds())) {
+            player.setBloquearAdelante(true);
             player.setX(temp.getX() - player.getWidth());
             if (!player.isSaltando()) {
                 player.setVelX(0);
@@ -168,6 +169,7 @@ public class PlayerColisiones {
         }
         // Bounding Box de la izquierda
         if (player.getBoundsLeft().intersects(temp.getBounds())) {
+            player.setBloquearAtras(true);
             player.setX(temp.getX() + temp.getWidth());
             if (!player.isSaltando()) {
                 player.setVelX(0);

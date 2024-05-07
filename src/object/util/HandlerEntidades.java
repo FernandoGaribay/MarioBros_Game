@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import main.Game;
 import static object.ObjectID.BloqueHongoRojo;
+import object.entidades.EntidadGoomba;
 import object.padres.BloqueEnigma;
 import object.entidades.EntidadHongoRojo;
 import object.entidades.EntidadHongoVerde;
@@ -54,19 +55,17 @@ public class HandlerEntidades {
         List<GameEntidad> elimiarEntidades = player.getEntidadesDrops();
         for (GameEntidad elimiarEntidad : elimiarEntidades) {
             switch (elimiarEntidad.getID()) {
+                case Goomba:
+                    EntidadGoomba goomba = ((EntidadGoomba) elimiarEntidad);
+                    if (goomba.isAnimacionCompletada()) {
+                        eliminarEntidad(elimiarEntidad);
+                    }
+                    break;
                 case Koopa:
                     eliminarEntidad(elimiarEntidad);
                     addEntidad(new EntidadKoopaCaparazon(elimiarEntidad.getX(), elimiarEntidad.getY(), 32, 26));
                     break;
             }
-        }
-        List<GameEntidad> entidadesBorrar = GameEntidad.getEntidadesBorrar();
-        for (GameEntidad eliminarEntidad : entidadesBorrar) {
-            eliminarEntidad(eliminarEntidad);
-        }
-        List<GameEntidad> aniadirEntidades = GameEntidad.getEntidadesAniadir();
-        for (GameEntidad addEntidad : aniadirEntidades) {
-            addEntidad(new EntidadKoopaCaparazon(addEntidad.getX(), addEntidad.getY(), 32, 26));
         }
     }
 

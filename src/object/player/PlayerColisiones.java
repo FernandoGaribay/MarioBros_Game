@@ -191,7 +191,7 @@ public class PlayerColisiones {
                 case Entrada:
                     entrada.add((int) (temp.getX() / 32));
                     entrada.add((int) (temp.getY() / 32));
-                    
+
                     salida = Game.ENTRADAS_SALIDAS.get(entrada);
                     player.cambiarEscena(salida.get(0), salida.get(1));
                     break;
@@ -226,10 +226,12 @@ public class PlayerColisiones {
                     System.out.println("Hongo verde recogido");
                     break;
                 case Goomba:
-                    handlerEntidades.eliminarEntidad(temp);
+                    ((EntidadGoomba) temp).setAnimacionAplastado(true);
+                    colaEntidadesDrops.add(temp);
                     player.setVelY(-8f);
                     break;
                 case Koopa:
+                    temp.setAnimacionCompletada(true);
                     colaEntidadesDrops.add(temp);
                     player.setVelY(-8f);
                     break;
@@ -332,7 +334,9 @@ public class PlayerColisiones {
         ArrayList<GameEntidad> output = new ArrayList<>();
 
         for (GameEntidad entidadDrop : colaEntidadesDrops) {
-            output.add(entidadDrop);
+            if (entidadDrop.isAnimacionCompletada()) {
+                output.add(entidadDrop);
+            }
         }
 
         for (GameEntidad bloqueEliminar : output) {

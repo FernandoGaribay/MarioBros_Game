@@ -7,6 +7,7 @@ import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import object.EntidadID;
 import static object.EntidadID.HongoRojo;
 import object.util.GameObjeto;
@@ -22,6 +23,8 @@ public class EntidadGoomba extends GameEntidad {
     // OBJETOS
     private Animacion animacion;
 
+    private BufferedImage imgGoombaMuerto;
+
     public EntidadGoomba(float x, float y, int width, int height) {
         super(x, y, EntidadID.Goomba, width, height);
         setVelX(-1.2f);
@@ -34,21 +37,36 @@ public class EntidadGoomba extends GameEntidad {
 
     @Override
     public void tick() {
-        animacion.runAnimacion();
-        aplicarMovimiento();
-        aplicarGravedad();
-        aplicarColisiones();
+        if (!(aplastado || atropellado)) {
+            animacion.runAnimacion();
+            aplicarMovimiento();
+            aplicarGravedad();
+            aplicarColisiones();
+        } else {
+            animacionMuerte();
+        }
+
     }
 
     @Override
     public void render(LibreriaGrafica g) {
-        animacion.drawSprite(g, (int) getX(), (int) getY());
+        if (atropellado) {
+            g.drawImage(imgGoombaMuerto, (int) (getX() + getWidth()), (int) (getY() + getHeight()), (int) -getWidth(), (int) -getHeight());
+        } else if (aplastado) {
+            g.drawImage(imgGoombaMuerto, (int) getX(), (int) (getY() + getHeight() / 2), (int) getWidth(), (int) getHeight() / 2);
+        } else {
+            animacion.drawSprite(g, (int) getX(), (int) getY());
+        }
 //        showBounds(g);
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int) (getX() + getWidth() / 4), (int) (getY() + getWidth() / 2), (int) (getWidth() / 2), (int) (getHeight() / 2));
+        if (!(aplastado || atropellado)) {
+            return new Rectangle((int) (getX() + getWidth() / 4), (int) (getY() + getWidth() / 2), (int) (getWidth() / 2), (int) (getHeight() / 2));
+        } else {
+            return new Rectangle();
+        }
     }
 
     public Rectangle getBoundsSides() {
@@ -121,6 +139,7 @@ public class EntidadGoomba extends GameEntidad {
             switch (temp.getID()) {
                 case KoopaCaparazon:
                     if (temp.getVelX() != 0) {
+                        atropellado = true;
                         GameEntidad.addEntidadABorrar(this);
                     }
                     break;
@@ -134,6 +153,36 @@ public class EntidadGoomba extends GameEntidad {
                     break;
             }
         }
+    }
+
+    private void animacionMuerte() {
+        aplicarMovimiento();
+        if (aplastado) {
+            if (contAnimacion == 0) {
+                imgGoombaMuerto = Texturas.getEntidadesTextura("entidadGoomba");
+                setVelY(0);
+                setVelX(0);
+            } else if (contAnimacion <= 40) {
+
+            } else {
+                animacionCompletada = true;
+                return;
+            }
+        } else if (atropellado) {
+            if (contAnimacion == 0) {
+                imgGoombaMuerto = Texturas.getEntidadesTextura("entidadGoomba");
+                setVelY(0);
+                setVelX((getVelX() > 0) ? 0.7f : -0.7f);
+            } else if (contAnimacion <= 10) {
+                setVelY(getVelY() - 0.5f);
+            } else if (contAnimacion <= 40) {
+                setVelY(getVelY() + 0.9f);
+            } else {
+                animacionCompletada = true;
+                return;
+            }
+        }
+        contAnimacion++;
     }
 
     private void showBounds(LibreriaGrafica g) {

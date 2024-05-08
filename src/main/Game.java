@@ -49,12 +49,12 @@ public class Game extends Canvas implements Runnable {
     private int updates = 0;
 
     // GAME COMPONENTES
+    private static HandlerBloques handlerBloques;
+    private static HandlerEntidades handlerEntidades;
     private Thread hiloPrincipal;
     private Thread updateThread;
     private Thread renderThread;
     private Thread playerThread;
-    private static HandlerBloques handlerBloques;
-    private static HandlerEntidades handlerEntidades;
     private Ventana ventana;
     private Camara camara;
     private Player player;
@@ -210,6 +210,13 @@ public class Game extends Canvas implements Runnable {
                 System.out.println("FPS: " + frames + " TPS: " + updates);
                 updates = 0;
                 frames = 0;
+                
+                
+                if(!player.isIsVivo()){
+                    System.out.println("murido");
+                    gameLoopParar();
+                    inicializarElementos();
+                }
             } catch (InterruptedException ex) {
                 Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
             }

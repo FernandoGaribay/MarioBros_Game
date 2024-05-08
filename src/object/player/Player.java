@@ -49,6 +49,7 @@ public class Player extends GameObjeto {
     private boolean ignorarInput = false;
     private boolean animacionMuerte = false;
     private boolean animacionDano = false;
+    private boolean isVivo = true;
 
     private float velocidadAnterior = 0.0f;
     private int contAnimacion;
@@ -152,7 +153,10 @@ public class Player extends GameObjeto {
                 setVelY(getVelY() - 0.4f);
             } else if (contAnimacion <= 120) {
                 setVelY(getVelY() + 0.7f);
+            } else if (contAnimacion <= 160) {
+
             } else {
+                isVivo = false;
                 ignorarColisiones = false;
                 animacionMuerte = false;
                 contAnimacion = 0;
@@ -328,6 +332,14 @@ public class Player extends GameObjeto {
 
     public void setAnimacionDano(boolean animacionDano) {
         this.animacionDano = animacionDano;
+    }
+
+    public boolean isIsVivo() {
+        return isVivo;
+    }
+
+    public void setIsVivo(boolean isVivo) {
+        this.isVivo = isVivo;
     }
 
     @Override

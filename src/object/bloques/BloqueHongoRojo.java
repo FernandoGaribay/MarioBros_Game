@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import main.Game;
 import object.ObjectID;
+import object.util.HandlerSonidos;
 import utils.ReproductorMP3;
 
 public class BloqueHongoRojo extends BloqueEnigma {
@@ -42,9 +43,7 @@ public class BloqueHongoRojo extends BloqueEnigma {
             return;
         }
         if (contAnimacionGolpe == 0) {
-            if (Game.SONIDO) {
-                ReproductorMP3.reproducirSonido("ItemBlockSound.wav");
-            }
+            HandlerSonidos.playSound("ItemBlockSound.wav");
         }
         if (contAnimacionGolpe < 8) {
             setY(getY() - 3);

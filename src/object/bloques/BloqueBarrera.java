@@ -20,7 +20,7 @@ public class BloqueBarrera extends GameObjeto {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(Texturas.getTextura("bloqueBarreraJugador"), (int) (getX()), (int) (getY()));
+//        g.drawImage(Texturas.getTextura("bloqueBarreraJugador"), (int) (getX()), (int) (getY()));
 //        g.drawRect((int) getX(), (int) getY(), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.red);
     }
 

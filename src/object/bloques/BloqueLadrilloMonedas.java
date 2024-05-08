@@ -9,6 +9,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import main.Game;
 import object.ObjectID;
+import object.util.HandlerSonidos;
 import utils.ReproductorMP3;
 
 public class BloqueLadrilloMonedas extends BloqueEnigma {
@@ -58,9 +59,7 @@ public class BloqueLadrilloMonedas extends BloqueEnigma {
     @Override
     public void golpeado() {
         if (numMonedas != 0) {
-            if (Game.SONIDO) {
-                ReproductorMP3.reproducirSonido("CoinSound.wav");
-            }
+            HandlerSonidos.playSound("CoinSound.wav");
             numMonedas--;
             golpeado = true;
             moneda = new MonedaLadrillo(x + 8, y - 16);

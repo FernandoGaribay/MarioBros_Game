@@ -19,6 +19,7 @@ import object.padres.BloqueLadrillo;
 import object.util.HandlerEntidades;
 import object.util.EstadoPlayer;
 import object.util.GameEntidad;
+import object.util.HandlerSonidos;
 import utils.ReproductorMP3;
 
 public class Player extends GameObjeto {
@@ -140,10 +141,8 @@ public class Player extends GameObjeto {
 
         if (animacionMuerte) {
             if (contAnimacion == 0) {
-                if (Game.SONIDO) {
-                    ReproductorMP3.pararSonido();
-                    ReproductorMP3.reproducirSonido("MarioDeath.wav");
-                }
+                HandlerSonidos.stopAllSound();
+                HandlerSonidos.playSound("MarioDeath.wav");
                 ignorarColisiones = true;
                 ignorarInput = true;
                 animacionEstado = new Animacion(1, Texturas.getMarioTextura(prefijoTextura + "_marioMuerte"));
@@ -166,9 +165,7 @@ public class Player extends GameObjeto {
             contAnimacion++;
         } else if (animacionDano) {
             if (contAnimacion == 0) {
-                if (Game.SONIDO) {
-                    ReproductorMP3.reproducirSonido("TuberiaSound.wav");
-                }
+                HandlerSonidos.playSound("TuberiaSound.wav");
                 ignorarInput = true;
                 animacionEstado = new Animacion(3, Texturas.getMarioTextura(prefijoTextura + "_mario"),
                         Texturas.getMarioTextura(""));

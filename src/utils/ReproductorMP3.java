@@ -24,7 +24,7 @@ public class ReproductorMP3 {
                 clip.addLineListener(event -> {
                     if (event.getType() == LineEvent.Type.STOP) {
                         clip.close();
-                        clips.remove(clip);
+//                        clips.remove(clip);
                     }
                 });
                 clips.add(clip);
@@ -51,7 +51,7 @@ public class ReproductorMP3 {
             }
             clip.close();
         }
-        clips.clear();
+        clips.removeAll(clips);
     }
 }
 

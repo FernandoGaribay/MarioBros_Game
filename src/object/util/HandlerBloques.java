@@ -8,25 +8,27 @@ import main.Game;
 import object.bloques.BloqueLadrilloRojo;
 import object.padres.BloqueLadrillo;
 import object.player.Player;
+import utils.ReproductorMP3;
 
 public class HandlerBloques {
 
     // VARIABLES
     private int renderIzquierda;
     private int renderDerecha;
-    
+
+    // OBJETOS
     private List<GameObjeto> gameObjs;
     private Player player;
 
     public HandlerBloques() {
-        this.gameObjs = new ArrayList<GameObjeto>();
+        this.gameObjs = new ArrayList<>();
     }
 
     public void tick() {
         renderIzquierda = (int) (player.getX() - Game.getMAX_RENDERIZADO());
         renderDerecha = (int) (player.getX() + Game.getMAX_RENDERIZADO());
 
-        for (GameObjeto obj : gameObjs) { 
+        for (GameObjeto obj : gameObjs) {
             // Se pausa el bloque si esta a fuera del render derecho
             if (obj.getX() > renderDerecha) {
                 continue;
@@ -41,8 +43,7 @@ public class HandlerBloques {
         List<BloqueLadrillo> elimiarBloques = player.getBloquesAEliminar();
         for (BloqueLadrillo elimiarBloque : elimiarBloques) {
             eliminarObj(elimiarBloque);
-        }
-
+        };
     }
 
     public void render(LibreriaGrafica g) {

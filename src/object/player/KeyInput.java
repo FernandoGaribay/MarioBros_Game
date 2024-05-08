@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import main.Game;
 import object.player.Player;
 import object.player.PlayerMovimiento;
+import object.util.HandlerSonidos;
 import utils.ReproductorMP3;
 
 public class KeyInput extends KeyAdapter {
@@ -27,9 +28,7 @@ public class KeyInput extends KeyAdapter {
         // SALTO
         if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_W) {
             if (!player.isSaltando() && !teclaPresionada[0]) {
-                if (Game.SONIDO) {
-                    ReproductorMP3.reproducirSonido("MarioJumpSound.wav");
-                }
+                HandlerSonidos.playSound("MarioJumpSound.wav");
                 teclaPresionada[0] = true;
                 player.setVelY(-12);
                 player.setSaltando(true);

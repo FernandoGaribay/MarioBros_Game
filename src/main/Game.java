@@ -26,6 +26,7 @@ import object.util.HandlerEntidades;
 import object.util.HandlerBloques;
 import object.player.KeyInput;
 import object.ObjectFactory;
+import object.util.HandlerSonidos;
 import utils.ReproductorMP3;
 
 public class Game extends Canvas implements Runnable {
@@ -95,10 +96,8 @@ public class Game extends Canvas implements Runnable {
             // Esperar a que el hilo finalize
             loadScreen.getHilo().join();
             loadScreen = null;
-            if (SONIDO) {
-                ReproductorMP3.reproducirSonido("SuperMarioBros_ThemeSong.wav");
-            }
-
+            HandlerSonidos.playSound("SuperMarioBros_ThemeSong.wav");
+            
             ventana.setCanvas(this);
             gameLoopInicio();
         } catch (InterruptedException ex) {
@@ -109,7 +108,7 @@ public class Game extends Canvas implements Runnable {
     public void cargarBarreras() {
         // Barreras para no salir del mapa
         for (int i = 0; i < 500; i++) {
-            handlerBloques.addObj(new BloqueBarrera(i * 32, 32 * 16, 32, 32, 1));
+            handlerBloques.addObj(new BloqueBarrera(i * 32, 32 * 15, 32, 32, 1));
         }
         for (int i = 0; i < 15; i++) {
             handlerBloques.addObj(new BloqueBarrera(-32, 32 * i, 32, 32, 1));
@@ -253,6 +252,7 @@ public class Game extends Canvas implements Runnable {
             while (deltaTicks >= 1 && running) {
                 objetosTick();
                 background.tick();
+                HandlerSonidos.tick();
                 updates++;
                 deltaTicks--;
             }

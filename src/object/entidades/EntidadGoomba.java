@@ -17,6 +17,7 @@ import static object.ObjectID.BloqueMoneda;
 import static object.ObjectID.TuberiaCabeza;
 import static object.ObjectID.BloqueHongoRojo;
 import static object.ObjectID.LadrilloRojo;
+import object.util.HandlerSonidos;
 import utils.ReproductorMP3;
 
 public class EntidadGoomba extends GameEntidad {
@@ -139,9 +140,7 @@ public class EntidadGoomba extends GameEntidad {
         if (getBounds().intersects(temp.getBounds())) {
             switch (temp.getID()) {
                 case KoopaCaparazon:
-                    if (Game.SONIDO) {
-                        ReproductorMP3.reproducirSonido("KickShellSound.wav");
-                    }
+                    HandlerSonidos.playSound("KickShellSound.wav");
                     if (temp.getVelX() != 0) {
                         atropellado = true;
                         GameEntidad.addEntidadABorrar(this);

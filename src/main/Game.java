@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import main.GameOverScreen;
+import main.LoadScreen;
 import object.bloques.Barrera;
 import object.util.GameObjeto;
 import object.player.Player;
@@ -45,6 +47,7 @@ public class Game extends Canvas implements Runnable {
     // VARIABLES
     public static HashMap<List<Integer>, List<Integer>> ENTRADAS_SALIDAS = new HashMap<>();
     private boolean running;
+    private boolean gameover;
     private int frames = 0;
     private int updates = 0;
 
@@ -61,6 +64,7 @@ public class Game extends Canvas implements Runnable {
     private Background background;
     private KeyInput keyInput;
     private LoadScreen loadScreen;
+    private GameOverScreen gameOverScreen;
 
     public Game() {
         inicializarElementos();
@@ -183,15 +187,18 @@ public class Game extends Canvas implements Runnable {
         this.playerThread = new Thread(this::playerUpdate);
 
         this.running = true;
+        this.gameover = false;
         hiloPrincipal.start();
     }
 
     private synchronized void gameLoopParar() {
         try {
+            System.out.println("Apagando hilos");
             this.running = false;
             this.updateThread.join();
             this.renderThread.join();
             this.playerThread.join();
+            System.out.println("Los hilos se pararon");
         } catch (InterruptedException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -206,21 +213,29 @@ public class Game extends Canvas implements Runnable {
         while (running) {
             try {
                 Thread.sleep(1000);
+            } catch (Exception e) {
+            }
+            System.out.println("FPS: " + frames + " TPS: " + updates);
+            updates = 0;
+            frames = 0;
 
-                System.out.println("FPS: " + frames + " TPS: " + updates);
-                updates = 0;
-                frames = 0;
-                
-                
-                if(!player.isIsVivo()){
-                    System.out.println("murido");
-                    gameLoopParar();
-                    inicializarElementos();
+            if (!player.isIsVivo()) {
+                gameLoopParar();
+                gameOverScreen = new GameOverScreen(SCREEN_WIDTH, SCREEN_HEIGHT);
+                ventana.setCanvas(gameOverScreen);
+                try {
+                    System.out.println("Hilo GameOverScreen en proceso");
+                    GameOverScreen.getHilo().join();
+                    System.out.println("Hilo GameOverScreen finalizado");
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+                if (!gameOverScreen.isRunning()) {
+                    gameover = true;
+                }
             }
         }
+        System.out.println("GAME LOOP FINALIZADO");
     }
 
     private void runUpdate() {
@@ -235,7 +250,7 @@ public class Game extends Canvas implements Runnable {
             deltaTicks += (now - lastTime) / nsTicks;
             lastTime = now;
 
-            while (deltaTicks >= 1) {
+            while (deltaTicks >= 1 && running) {
                 objetosTick();
                 background.tick();
                 updates++;
@@ -256,7 +271,7 @@ public class Game extends Canvas implements Runnable {
             deltaFrames += (now - lastTime) / nsFrames;
             lastTime = now;
 
-            while (deltaFrames >= 1) {
+            while (deltaFrames >= 1 && running) {
                 render();
                 frames++;
                 deltaFrames--;
@@ -276,7 +291,7 @@ public class Game extends Canvas implements Runnable {
             deltaTicks += (now - lastTime) / nsTicks;
             lastTime = now;
 
-            while (deltaTicks >= 1) {
+            while (deltaTicks >= 1 && running) {
                 playerTick();
                 deltaTicks--;
             }
@@ -333,6 +348,22 @@ public class Game extends Canvas implements Runnable {
 
     public static int getSCREEN_OFFSET() {
         return SCREEN_OFFSET;
+    }
+
+    public Thread getHiloPrincipal() {
+        return hiloPrincipal;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public boolean isGameover() {
+        return gameover;
+    }
+
+    public void setGameover(boolean gameover) {
+        this.gameover = gameover;
     }
 
     public static int getMAX_RENDERIZADO() {

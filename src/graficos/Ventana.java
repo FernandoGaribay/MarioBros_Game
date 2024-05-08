@@ -14,6 +14,7 @@ public class Ventana {
         this.tamano = new Dimension(width, height);
         this.frame = new JFrame(title);
 
+        this.frame.setUndecorated(true);
         this.frame.setPreferredSize(tamano);
         this.frame.setMaximumSize(tamano);
         this.frame.setMinimumSize(tamano);

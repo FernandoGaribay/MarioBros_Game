@@ -24,6 +24,7 @@ import object.util.HandlerEntidades;
 import object.util.HandlerBloques;
 import object.player.KeyInput;
 import object.ObjectFactory;
+import utils.ReproductorMP3;
 
 public class Game extends Canvas implements Runnable {
 
@@ -38,6 +39,7 @@ public class Game extends Canvas implements Runnable {
     private static final int VENTANA_HEIGHT = 480 + SCREEN_OFFSET; // 32 x 15 = 480 (15 bloques de 16x16 de alto)
     private static final int SCREEN_WIDTH = VENTANA_WIDTH;
     private static final int SCREEN_HEIGHT = VENTANA_HEIGHT;
+    public static final boolean SONIDO = true;
     private static LibreriaGrafica g2 = new LibreriaGrafica(VENTANA_WIDTH, VENTANA_HEIGHT);
 
     // VARIABLES
@@ -89,6 +91,9 @@ public class Game extends Canvas implements Runnable {
             // Esperar a que el hilo finalize
             loadScreen.getHilo().join();
             loadScreen = null;
+            if (SONIDO) {
+                ReproductorMP3.reproducirSonido("SuperMarioBros_ThemeSong.wav");
+            }
 
             ventana.setCanvas(this);
             gameLoopInicio();

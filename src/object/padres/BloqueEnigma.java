@@ -7,8 +7,10 @@ import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import main.Game;
 import object.ObjectID;
 import object.bloques.BloqueMoneda;
+import utils.ReproductorMP3;
 
 public class BloqueEnigma extends GameObjeto {
 
@@ -70,7 +72,7 @@ public class BloqueEnigma extends GameObjeto {
         if (contAnimacionGolpe == 16) {
             return;
         }
-
+        
         if (contAnimacionGolpe < 8) {
             setY(getY() - 3);
         } else if (contAnimacionGolpe < 16 && contAnimacionGolpe >= 8) {

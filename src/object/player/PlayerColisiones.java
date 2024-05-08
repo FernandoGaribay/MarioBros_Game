@@ -35,6 +35,7 @@ import object.util.GameEntidad;
 import object.util.GameObjeto;
 import object.util.HandlerBloques;
 import object.util.HandlerEntidades;
+import utils.ReproductorMP3;
 
 public class PlayerColisiones {
 
@@ -151,8 +152,14 @@ public class PlayerColisiones {
                 case LadrilloRojo:
                 case LadrilloAzul:
                     if (player.getEstadoPlayer() == EstadoPlayer.Chico) {
+                        if (Game.SONIDO) {
+                            ReproductorMP3.reproducirSonido("BumpSound.wav");
+                        }
                         ((BloqueLadrillo) temp).golpear();
                     } else if (player.getEstadoPlayer() == EstadoPlayer.Grande) {
+                        if (Game.SONIDO) {
+                            ReproductorMP3.reproducirSonido("BlockBreakSound.wav");
+                        }
                         ((BloqueLadrillo) temp).romper();
                         colaBloquesEliminados.add(((BloqueLadrillo) temp));
                     }
@@ -189,6 +196,9 @@ public class PlayerColisiones {
 
             switch (temp.getID()) {
                 case Entrada:
+                    if (Game.SONIDO) {
+                        ReproductorMP3.reproducirSonido("TuberiaSound.wav");
+                    }
                     entrada.add((int) (temp.getX() / 32));
                     entrada.add((int) (temp.getY() / 32));
 
@@ -202,6 +212,10 @@ public class PlayerColisiones {
     private void handleColisionBandera(GameObjeto temp, int i) {
         if (player.getBoundsRight().intersects(temp.getBounds())) {
             handlerBloques.getGameObj().get(i).setVelY(2);
+            if (Game.SONIDO) {
+                ReproductorMP3.pararSonido();
+                ReproductorMP3.reproducirSonido("WinSound.wav");
+            }
         }
     }
 
@@ -218,24 +232,39 @@ public class PlayerColisiones {
         if (player.getBounds().intersects(temp.getBounds())) {
             switch (temp.getID()) {
                 case HongoRojo:
+                    if (Game.SONIDO) {
+                        ReproductorMP3.reproducirSonido("CrecerSound.wav");
+                    }
                     handlerEntidades.eliminarEntidad(temp);
                     player.cambiarEstado(2);
                     break;
                 case HongoVerde:
+                    if (Game.SONIDO) {
+                        ReproductorMP3.reproducirSonido("1UPSound.wav");
+                    }
                     handlerEntidades.eliminarEntidad(temp);
                     System.out.println("Hongo verde recogido");
                     break;
                 case Goomba:
+                    if (Game.SONIDO) {
+                        ReproductorMP3.reproducirSonido("AplastadoSound.wav");
+                    }
                     ((EntidadGoomba) temp).setAnimacionAplastado(true);
                     colaEntidadesDrops.add(temp);
                     player.setVelY(-8f);
                     break;
                 case Koopa:
+                    if (Game.SONIDO) {
+                        ReproductorMP3.reproducirSonido("AplastadoSound.wav");
+                    }
                     temp.setAnimacionCompletada(true);
                     colaEntidadesDrops.add(temp);
                     player.setVelY(-8f);
                     break;
                 case KoopaCaparazon:
+                    if (Game.SONIDO) {
+                        ReproductorMP3.reproducirSonido("AplastadoSound.wav");
+                    }
                     EntidadKoopaCaparazon caparazon = ((EntidadKoopaCaparazon) temp);
 
                     if (caparazon.getVelX() != 0) {
@@ -246,6 +275,9 @@ public class PlayerColisiones {
                     player.setVelY(-8f);
                     break;
                 case Moneda:
+                    if (Game.SONIDO) {
+                        ReproductorMP3.reproducirSonido("CoinSound.wav");
+                    }
                     handlerEntidades.eliminarEntidad(temp);
                     break;
             }

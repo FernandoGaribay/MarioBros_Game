@@ -7,7 +7,9 @@ import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import main.Game;
 import object.ObjectID;
+import utils.ReproductorMP3;
 
 public class BloqueMoneda extends BloqueEnigma {
 
@@ -63,7 +65,11 @@ public class BloqueMoneda extends BloqueEnigma {
             moneda.setMoneda(null);
             return;
         }
-        if (contAnimacionMoneda < 12) {
+        if (contAnimacionMoneda == 0) {
+            if (Game.SONIDO) {
+                ReproductorMP3.reproducirSonido("CoinSound.wav");
+            }
+        } else if (contAnimacionMoneda < 12) {
             moneda.setY(moneda.getY() - 8f);
         } else if (contAnimacionMoneda < 24 && contAnimacionMoneda >= 12) {
             moneda.setY(moneda.getY() + 5f);

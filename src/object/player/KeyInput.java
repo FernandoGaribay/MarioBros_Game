@@ -2,8 +2,10 @@ package object.player;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import main.Game;
 import object.player.Player;
 import object.player.PlayerMovimiento;
+import utils.ReproductorMP3;
 
 public class KeyInput extends KeyAdapter {
 
@@ -25,6 +27,9 @@ public class KeyInput extends KeyAdapter {
         // SALTO
         if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_W) {
             if (!player.isSaltando() && !teclaPresionada[0]) {
+                if (Game.SONIDO) {
+                    ReproductorMP3.reproducirSonido("MarioJumpSound.wav");
+                }
                 teclaPresionada[0] = true;
                 player.setVelY(-12);
                 player.setSaltando(true);
@@ -88,7 +93,7 @@ public class KeyInput extends KeyAdapter {
             teclaPresionada[3] = false;
             player.setVELOCIDAD_MAXIMA(4.5f, 5);
         }
-        
+
         if (key == KeyEvent.VK_E) {
             teclaPresionada[4] = false;
             player.setDecenderTuberia(false);

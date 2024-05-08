@@ -6,7 +6,9 @@ import graficos.LibreriaGrafica;
 import graficos.Texturas;
 import java.awt.Color;
 import java.awt.Rectangle;
+import main.Game;
 import object.ObjectID;
+import utils.ReproductorMP3;
 
 public class BloqueHongoVerde extends BloqueEnigma {
 
@@ -35,6 +37,24 @@ public class BloqueHongoVerde extends BloqueEnigma {
     @Override
     public GameObjeto clone() {
         return new BloqueHongoVerde((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
+    }
+
+    @Override
+    public void runAnimacionGolpe() {
+        if (contAnimacionGolpe == 16) {
+            return;
+        }
+        if (contAnimacionGolpe == 0) {
+            if (Game.SONIDO) {
+                ReproductorMP3.reproducirSonido("ItemBlockSound.wav");
+            }
+        }
+        if (contAnimacionGolpe < 8) {
+            setY(getY() - 3);
+        } else if (contAnimacionGolpe < 16 && contAnimacionGolpe >= 8) {
+            setY(getY() + 3);
+        }
+        contAnimacionGolpe++;
     }
 
     public boolean poderGenerarHongo() {

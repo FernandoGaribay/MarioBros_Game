@@ -9,12 +9,8 @@ import object.ObjectID;
 
 public class BloqueMonedaHit extends GameObjeto {
 
-    // OBJETOS
-    private Texturas texturas;
-
     public BloqueMonedaHit(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.BloqueMoneda, width, height, xDesplasamiento);
-        this.texturas = new Texturas();
     }
 
     @Override
@@ -24,8 +20,8 @@ public class BloqueMonedaHit extends GameObjeto {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("bloqueMonedaHit"), (int) (getX()), (int) (getY()));
-//        g.drawRectangle(getBounds(), Color.white);
+        g.drawImage(Texturas.getTextura("bloqueMonedaHit"), (int) (getX()), (int) (getY()));
+//        g.drawRectangle(getBounds(), Color.RED);
     }
 
     @Override

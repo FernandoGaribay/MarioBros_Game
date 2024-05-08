@@ -42,14 +42,6 @@ public abstract class GameEntidad {
         return entidadesBorrar;
     }
 
-    public static void addEntidadAAniadir(GameEntidad entidad) {
-        entidadesAniadir.add(entidad);
-    }
-
-    public static List<GameEntidad> getEntidadesAniadir() {
-        return entidadesAniadir;
-    }
-
     public abstract void tick();
 
     public abstract void render(LibreriaGrafica g);

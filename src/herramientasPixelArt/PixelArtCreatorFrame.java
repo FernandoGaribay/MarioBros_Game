@@ -29,11 +29,11 @@ public class PixelArtCreatorFrame extends JFrame {
 
     private static PixelArtCreatorFrame frame;
     private static PixelArtCreator panelCreator;
-    private List<Color> coloresRecientesList;
+    private static List<Color> coloresRecientesList;
 
-    JMenuBar menuBar = new JMenuBar();
-    Component espaciado = Box.createHorizontalGlue();
-    JMenu rellenoActivo = new JMenu("Relleno Activo");
+    private static JMenuBar menuBar = new JMenuBar();
+    private static Component espaciado = Box.createHorizontalGlue();
+    private static JMenu rellenoActivo = new JMenu("Relleno Activo");
 
     public PixelArtCreatorFrame(String titulo, int filas, int columnas) {
         this.coloresRecientesList = new ArrayList<>();

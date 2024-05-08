@@ -11,7 +11,6 @@ import object.ObjectID;
 public class BanderaMastil extends GameObjeto {
 
     // OBJETOS
-    private Texturas texturas;
     private Bandera bandera;
 
     // VARIABLES
@@ -21,7 +20,6 @@ public class BanderaMastil extends GameObjeto {
     public BanderaMastil(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.Bandera, width, height, xDesplasamiento);
 
-        this.texturas = new Texturas();
         this.bandera = new Bandera();
         this.heightBandera = (int) getY();
         this.animacionInicio = true;
@@ -40,7 +38,7 @@ public class BanderaMastil extends GameObjeto {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("bloqueBanderaMastil"), (int) (getX()), (int) (getY()));
+        g.drawImage(Texturas.getTextura("bloqueBanderaMastil"), (int) (getX()), (int) (getY()));
         g.drawImage(bandera.getBandera(), (int) (getX() - 16), heightBandera + 16);
 //        g.drawRectangle(getBounds(), Color.red);
     }
@@ -71,12 +69,10 @@ public class BanderaMastil extends GameObjeto {
 class Bandera {
 
     // OBJETOS
-    private Texturas texturas;
     private BufferedImage bandera;
 
     public Bandera() {
-        this.texturas = new Texturas();
-        this.bandera = texturas.getTextura("bandera");
+        this.bandera = Texturas.getTextura("bandera");
     }
 
     public BufferedImage getBandera() {

@@ -26,7 +26,7 @@ public class BloqueHongoVerde extends BloqueEnigma {
         if (golpeado) {
             g.drawImage(Texturas.getTextura("bloqueMonedaHit"), (int) (getX()), (int) (getY()));
         }
-//        g.drawRectangle(getBounds(), Color.white);
+//        g.drawRectangle(getBounds(), Color.RED);
     }
 
     @Override

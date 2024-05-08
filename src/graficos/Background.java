@@ -2,20 +2,17 @@ package graficos;
 
 import graficos.LibreriaGrafica;
 import java.awt.Color;
-import java.awt.Rectangle;
-import object.util.GameObjeto;
-import object.ObjectID;
 
 public class Background {
 
     // CONSTANTES
     private final int SCREEN_OFFSET;
 
-    // VARIABLES
+    // OBJETOS
     private Camara camara;
 
-    private static float x;
-    private static float y;
+    // VARIABLES
+    private static float x, y;
     private static float width, height;
     private static Color color;
 
@@ -86,6 +83,4 @@ public class Background {
     public static void setColor(Color color) {
         Background.color = color;
     }
-
-    
 }

@@ -7,13 +7,11 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import object.ObjectID;
 import object.padres.BloqueEntradaSalida;
-import object.padres.BloqueLadrillo;
 
 public class BloqueSalida extends BloqueEntradaSalida {
 
     public BloqueSalida(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.Salida, width, height, xDesplasamiento);
-
     }
 
     @Override

@@ -12,7 +12,6 @@ public class BloqueLadrilloAzul extends BloqueLadrillo {
 
     public BloqueLadrilloAzul(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.LadrilloAzul, width, height, xDesplasamiento, "bloqueLadrilloAzul");
-
     }
 
     @Override
@@ -23,6 +22,7 @@ public class BloqueLadrilloAzul extends BloqueLadrillo {
     @Override
     public void render(LibreriaGrafica g) {
         super.render(g);
+//        g.drawRect((int) getX(), (int) getY(), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.red);
     }
 
     @Override

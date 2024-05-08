@@ -9,12 +9,8 @@ import object.ObjectID;
 
 public class BloquePiso extends GameObjeto {
 
-    // OBJETOS
-    private Texturas texturas;
-
     public BloquePiso(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.Bloque, width, height, xDesplasamiento);
-        this.texturas = new Texturas();
     }
 
     @Override
@@ -24,8 +20,8 @@ public class BloquePiso extends GameObjeto {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("bloquePiso"), (int) (getX()), (int) (getY()));
-//        g.drawRect((int) getX(), (int) getY(), (int) (getX() + getWidth()), (int) (getY() + getHeight()),new Color(255,255,255));
+        g.drawImage(Texturas.getTextura("bloquePiso"), (int) (getX()), (int) (getY()));
+//        g.drawRect((int) getX(), (int) getY(), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.RED);
     }
 
     @Override

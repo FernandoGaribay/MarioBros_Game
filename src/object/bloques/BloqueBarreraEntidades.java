@@ -9,12 +9,8 @@ import object.ObjectID;
 
 public class BloqueBarreraEntidades extends GameObjeto {
 
-    // OBJETOS
-    private Texturas texturas;
-
     public BloqueBarreraEntidades(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.BarreraEntidades, width, height, xDesplasamiento);
-        this.texturas = new Texturas();
     }
 
     @Override

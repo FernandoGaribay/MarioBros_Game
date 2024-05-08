@@ -9,12 +9,8 @@ import object.ObjectID;
 
 public class NubeGrande extends GameObjeto {
 
-    // OBJETOS
-    private Texturas texturas;
-
     public NubeGrande(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.Background, width, height, xDesplasamiento);
-        this.texturas = new Texturas();
     }
 
     @Override
@@ -24,8 +20,8 @@ public class NubeGrande extends GameObjeto {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("bloqueNubeGrande"), (int) (getX()), (int) (getY()));
-//        g.drawRectangle(getBounds(), Color.red);
+        g.drawImage(Texturas.getTextura("bloqueNubeGrande"), (int) getX(), (int) getY());
+//        g.drawRectangle(getBounds(), Color.RED);
     }
 
     @Override

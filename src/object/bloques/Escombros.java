@@ -9,6 +9,7 @@ import static object.ObjectID.LadrilloRojo;
 
 public class Escombros {
 
+    // VARIABLES
     private BufferedImage[] escombros;
     private float width, height, velX, velY;
     private float[] x, y;

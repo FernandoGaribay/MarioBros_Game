@@ -10,29 +10,68 @@ import java.util.HashMap;
 
 public class LibreriaGrafica extends Canvas {
 
-    private final int WIDTH;
-    private final int HEIGHT;
-//    private final Tipografia tipografia;
+    // BUFFER
     private BufferedImage buffer;
 
-    // Variables para la traslación
-    private int translateX = 0;
-    private int translateY = 0;
+    // CONSTANTES
+    private final int WIDTH;
+    private final int HEIGHT;
+
+    // VARIABLES PARA TRASLASION
+    private int trasladarX = 0;
+    private int trasladarY = 0;
 
     public LibreriaGrafica(int width, int height) {
         setSize(width, height);
 
         this.WIDTH = width;
         this.HEIGHT = height;
-//        tipografia = new Tipografia();
-        buffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+        this.buffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+    }
+
+    public void drawLine(int x1, int y1, int x2, int y2, Color color) {
+        x1 += trasladarX;
+        y1 += trasladarY;
+        x2 += trasladarX;
+        y2 += trasladarY;
+
+        int dx = Math.abs(x2 - x1);
+        int dy = Math.abs(y2 - y1);
+        int sx = x1 < x2 ? 1 : -1;
+        int sy = y1 < y2 ? 1 : -1;
+        int err = dx - dy;
+
+        while (true) {
+            putPixel(x1, y1, color);
+
+            if (x1 == x2 && y1 == y2) {
+                break;
+            }
+
+            int e2 = 2 * err;
+            if (e2 > -dy) {
+                err -= dy;
+                x1 += sx;
+            }
+            if (e2 < dx) {
+                err += dx;
+                y1 += sy;
+            }
+        }
+    }
+
+    public void drawRect(int x0, int y0, int x1, int y1, Color color) {
+        drawLine(x0, y0, x1, y0, color);
+        drawLine(x0, y1, x1, y1, color);
+        drawLine(x0, y0, x0, y1, color);
+        drawLine(x1, y0, x1, y1, color);
     }
 
     public void fillRect(int x0, int y0, int x1, int y1, Color color) {
-        x0 += translateX;
-        y0 += translateY;
-        x1 += translateX;
-        y1 += translateY;
+        x0 += trasladarX;
+        y0 += trasladarY;
+        x1 += trasladarX;
+        y1 += trasladarY;
 
         int nx0 = Math.min(x0, x1);
         int ny0 = Math.min(y0, y1);
@@ -60,52 +99,14 @@ public class LibreriaGrafica extends Canvas {
         drawLine(rectangle.x, rectangle.y + rectangle.height, rectangle.x, rectangle.y, color);
     }
 
-    public void drawRect(int x0, int y0, int x1, int y1, Color color) {
-        drawLine(x0, y0, x1, y0, color);
-        drawLine(x0, y1, x1, y1, color);
-        drawLine(x0, y0, x0, y1, color);
-        drawLine(x1, y0, x1, y1, color);
-    }
-
-    public void drawLine(int x1, int y1, int x2, int y2, Color color) {
-        x1 += translateX;
-        y1 += translateY;
-        x2 += translateX;
-        y2 += translateY;
-
-        int dx = Math.abs(x2 - x1);
-        int dy = Math.abs(y2 - y1);
-        int sx = x1 < x2 ? 1 : -1;
-        int sy = y1 < y2 ? 1 : -1;
-        int err = dx - dy;
-
-        while (true) {
-            putPixel(x1, y1, color);
-
-            if (x1 == x2 && y1 == y2) {
-                break;
-            }
-
-            int e2 = 2 * err;
-            if (e2 > -dy) {
-                err -= dy;
-                x1 += sx;
-            }
-            if (e2 < dx) {
-                err += dx;
-                y1 += sy;
-            }
-        }
-    }
-
     public void drawImage(BufferedImage img, int x, int y) {
         Graphics g = buffer.getGraphics();
-        g.drawImage(img, x + translateX, y + translateY, null);
+        g.drawImage(img, x + trasladarX, y + trasladarY, null);
     }
 
     public void drawImage(BufferedImage img, int x, int y, int width, int height) {
         Graphics g = buffer.getGraphics();
-        g.drawImage(img, x + translateX, y + translateY, width, height, null);
+        g.drawImage(img, x + trasladarX, y + trasladarY, width, height, null);
     }
 
     public void drawText(String texto, int x, int y, int fontSize) {
@@ -136,17 +137,17 @@ public class LibreriaGrafica extends Canvas {
         g.drawImage(buffer, 0, 0, this);
     }
 
-    public BufferedImage getBuffer() {
-        return buffer;
+    public void limpiarBuffer() {
+        buffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
     }
 
     public void translate(int x, int y) {
-        this.translateX = x;
-        this.translateY = y;
+        this.trasladarX = x;
+        this.trasladarY = y;
     }
 
-    public void limpiarBuffer() {
-        buffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+    public BufferedImage getBuffer() {
+        return buffer;
     }
 }
 

@@ -9,12 +9,8 @@ import object.ObjectID;
 
 public class MontanaChica extends GameObjeto{
     
-    // OBJETOS
-    private Texturas texturas;
-    
     public MontanaChica(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.Background, width, height, xDesplasamiento);
-        this.texturas = new Texturas();
     }
 
     @Override
@@ -24,8 +20,8 @@ public class MontanaChica extends GameObjeto{
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("bloqueMontanaChica"), (int) (getX()), (int) (getY()));
-//        g.drawRectangle(getBounds(), Color.red);
+        g.drawImage(Texturas.getTextura("bloqueMontanaChica"), (int) (getX()), (int) (getY()));
+//        g.drawRectangle(getBounds(), Color.RED);
     }
 
     @Override

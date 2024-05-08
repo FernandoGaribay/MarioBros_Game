@@ -3,6 +3,7 @@ package object.bloques;
 import object.util.GameObjeto;
 import graficos.LibreriaGrafica;
 import graficos.Texturas;
+import java.awt.Color;
 import java.awt.Rectangle;
 import object.ObjectID;
 
@@ -19,7 +20,8 @@ public class BloqueTuberiaVertical extends GameObjeto {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(Texturas.getTextura("bloqueTuberiaVertical"), (int) (getX()), (int) (getY()));
+        g.drawImage(Texturas.getTextura("bloqueTuberiaVertical"), (int) getX(), (int) getY());
+//        g.drawRect((int) getX(), (int) getY(), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.RED);
     }
 
     @Override

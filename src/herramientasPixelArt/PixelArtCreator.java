@@ -17,7 +17,7 @@ import javax.swing.SwingUtilities;
 
 public class PixelArtCreator extends JPanel {
 
-    // Constantes
+    // VARIABLES
     private int HEIGHT;
     private int WIDTH;
     private int NUM_FILAS;

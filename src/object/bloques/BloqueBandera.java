@@ -8,12 +8,8 @@ import object.ObjectID;
 
 public class BloqueBandera extends GameObjeto {
 
-    // OBJETOS
-    private Texturas texturas;
-
     public BloqueBandera(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.Bloque, width, height, xDesplasamiento);
-        this.texturas = new Texturas();
     }
 
     @Override
@@ -23,7 +19,7 @@ public class BloqueBandera extends GameObjeto {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("bloqueBandera"), (int) (getX()), (int) (getY()));
+        g.drawImage(Texturas.getTextura("bloqueBandera"), (int) (getX()), (int) (getY()));
 //        g.drawRect((int) getX(), (int) getY(), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.WHITE);
     }
 

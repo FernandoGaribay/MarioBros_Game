@@ -25,7 +25,7 @@ public class BloquePisoAzul extends GameObjeto {
     @Override
     public void render(LibreriaGrafica g) {
         g.drawImage(texturas.getTextura("bloquePisoAzul"), (int) (getX()), (int) (getY()));
-//        g.drawRect((int) getX(), (int) getY(), (int) (getX() + getWidth()), (int) (getY() + getHeight()),new Color(255,255,255));
+//        g.drawRect((int) getX(), (int) getY(), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.RED);
     }
 
     @Override

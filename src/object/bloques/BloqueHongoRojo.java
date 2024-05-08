@@ -23,7 +23,7 @@ public class BloqueHongoRojo extends BloqueEnigma {
     @Override
     public void render(LibreriaGrafica g) {
         super.render(g);
-//        g.drawRectangle(getBounds(), Color.white);
+//        g.drawRectangle(getBounds(), Color.RED);
     }
 
     @Override

@@ -41,7 +41,7 @@ public class BloqueMoneda extends BloqueEnigma {
             g.drawImage(Texturas.getTextura("bloqueMonedaHit"), (int) (getX()), (int) (getY()));
             g.drawImage(moneda.getMoneda(), (int) moneda.getX(), (int) moneda.getY());
         }
-//        g.drawRectangle(getBounds(), Color.white);
+//        g.drawRectangle(getBounds(), Color.RED);
     }
 
     @Override

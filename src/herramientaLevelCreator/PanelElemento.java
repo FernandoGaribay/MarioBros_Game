@@ -1,6 +1,5 @@
 package herramientaLevelCreator;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;

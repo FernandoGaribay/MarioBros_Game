@@ -8,27 +8,27 @@ import java.util.Map;
 
 public class Texturas {
 
-    private static LinkedHashMap<String, BufferedImage> texturasMap;
-
-    private static HashMap<String, BufferedImage> entidadesMap;
-
-    private static HashMap<String, BufferedImage> marioTexturas_Map;
-
-    private static HashMap<String, BufferedImage> bloqueModena_Map;
-
-    private static HashMap<String, BufferedImage> bloquesEscombros_Map;
-
+    // LECTOR DE MATRICES
     private static PixelArtReader lectorMatriz;
+
+    // TEXTURAS
+    private static LinkedHashMap<String, BufferedImage> texturasMap;
+    private static HashMap<String, BufferedImage> entidadesMap;
+    private static HashMap<String, BufferedImage> marioTexturas_Map;
+    private static HashMap<String, BufferedImage> bloqueModena_Map;
+    private static HashMap<String, BufferedImage> bloquesEscombros_Map;
 
     // Inicializar variables y valores estaticas de la clase
     static {
+        lectorMatriz = new PixelArtReader(2);
+        
         texturasMap = new LinkedHashMap<>();
         entidadesMap = new HashMap<>();
         marioTexturas_Map = new HashMap<>();
         bloqueModena_Map = new HashMap<>();
         bloquesEscombros_Map = new HashMap<>();
-        lectorMatriz = new PixelArtReader(2);
 
+        // Texturas Map
         getBloquesTexturas();
         getTuberiaTexturas();
         getMontanasTexturas();
@@ -36,16 +36,15 @@ public class Texturas {
         getNubesTexturas();
         getElementosFondo();
 
+        // Entidades Map
         getEntidadesTexturas();
 
+        // Mario Map
         getMarioTexturas();
 
+        // Bloque moneda y Bloque escombros Map
         getBloqueMonedaTexturas();
         getBloquesEscombrosTexturas();
-    }
-
-    public Texturas() {
-
     }
 
     private static void getMarioTexturas() {

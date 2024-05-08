@@ -9,12 +9,8 @@ import object.ObjectID;
 
 public class NubeChica extends GameObjeto {
 
-    // OBJETOS
-    private Texturas texturas;
-
     public NubeChica(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.Background, width, height, xDesplasamiento);
-        this.texturas = new Texturas();
     }
 
     @Override
@@ -24,8 +20,8 @@ public class NubeChica extends GameObjeto {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("bloqueNubeChica"), (int) (getX()), (int) (getY()));
-//        g.drawRectangle(getBounds(), Color.red);
+        g.drawImage(Texturas.getTextura("bloqueNubeChica"), (int) (getX()), (int) (getY()));
+//        g.drawRectangle(getBounds(), Color.RED);
     }
 
     @Override

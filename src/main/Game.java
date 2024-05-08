@@ -89,7 +89,7 @@ public class Game extends Canvas implements Runnable {
         handlerEntidades.setPlayer(player);
 
         cargarNivel("NivelesFiles/mundo_1-1");
-//        cargarBarreras();
+        cargarBarreras();
 
         try {
             // Esperar a que el hilo finalize

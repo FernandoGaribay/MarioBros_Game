@@ -42,7 +42,7 @@ public class LadrilloMonedas extends BloqueEnigma {
         } else {
             g.drawImage(Texturas.getTextura("bloqueLadrillo"), (int) (getX()), (int) (getY()));
         }
-//        g.drawRectangle(getBounds(), Color.white);
+//        g.drawRectangle(getBounds(), Color.RED);
     }
 
     @Override

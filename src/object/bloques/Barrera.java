@@ -9,12 +9,8 @@ import object.ObjectID;
 
 public class Barrera extends GameObjeto {
 
-    // OBJETOS
-    private Texturas texturas;
-
     public Barrera(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.BarreraJugador, width, height, xDesplasamiento);
-        this.texturas = new Texturas();
     }
 
     @Override
@@ -24,7 +20,7 @@ public class Barrera extends GameObjeto {
 
     @Override
     public void render(LibreriaGrafica g) {
-        g.drawImage(texturas.getTextura("bloqueBarreraJugador"), (int) (getX()), (int) (getY()));
+        g.drawImage(Texturas.getTextura("bloqueBarreraJugador"), (int) (getX()), (int) (getY()));
 //        g.drawRect((int) getX(), (int) getY(), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.red);
     }
 

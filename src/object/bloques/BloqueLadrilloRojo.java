@@ -23,6 +23,7 @@ public class BloqueLadrilloRojo extends BloqueLadrillo {
     @Override
     public void render(LibreriaGrafica g) {
         super.render(g);
+//        g.drawRect((int) getX(), (int) getY(), (int) (getX() + getWidth()), (int) (getY() + getHeight()), Color.red);
     }
 
     @Override

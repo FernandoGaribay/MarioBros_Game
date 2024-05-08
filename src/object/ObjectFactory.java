@@ -6,7 +6,7 @@ import object.bloques.ArbustoChico;
 import object.bloques.ArbustoGrande;
 import object.bloques.ArbustoMediano;
 import object.bloques.BanderaMastil;
-import object.bloques.Barrera;
+import object.bloques.BloqueBarrera;
 import object.bloques.BloqueBandera;
 import object.bloques.BloqueBarreraEntidades;
 import object.bloques.BloqueEntrada;
@@ -21,7 +21,7 @@ import object.bloques.Castillo;
 import object.entidades.EntidadGoomba;
 import object.bloques.BloqueLadrilloRojo;
 import object.bloques.BloqueSalida;
-import object.bloques.LadrilloMonedas;
+import object.bloques.BloqueLadrilloMonedas;
 import object.bloques.MontanaChica;
 import object.bloques.MontanaGrande;
 import object.bloques.NubeChica;
@@ -31,7 +31,7 @@ import object.bloques.BloqueTuberia;
 import object.bloques.BloqueTuberiaCabezaVertical;
 import object.bloques.BloqueTuberiaTerminalVertical;
 import object.bloques.BloqueTuberiaVertical;
-import object.bloques.TuberiaCabeza;
+import object.bloques.BloqueTuberiaCabeza;
 import object.entidades.EntidadHongoRojo;
 import object.entidades.EntidadHongoVerde;
 import object.entidades.EntidadKoopa;
@@ -47,7 +47,7 @@ public class ObjectFactory {
     private static final Map<String, GameEntidad> entidadesPrototipos = new HashMap<>();
 
     static {
-        bloquesPrototipos.put("bloqueTuberiaCabeza", new TuberiaCabeza(0, 0, 64, 32, 0, true));
+        bloquesPrototipos.put("bloqueTuberiaCabeza", new BloqueTuberiaCabeza(0, 0, 64, 32, 0, true));
         bloquesPrototipos.put("bloqueTuberiaCabezaVertical", new BloqueTuberiaCabezaVertical(0, 0, 32, 64, 0, true));
         bloquesPrototipos.put("bloqueTuberia", new BloqueTuberia(0, 0, 64, 32, 0));
         bloquesPrototipos.put("bloqueTuberiaVertical", new BloqueTuberiaVertical(0, 0, 32, 64, 0));
@@ -61,7 +61,7 @@ public class ObjectFactory {
         bloquesPrototipos.put("bloqueMonedaHit", new BloqueMonedaHit(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueLadrillo", new BloqueLadrilloRojo(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueLadrilloAzul", new BloqueLadrilloAzul(0, 0, 32, 32, 0));
-        bloquesPrototipos.put("bloqueLadrilloMonedas", new LadrilloMonedas(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueLadrilloMonedas", new BloqueLadrilloMonedas(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueBanderaMastil", new BanderaMastil(0, 0, 32, 288, 0));
         bloquesPrototipos.put("bloqueCastillo", new Castillo(0, 0, 160, 160, 1));
         bloquesPrototipos.put("bloqueMontanaChica", new MontanaChica(0, 0, 96, 32, 0));
@@ -72,7 +72,7 @@ public class ObjectFactory {
         bloquesPrototipos.put("bloqueNubeChica", new NubeChica(0, 0, 64, 32, 16));
         bloquesPrototipos.put("bloqueNubeMediana", new NubeMediana(0, 0, 96, 32, 16));
         bloquesPrototipos.put("bloqueNubeGrande", new NubeGrande(0, 0, 128, 32, 16));
-        bloquesPrototipos.put("bloqueBarreraJugador", new Barrera(0, 0, 32, 32, 0));
+        bloquesPrototipos.put("bloqueBarreraJugador", new BloqueBarrera(0, 0, 32, 32, 0));
         bloquesPrototipos.put("bloqueBarreraEntidades", new BloqueBarreraEntidades(0, 0, 32, 32, 0));
         
         bloquesPrototipos.put("entradaA", new BloqueEntrada(0, 0, 32, 32, 0));

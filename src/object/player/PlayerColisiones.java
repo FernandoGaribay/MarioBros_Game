@@ -25,7 +25,7 @@ import object.padres.BloqueEnigma;
 import object.bloques.BloqueLadrilloAzul;
 import object.bloques.BloqueMoneda;
 import object.bloques.BloqueLadrilloRojo;
-import object.bloques.LadrilloMonedas;
+import object.bloques.BloqueLadrilloMonedas;
 import object.entidades.EntidadGoomba;
 import object.entidades.EntidadHongoRojo;
 import object.padres.BloqueLadrillo;
@@ -147,7 +147,7 @@ public class PlayerColisiones {
                     ((BloqueMoneda) temp).golpeado();
                     break;
                 case LadrilloMonedas:
-                    ((LadrilloMonedas) temp).golpeado();
+                    ((BloqueLadrilloMonedas) temp).golpeado();
                     break;
                 case LadrilloRojo:
                 case LadrilloAzul:
@@ -302,6 +302,9 @@ public class PlayerColisiones {
                 case KoopaCaparazon:
                     EntidadKoopaCaparazon caparazon = ((EntidadKoopaCaparazon) temp);
                     if (caparazon.getVelX() == 0) {
+                        if (Game.SONIDO) {
+                            ReproductorMP3.reproducirSonido("KickShellSound.wav");
+                        }
                         if (player.isMirarAdelante()) {
                             caparazon.iniciarMovimiento(true);
                         } else {

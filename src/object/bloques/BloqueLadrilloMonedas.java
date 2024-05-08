@@ -11,7 +11,7 @@ import main.Game;
 import object.ObjectID;
 import utils.ReproductorMP3;
 
-public class LadrilloMonedas extends BloqueEnigma {
+public class BloqueLadrilloMonedas extends BloqueEnigma {
 
     // OBJETOS
     private MonedaLadrillo moneda;
@@ -20,7 +20,7 @@ public class LadrilloMonedas extends BloqueEnigma {
     private int numMonedas = 5;
     private int contAnimacionMoneda = 0;
 
-    public LadrilloMonedas(int x, int y, int width, int height, int xDesplasamiento) {
+    public BloqueLadrilloMonedas(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.LadrilloMonedas, width, height, xDesplasamiento);
     }
 
@@ -52,7 +52,7 @@ public class LadrilloMonedas extends BloqueEnigma {
 
     @Override
     public GameObjeto clone() {
-        return new LadrilloMonedas((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
+        return new BloqueLadrilloMonedas((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
 
     @Override

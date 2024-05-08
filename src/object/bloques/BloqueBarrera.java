@@ -7,9 +7,9 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import object.ObjectID;
 
-public class Barrera extends GameObjeto {
+public class BloqueBarrera extends GameObjeto {
 
-    public Barrera(int x, int y, int width, int height, int xDesplasamiento) {
+    public BloqueBarrera(int x, int y, int width, int height, int xDesplasamiento) {
         super(x, y, ObjectID.BarreraJugador, width, height, xDesplasamiento);
     }
 
@@ -31,6 +31,6 @@ public class Barrera extends GameObjeto {
 
     @Override
     public GameObjeto clone() {
-        return new Barrera((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
+        return new BloqueBarrera((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento);
     }
 }

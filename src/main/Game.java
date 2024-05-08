@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.GameOverScreen;
 import main.LoadScreen;
-import object.bloques.Barrera;
+import object.bloques.BloqueBarrera;
 import object.util.GameObjeto;
 import object.player.Player;
 import object.util.GameEntidad;
@@ -109,10 +109,10 @@ public class Game extends Canvas implements Runnable {
     public void cargarBarreras() {
         // Barreras para no salir del mapa
         for (int i = 0; i < 500; i++) {
-            handlerBloques.addObj(new Barrera(i * 32, 32 * 16, 32, 32, 1));
+            handlerBloques.addObj(new BloqueBarrera(i * 32, 32 * 16, 32, 32, 1));
         }
         for (int i = 0; i < 15; i++) {
-            handlerBloques.addObj(new Barrera(-32, 32 * i, 32, 32, 1));
+            handlerBloques.addObj(new BloqueBarrera(-32, 32 * i, 32, 32, 1));
         }
     }
 

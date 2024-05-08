@@ -7,12 +7,12 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import object.ObjectID;
 
-public class TuberiaCabeza extends GameObjeto {
+public class BloqueTuberiaCabeza extends GameObjeto {
 
     // VARIABLES
     public boolean enterable;
 
-    public TuberiaCabeza(int x, int y, int width, int height, int xDesplasamiento, boolean enterable) {
+    public BloqueTuberiaCabeza(int x, int y, int width, int height, int xDesplasamiento, boolean enterable) {
         super(x, y, ObjectID.TuberiaCabeza, width, height, xDesplasamiento);
         this.enterable = enterable;
     }
@@ -35,6 +35,6 @@ public class TuberiaCabeza extends GameObjeto {
 
     @Override
     public GameObjeto clone() {
-        return new TuberiaCabeza((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento, true);
+        return new BloqueTuberiaCabeza((int) x, (int) y, (int) width, (int) height, (int) xDesplasamiento, true);
     }
 }

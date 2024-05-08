@@ -8,20 +8,22 @@ import java.util.List;
 
 public abstract class GameEntidad {
 
+    // OBJETOS
     protected EntidadID id;
-
+    private static List<GameEntidad> entidadesBorrar;
+    
+    // VARIABLES
     protected float x;
     protected float y;
     protected float width, height;
+    protected int contAnimacion = 0;
     private int inmunidad;
     private float velX, velY;
-    private static List<GameEntidad> entidadesBorrar;
-    private static List<GameEntidad> entidadesAniadir;
 
+    // BANDERAS
     protected boolean animacionCompletada = false;
     protected boolean atropellado = false;
     protected boolean aplastado = false;
-    protected int contAnimacion = 0;
 
     public GameEntidad(float x, float y, EntidadID id, float width, float height) {
         this.x = x;
@@ -31,7 +33,6 @@ public abstract class GameEntidad {
         this.height = height;
 
         entidadesBorrar = new ArrayList<>();
-        entidadesAniadir = new ArrayList<>();
     }
 
     public static void addEntidadABorrar(GameEntidad entidad) {
@@ -139,6 +140,6 @@ public abstract class GameEntidad {
     public void setAnimacionAplastado(boolean aplastado) {
         this.aplastado = aplastado;
     }
-    
+
     public abstract GameEntidad clone();
 }

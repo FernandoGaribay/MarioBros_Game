@@ -27,7 +27,6 @@ import object.util.HandlerBloques;
 import object.player.KeyInput;
 import object.ObjectFactory;
 import object.util.HandlerSonidos;
-import utils.ReproductorMP3;
 
 public class Game extends Canvas implements Runnable {
 

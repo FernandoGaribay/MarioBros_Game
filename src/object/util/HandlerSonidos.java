@@ -1,13 +1,8 @@
 package object.util;
 
-import graficos.LibreriaGrafica;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import main.Game;
-import object.bloques.BloqueLadrilloRojo;
-import object.padres.BloqueLadrillo;
-import object.player.Player;
 import utils.ReproductorMP3;
 
 public class HandlerSonidos {

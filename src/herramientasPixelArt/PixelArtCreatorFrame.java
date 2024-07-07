@@ -39,6 +39,7 @@ public class PixelArtCreatorFrame extends JFrame {
         this.coloresRecientesList = new ArrayList<>();
 
         setTitle(titulo);
+        setUndecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(WIDTH, HEIGHT);

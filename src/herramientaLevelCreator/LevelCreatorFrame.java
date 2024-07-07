@@ -7,7 +7,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.Map;  
+import java.util.Map;
 import javax.swing.Box;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -22,6 +22,7 @@ public class LevelCreatorFrame extends JFrame {
     private static final JMenu MOVER_PINTAR = new JMenu();
 
     public LevelCreatorFrame() {
+        setUndecorated(true);
         initComponents();
         inicializarBarraObjetos();
 
